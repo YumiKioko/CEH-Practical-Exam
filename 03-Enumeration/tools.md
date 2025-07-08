@@ -45,27 +45,31 @@
 - sqlcmd: Cliente MSSQL
 - mssql-cli: Cliente moderno MSSQL
 
- Scripts Úteis
+Scripts Úteis
 
-bash
- SMB Enumeration
+SMB Enumeration
+
 enum4linux -a target
 smbclient -L //target
 smbmap -H target
 
- Web Directory Enumeration
+Web Directory Enumeration
+
 gobuster dir -u http://target -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 dirb http://target /usr/share/wordlists/dirb/common.txt
 
- DNS Enumeration
+DNS Enumeration
+
 dig @target domain.com any
 nslookup target
 host target
 
- SNMP Enumeration
+SNMP Enumeration
+
 snmpwalk -c public -v1 target
 snmp-check target
 
- FTP Enumeration
+FTP Enumeration
+
 ftp target
 ncftp target
