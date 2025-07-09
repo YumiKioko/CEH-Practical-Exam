@@ -1,0 +1,207 @@
+{
+  "main": {
+    "id": "5063852b8f01771d",
+    "type": "split",
+    "children": [
+      {
+        "id": "f2b1aec86b3b2322",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a6e49e5b2cf02cef",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "02-Scanning/tools.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "tools"
+            }
+          },
+          {
+            "id": "846dbc0fbea78e72",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "08-Mobile-Security/tools.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "tools"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9d4a7a333943be8c",
+    "type": "split",
+    "children": [
+      {
+        "id": "c31c994aefce01e5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2b887745b6df2a2f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "bf61fe3e6341e104",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "d94ed923d635833d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "cc86d4282bbe273f",
+    "type": "split",
+    "children": [
+      {
+        "id": "3241d5b592add4e8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e4b0429a29a07308",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "08-Mobile-Security/tools.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for tools"
+            }
+          },
+          {
+            "id": "550f58740951afb3",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "08-Mobile-Security/tools.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from tools"
+            }
+          },
+          {
+            "id": "b50f148a8abfe3aa",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "30bf0072a52abd0a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "08-Mobile-Security/tools.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of tools"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "846dbc0fbea78e72",
+  "lastOpenFiles": [
+    "08-Mobile-Security/1 - Index.md",
+    "08-Mobile-Security/tools.md",
+    "07-Cloud-Security/tools.md",
+    "07-Cloud-Security/1 - Index.md",
+    "06-Wireless-Security/tools.md",
+    "06-Wireless-Security/1 - Index.md",
+    "05-Web-Application-Hacking/tools.md",
+    "05-Web-Application-Hacking/1 - Index.md",
+    "04-System-Hacking/1 - Index.md",
+    "04-System-Hacking/tools.md",
+    "03-Enumeration/1 - Index.md",
+    "03-Enumeration/tools.md",
+    "03-Enumeration/dnsrecon.md",
+    "02-Scanning/tools.md",
+    "02-Scanning/1 - Index.md",
+    "01-Reconnaissance/tools.md",
+    "01-Reconnaissance/DNSRecon Brute Force Subdomain Enumeration.md",
+    "01-Reconnaissance/1 - Index.md"
+  ]
+}

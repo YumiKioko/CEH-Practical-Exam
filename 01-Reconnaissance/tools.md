@@ -4,35 +4,42 @@
 
 ### OSINT
 - **theHarvester**: Coleta emails, subdomínios, IPs
-- **Shodan CLI**: Pesquisa em dispositivos conectados
-- **Maltego**: Análise de links e relacionamentos
+
+```
+theHarvester -d target.com -l 500 -b all
+```
+
 - **Recon-ng**: Framework de reconhecimento
-- **SpiderFoot**: Automação de OSINT
 
 ### DNS Enumeration
 - **dnsrecon**: Enumeração DNS completa
-- **fierce**: Descoberta de subdomínios
+
+
 - **sublist3r**: Enumeração de subdomínios
-- **amass**: Mapeamento de superfície de ataque
+
+##  Subdomain Enumeration
+
+```
+sublist3r -d target.com -o subdomains.txt
+```
 
 ## Active Reconnaissance
-
-### Network Discovery
 - **nmap**: Scanner de rede essencial
-- **masscan**: Scanner de portas rápido
-- **rustscan**: Scanner moderno e rápido
-- **zmap**: Scanner de internet
 
-### Scripts Úteis
+## Basic Network Discovery
+
 ```bash
-# Descoberta básica de rede
-nmap -sn 192.168.1.0/24
+nmap -sn <IP>/24
+```
 
-# Scan completo de portas
-nmap -sS -sV -sC -O -A -p- target
+## Scan completo de portas
 
-# Enumeração de subdomínios
-sublist3r -d target.com -o subdomains.txt
+```
+nmap -sS -sCV -O -A -p- <IP>
+```
 
-# TheHarvester
-theHarvester -d target.com -l 500 -b all
+Scan without DNS resolution
+
+```
+nmap -Pn -n -T4 -sCV <IP>
+```

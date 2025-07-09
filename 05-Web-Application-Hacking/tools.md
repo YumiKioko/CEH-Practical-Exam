@@ -1,4 +1,4 @@
- Web Application Hacking Tools
+# Web Application Hacking Tools
 
  Web Proxies
 
@@ -7,11 +7,6 @@
 - Scanner: Scanning automático
 - Intruder: Ataques automatizados
 - Repeater: Manipulação de requisições
-
- OWASP ZAP
-- Proxy: Interceptação
-- Active Scan: Scanning ativo
-- Passive Scan: Scanning passivo
 
  SQL Injection
 
@@ -36,11 +31,7 @@
 - Web Server Scanner: Vulnerabilidades web
 - CGI Scanner: Problemas em CGI
 
- Wapiti
-- Web Application Scanner: Vulnerabilidades em aplicações
-- SQL Injection: Detecção de SQLi
-
- Scripts Úteis
+# Scripts Úteis
 
 
  SQLMap básico

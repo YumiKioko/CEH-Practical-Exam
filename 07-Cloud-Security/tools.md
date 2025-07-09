@@ -1,8 +1,8 @@
- Cloud Security Tools
+Cloud Security Tools
 
- AWS Security
+AWS Security
 
- AWS CLI
+AWS CLI
 - aws: Linha de comando AWS
 - aws-shell: Shell interativo AWS
 
@@ -29,7 +29,7 @@
 
  Multi-Cloud Tools
 
- Pacu
+# Pacu
 - AWS Exploitation Framework: Framework de exploração AWS
 
  Cloud_enum

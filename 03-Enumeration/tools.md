@@ -1,6 +1,6 @@
- Enumeration Tools
+Enumeration Tools
 
- Service Enumeration
+# Service Enumeration
 
  SMB/NetBIOS
 - enum4linux: Enumeração completa SMB/NetBIOS
@@ -10,43 +10,32 @@
 
  FTP
 - ftp: Cliente FTP nativo
-- ncftp: Cliente FTP avançado
 
  SSH
 - ssh: Cliente SSH
-- ssh-audit: Auditoria SSH
 
  HTTP/HTTPS
 - gobuster: Directory/file brute force
-- dirb: Directory brute force
-- wfuzz: Web fuzzer
 - ffuf: Fast web fuzzer
 
  DNS
 - dig: DNS lookup
 - nslookup: DNS query
-- host: DNS lookup simples
 
  SNMP
 - snmpwalk: SNMP enumeration
 - snmp-check: SNMP scanner
 
- Database Enumeration
+# Database Enumeration
 
- MySQL
+MySQL
 - mysql: Cliente MySQL
 - mysqldump: Backup MySQL
 
- PostgreSQL
-- psql: Cliente PostgreSQL
-- pg_dump: Backup PostgreSQL
+SQLMAP
+- sqlmap
 
- MSSQL
-- sqlcmd: Cliente MSSQL
-- mssql-cli: Cliente moderno MSSQL
-
-
-Scripts Úteis
+# Scripts Úteis
 
 SMB Enumeration
 

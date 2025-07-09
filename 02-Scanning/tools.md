@@ -1,6 +1,6 @@
 Scanning Tools
 
-Port Scanning
+# Port Scanning
 
 Nmap (Essencial)
 - Stealth Scan: `nmap -sS target`
@@ -9,27 +9,13 @@ Nmap (Essencial)
 - Script Scan: `nmap -sC target`
 - UDP Scan: `nmap -sU target`
 
- Masscan
-- Fast Scan: `masscan -p1-65535 target --rate=1000`
-
- Rustscan
-- Quick Scan: `rustscan -a target`
-
- Vulnerability Scanning
-
- OpenVAS
-- Scanner de vulnerabilidades completo
-- Interface web para gestão
+# Vulnerability Scanning
 
  Nikto
 - Scanner de vulnerabilidades web
 - `nikto -h target`
 
- Nuclei
-- Scanner moderno baseado em templates
-- `nuclei -u target -t cves/`
-
-Scripts Úteis
+# Scripts Úteis
 
 Scan completo com nmap
 
