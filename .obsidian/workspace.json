@@ -1,0 +1,199 @@
+{
+  "main": {
+    "id": "96c96495ad1af334",
+    "type": "split",
+    "children": [
+      {
+        "id": "8895e50f4e3da71d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0953682b8e7c5245",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CEH-Practical-Exam-main/11-Social-Engineering/creepy.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "creepy"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "81b63a52dd7d8275",
+    "type": "split",
+    "children": [
+      {
+        "id": "8462b2289f9e23c8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f8b27a66dd49e5ff",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "10870c21cd60822c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "ae307aeee38c213f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "b417a83d284105ec",
+    "type": "split",
+    "children": [
+      {
+        "id": "efb145f52dd70640",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "84576534b1927842",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "ccd5cf34f32418a4",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "CEH-Practical-Exam-main/04-System-Hacking/tools.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from tools"
+            }
+          },
+          {
+            "id": "ce995fb90a59a965",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "0ea9e387b8369a29",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "CEH-Practical-Exam-main/04-System-Hacking/tools.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of tools"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "0953682b8e7c5245",
+  "lastOpenFiles": [
+    "CEH-Practical-Exam-main/11-Social-Engineering/1 - Index.md",
+    "CEH-Practical-Exam-main/11-Social-Engineering/creepy.md",
+    "CEH-Practical-Exam-main/11-Social-Engineering/recon-ng.md",
+    "CEH-Practical-Exam-main/11-Social-Engineering/BeEF.md",
+    "CEH-Practical-Exam-main/11-Social-Engineering/maltego.md",
+    "CEH-Practical-Exam-main/11-Social-Engineering/social-engineer toolkit (set).md",
+    "CEH-Practical-Exam-main/11-Social-Engineering/Social Engineering.md",
+    "CEH-Practical-Exam-main/02-Scanning/nmap.md",
+    "CEH-Practical-Exam-main/12-Steganography/Steganography Commands Cheat Sheet.md",
+    "CEH-Practical-Exam-main/12-Steganography/Stegdetect & Foremost.md",
+    "CEH-Practical-Exam-main/12-Steganography/OutGuess.md",
+    "CEH-Practical-Exam-main/12-Steganography/steghide.md",
+    "CEH-Practical-Exam-main/12-Steganography/tools.md",
+    "CEH-Practical-Exam-main/10-Cryptography/tools.md",
+    "CEH-Practical-Exam-main/10-Cryptography/1 - Index.md",
+    "CEH-Practical-Exam-main/05-Web-Application-Hacking/dirbuster.md",
+    "CEH-Practical-Exam-main/05-Web-Application-Hacking/nikto.md",
+    "CEH-Practical-Exam-main/09-Post-Exploitation/Untitled.md",
+    "CEH-Practical-Exam-main/09-Post-Exploitation/sqlmap.md",
+    "CEH-Practical-Exam-main/09-Post-Exploitation/john - hashcat.md",
+    "CEH-Practical-Exam-main/09-Post-Exploitation/Hydra - Medusa.md",
+    "CEH-Practical-Exam-main/09-Post-Exploitation/netcat.md",
+    "CEH-Practical-Exam-main/09-Post-Exploitation/impacket.md",
+    "CEH-Practical-Exam-main/09-Post-Exploitation/msfvenom.md",
+    "CEH-Practical-Exam-main/09-Post-Exploitation/searchsploit.md",
+    "CEH-Practical-Exam-main/09-Post-Exploitation/tools.md"
+  ]
+}
