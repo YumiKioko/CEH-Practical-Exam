@@ -1,6 +1,5 @@
----
 
-## 🧪 MobSF - Mobile Security Framework
+## MobSF - Mobile Security Framework
 
 ```markdown
 # 🧪 MobSF - Mobile Security Framework

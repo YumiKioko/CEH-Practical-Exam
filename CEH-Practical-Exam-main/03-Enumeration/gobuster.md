@@ -1,8 +1,3 @@
-
-## Description
-
-Gobuster is a fast and flexible directory, DNS, and virtual host brute-forcer written in Go. Often used for discovering hidden directories, files, or subdomains.
-
 ## Modes
 
 - `dir`: Directory/file brute-forcing
@@ -14,10 +9,8 @@ Gobuster is a fast and flexible directory, DNS, and virtual host brute-forcer wr
 - `s3`: Amazon S3 bucket enumeration
 
 - `fuzz`: General fuzzing mode
-
   
 ---
-
 ## Directory and File Discovery
 
 ```

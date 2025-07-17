@@ -1,4 +1,3 @@
-
 ## ⚙️ Basic Syntax
 ```
 hydra [OPTIONS] [TARGET] [PROTOCOL]

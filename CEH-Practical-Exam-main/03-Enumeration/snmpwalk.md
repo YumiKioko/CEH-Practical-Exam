@@ -1,8 +1,4 @@
 
-## Description
-
-`snmpwalk` is a command-line tool used to query SNMP agents. It performs a sequence of SNMP GETNEXT requests automatically to retrieve a subtree of management values from a target device.
-
 ---
 ## Basic Syntax
 
@@ -47,5 +43,3 @@ snmpwalk -v3 -u username -l authPriv -a MD5 -A password -x DES -X password 192.1
 ## Notes
 
 - Requires SNMP service enabled on the target.
-    
-- Often used in pentests to gather system information from routers, switches, printers, etc.

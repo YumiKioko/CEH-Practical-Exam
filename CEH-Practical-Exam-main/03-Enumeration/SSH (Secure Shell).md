@@ -1,8 +1,4 @@
 
-## Description
-
-SSH is a protocol for secure remote login and command execution over an unsecured network.
-  
 ## Basic Syntax
 
 ```bash

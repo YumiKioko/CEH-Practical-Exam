@@ -1,22 +1,4 @@
 
-**LinPEAS** (Linux Privilege Escalation Awesome Script) is part of the [PEAS suite](https://github.com/carlospolop/PEASS-ng) and is used to **enumerate potential privilege escalation paths on Linux systems**.
-
----
-
-## 🧩 What LinPEAS Does
-
-LinPEAS scans for:
-
-- SUID/SGID binaries
-- World-writable files and directories
-- Misconfigurations in services (cron, PATH, SSH, etc.)
-- Kernel and OS info
-- Installed software with known vulnerabilities
-- Credentials in memory or files
-- Docker and LXC misconfigurations
-- Capabilities, environment variables, sudo rights
-- and much more...
-
 ---
 ## 🚀 Quick Start
 

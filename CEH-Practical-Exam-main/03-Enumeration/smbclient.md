@@ -1,5 +1,3 @@
-## 🪜 Methodology: SMB Authenticated Access
-
 ### 🔹 Step 1: List Available Shares
 
 bash

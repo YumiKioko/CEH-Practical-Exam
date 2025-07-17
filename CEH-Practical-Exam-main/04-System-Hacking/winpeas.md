@@ -1,17 +1,3 @@
-## 📦 Download WinPEAS
-
-From attacker machine:
-```
-git clone https://github.com/carlospolop/PEASS-ng.git
-cd PEASS-ng/winPEAS/winPEASexe
-```
-
-Download the binary directly:
-```
-https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASany.exe
-```
-✅ **Use `winPEASany.exe` for best compatibility across Windows versions.**
-
 ## 🚀 Execution on Target
 
 From Windows command prompt or PowerShell:

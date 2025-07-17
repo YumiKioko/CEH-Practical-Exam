@@ -1,55 +1,19 @@
+## Starting Wireshark
  
-## 🚀 Installation
-
-  ### Debian/Ubuntu:
-
-  ```bash
-
-sudo apt install wireshark
-
-```
-
-### RedHat/CentOS:
-
-  ```bash
-
-sudo dnf install wireshark-gtk
-
-```
-
-### macOS:
-  
-```bash
-
-brew install wireshark
-
-```
-
-
----
-
-## 🖥️ Starting Wireshark
-
-  
-
 - GUI: Just run `wireshark`
 
 - TUI (terminal): Use `tshark`
-
-  
+ 
 ```bash
 
 sudo wireshark
 
 ```
 
-  
 ---
-
-## 🎯 Capture Filters vs Display Filters
+## Capture Filters vs Display Filters
 
   
-
 | Type | Purpose | Example |
 
 |------|---------|---------|
@@ -62,7 +26,7 @@ sudo wireshark
 
 ---
 
-## 🎛️ Common Capture Filters
+## Common Capture Filters
 
   
 ```bash
@@ -83,7 +47,7 @@ not arp                    # Ignore ARP
 
 
 ---
-## 🔍 Common Display Filters
+## Common Display Filters
 
 ### Protocols:
 
@@ -178,68 +142,3 @@ http.authorization
 
 ---
 
-## 📈 Analyze → Protocol Hierarchy
-
-View breakdown of all captured protocols and their percentage.
-
----
-## 📤 Export Objects
-
-**File → Export Objects → HTTP / SMB / DICOM / TFTP**
-
-Used to extract files transferred over the network.
-
----
-## 🛠 Useful Features
-
-- **Color Rules**: Highlight packets by protocol or flag
-
-- **Statistics → Conversations**: Analyze flows between hosts
-
-- **Name Resolution**: Resolve IPs to hostnames
-
-  - `View → Name Resolution → Enable for MAC/DNS`
-
----
-## 🧰 Command-Line (tshark)
-
-```bash
-
-sudo tshark -i wlan0 -f "port 80" -w capture.pcap
-
-```
-### Display with filter:
-
-```bash
-
-tshark -r capture.pcap -Y "http"
-
-```
-
----
-### 🧪 Packet Dissection Example
-
-```http
-
-GET /index.html HTTP/1.1
-
-Host: vulnerable.site
-
-Authorization: Basic dXNlcjpwYXNz
-
-```
-
-- `Authorization` header = base64 → credentials
-
-- `Follow TCP Stream` shows entire HTTP conversation
-
----
-## 🧱 Pro Tips
-
-- Use filters to reduce noise (especially `ip.addr`, `http`, `dns`)
-
-- Use color coding to spot anomalies
-
-- Use `tshark` for automation or scripting
-
----

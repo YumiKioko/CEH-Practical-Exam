@@ -1,5 +1,3 @@
-MSFvenom is a combination of **Msfpayload** and **Msfencode**, used to generate and encode various types of payloads for penetration testing.
-
 ---
 ## 📌 Basic Syntax
 

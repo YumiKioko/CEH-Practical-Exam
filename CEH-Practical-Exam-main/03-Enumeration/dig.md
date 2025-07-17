@@ -1,8 +1,3 @@
-## Description
-
-`dig` (Domain Information Groper) is a flexible and powerful tool for querying DNS name servers and troubleshooting DNS issues.
-
----
 ## Basic Query
 
 ```

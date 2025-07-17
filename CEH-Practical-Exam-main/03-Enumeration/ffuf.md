@@ -1,9 +1,3 @@
- 
-## Description
-
-FFUF is a fast web fuzzer written in Go, commonly used for content discovery, subdomain fuzzing, and directory brute-forcing.
-
-
 ## Basic Directory Bruteforce
 
 ```

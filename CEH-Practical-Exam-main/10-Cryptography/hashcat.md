@@ -1,12 +1,9 @@
- 🚀 What is Hashcat?
 
-Hashcat is a powerful password recovery tool that uses GPU acceleration to crack password hashes. It supports hundreds of hash types — including all the MD5-based ones you listed.
+## Basic Hashcat Syntax
 
-
- 🔧 Basic Hashcat Syntax
-
+```
 hashcat -m <hash-mode> -a <attack-mode> -o <output-file> <hash-file> <wordlist>
-
+```
 
 - `-m` → hash mode (number from your list, e.g., 0 for MD5)
 - `-a` → attack mode (0 = dictionary, 3 = brute-force, 6 = hybrid, etc.)
@@ -15,7 +12,7 @@ hashcat -m <hash-mode> -a <attack-mode> -o <output-file> <hash-file> <wordlist>
 - `<wordlist>` → wordlist to use (like `rockyou.txt`)
 
 
- 📦 Example Hash Modes from Your List (these examples are part of the information available from the official [Hashcat example hashes list](https://hashcat.net/wiki/doku.php?id=example_hashes))
+## 📦 Example Hash Modes from Your List (these examples are part of the information available from the official [Hashcat example hashes list](https://hashcat.net/wiki/doku.php?id=example_hashes))
 
 |Hash Name|Hashcat Mode (`-m`)|
 
@@ -42,9 +39,13 @@ Example (for mode 10):
 01dfae6e5d4d90d9892622325959afbe:7050461
 
 
- 🛠️ Example Commands
+Example Commands
 
-✅ Crack basic MD5 (mode 0)
+Crack basic MD5 (mode 0)
+
+
+hashcat -m 0 -a 0 -o cracked.txt hashes.txt rockyou.txt
+
 
 hashcat -m 0 -a 0 -o cracked.txt hashes.txt rockyou.txt
 

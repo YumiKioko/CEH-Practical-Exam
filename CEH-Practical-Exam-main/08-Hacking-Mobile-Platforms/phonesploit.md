@@ -1,14 +1,4 @@
-# 📱 PhoneSploit - Exploit Android Devices via ADB
 
-PhoneSploit is a Python-based tool that uses ADB (Android Debug Bridge) over WiFi to exploit Android devices. It allows control over connected devices without physical access.
-
----
-## 🔧 Installation
-
-### Prerequisites
-
-- Python 3.x
-- ADB (Android Debug Bridge)
 ## ▶️ Usage
 
 ### Start ADB Server

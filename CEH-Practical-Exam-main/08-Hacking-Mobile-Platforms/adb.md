@@ -1,15 +1,3 @@
-# 📱 ADB - Android Debug Bridge
-
-ADB is a command-line tool that allows communication with Android devices for debugging, testing, and system analysis.
-
----
-
-## 🔧 Installation
-
-- Included in Android SDK Platform Tools
-- Download: https://developer.android.com/studio/releases/platform-tools
-
----
 
 ## 🔗 Connect to Device
 

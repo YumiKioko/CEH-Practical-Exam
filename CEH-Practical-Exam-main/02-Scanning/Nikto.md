@@ -1,8 +1,3 @@
-
-## Description
-
-Nikto is a web server scanner that tests for dangerous files, outdated server software, and configuration issues.
-
 ## Example Usage
 
 ```bash

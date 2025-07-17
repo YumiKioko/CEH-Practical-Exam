@@ -1,4 +1,3 @@
-
 ## ⚙️ Basic Syntax
 ```
 john [options] [hash_file]

@@ -1,8 +1,3 @@
-
-## Description
-
-A powerful network scanner used for host discovery, port scanning, and OS detection.
- 
 ### Basic Network Discovery
 
 ```bash
@@ -10,7 +5,6 @@ A powerful network scanner used for host discovery, port scanning, and OS detect
 nmap -sn <IP>/24
 
 ```
-
   
 ### Full Port Scan with Service and OS Detection
 
@@ -19,7 +13,6 @@ nmap -sn <IP>/24
 nmap -sS -sCV -O -A -p- <IP>
 
 ```
-
   
 ### Scan without DNS Resolution
 

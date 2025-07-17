@@ -1,7 +1,4 @@
 
-## Description
-`sqlmap` is an automated tool for detecting and exploiting SQL injection flaws and taking over database servers.
-
 ---
 ## Basic Usage
 

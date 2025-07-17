@@ -1,6 +1,3 @@
-  # ☁️ ScoutSuite in Cloud Security Auditing
-
-ScoutSuite is a **passive, open-source cloud configuration auditing tool** designed to help security professionals identify **misconfigurations, vulnerabilities, and insecure settings** across cloud environments such as **AWS, Azure, GCP**, and others.
 
 ---
 

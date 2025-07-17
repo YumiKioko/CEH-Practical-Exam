@@ -1,11 +1,4 @@
 
-## ⚙️ What is Meterpreter?
-
-- Runs in memory (fileless execution)
-- Encrypted communication with the attacker
-- Modular design for post-exploitation tasks
-- Supports privilege escalation, keylogging, screenshot capture, and more
-
 ---
 
 ## 🧪 Common Meterpreter Payloads (used with MSFvenom)

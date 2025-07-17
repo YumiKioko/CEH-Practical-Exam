@@ -1,9 +1,3 @@
-
-## Description
-`snmp-check` is an SNMP enumerator designed to extract information from devices that expose SNMP services. It can retrieve system details, network interfaces, routing tables, and more.
-
----
-
 ## Basic Syntax
 
 ```

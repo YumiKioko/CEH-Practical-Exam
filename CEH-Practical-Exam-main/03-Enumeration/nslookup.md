@@ -1,7 +1,3 @@
-## Description
-
-`nslookup` is a command-line tool for querying the Domain Name System (DNS) to obtain domain name or IP address mappings and other DNS records.
-
 ## Basic Usage
 
 ```
