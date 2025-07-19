@@ -1,8 +1,4 @@
- Apologies for the broken link! Since we're working directly here, I'll provide the full cheatsheet in Markdown format that you can **copy/paste into a file**. Here's how to save it:
 
-
-
-# 🎯 CEH v12 Practical Exam Cheatsheet
 
 🔥 Top 10 Exam Commands (MUST KNOW)
 1. **Network Scanning**
