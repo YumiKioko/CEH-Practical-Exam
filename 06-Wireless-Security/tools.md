@@ -1,10 +1,35 @@
  Wireless Security Tools
 
+<<<<<<< HEAD
 # WiFi Reconnaissance
 
  Aircrack-ng Suite
 - aircrack-ng: WEP/WPA cracking
 
+ Bettercap
+- 
+
+Wireshark
+- Packet Analysis: Análise de pacotes
+
+# Scripts Úteis
+=======
+ WiFi Reconnaissance
+
+ Aircrack-ng Suite
+- airmon-ng: Monitor mode management
+- airodump-ng: Packet capture and analysis
+- aireplay-ng: Packet injection
+- aircrack-ng: WEP/WPA cracking
+
+ Kismet
+- Wireless Network Detector: Detecção de redes wireless
+- Packet Sniffer: Captura de pacotes
+- Intrusion Detection: Detecção de intrusões
+
+ Wifite
+- Automated WiFi Auditing: Auditoria automática
+- WEP/WPA/WPS Attacks: Ataques automatizados
 
  Bluetooth Security
 
@@ -14,12 +39,39 @@
 - l2ping: Bluetooth ping
 
  Bettercap
-- 
+- Bluetooth Attacks: Ataques Bluetooth
+- BLE Attacks: Bluetooth Low Energy
 
-Wireshark
+ WiFi Attacks
+
+ WEP Attacks
+- Fragmentation Attack: Ataque de fragmentação
+- Chopped Attack: Ataque chopchop
+- ARP Replay: Replay de ARP
+
+ WPA/WPA2 Attacks
+- Dictionary Attack: Ataque de dicionário
+- Handshake Capture: Captura de handshake
+- PMKID Attack: Ataque PMKID
+
+ WPS Attacks
+- Pixie Dust: Ataque Pixie Dust
+- PIN Brute Force: Força bruta de PIN
+- Reaver: Ferramenta WPS
+
+ Wireless Monitoring
+
+ Wireshark
 - Packet Analysis: Análise de pacotes
+- Protocol Dissection: Dissecação de protocolos
+- Traffic Analysis: Análise de tráfego
 
-# Scripts Úteis
+ Horst
+- Lightweight Monitor: Monitor leve
+- Real-time Analysis: Análise em tempo real
+
+ Scripts Úteis
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 
  Aircrack-ng workflow
  1. Ativar monitor mode

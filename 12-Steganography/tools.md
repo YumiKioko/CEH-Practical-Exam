@@ -1,6 +1,12 @@
+<<<<<<< HEAD
+# Steganography Tools
+
+## Image Steganography
+=======
  Steganography Tools
 
  Image Steganography
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 
  Steghide
 - steghide: Ocultação em imagens/áudio
@@ -17,19 +23,28 @@
 - File Carving: Extração de arquivos
 - Entropy Analysis: Análise de entropia
 
+<<<<<<< HEAD
+## Audio Steganography
+=======
  Audio Steganography
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 
  Audacity
 - Audio Editor: Editor de áudio
 - Spectral Analysis: Análise espectral
 - Waveform Analysis: Análise de forma de onda
 
+<<<<<<< HEAD
+
+## Text Steganography
+=======
  Sonic Visualiser
 - Audio Analysis: Análise de áudio
 - Spectrogram: Espectrograma
 - Plugin Support: Suporte a plugins
 
  Text Steganography
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 
  Snow
 - Whitespace Steganography: Esteganografia em espaços
@@ -39,17 +54,26 @@
 - Text Steganography: Esteganografia de texto
 - Whitespace Encoding: Codificação de espaços
 
+<<<<<<< HEAD
+## File System Steganography
+=======
  File System Steganography
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 
  Outguess
 - JPEG Steganography: Esteganografia em JPEG
 - Statistical Analysis: Análise estatística
 
+<<<<<<< HEAD
+
+# Scripts Úteis
+=======
  F5
 - JPEG Steganography: Algoritmo F5
 - Capacity Estimation: Estimativa de capacidade
 
  Scripts Úteis
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 
  Steghide
 steghide embed -cf image.jpg -ef secret.txt -p password

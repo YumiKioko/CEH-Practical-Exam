@@ -1,6 +1,6 @@
- Social Engineering Tools
+# Social Engineering Tools
 
- Phishing
+## Phishing
 
  SET (Social Engineering Toolkit)
 - setoolkit: Framework principal
@@ -8,12 +8,8 @@
 - Web Attack: Ataques web
 - Infectious Media: Mídia infectada
 
- Gophish
-- Phishing Campaign: Campanhas de phishing
-- Email Templates: Templates de email
-- Landing Pages: Páginas de captura
 
- Email Spoofing
+##  Email Spoofing
 
  Swaks
 - SMTP Testing: Teste de SMTP
@@ -23,7 +19,7 @@
 - Mail Server: Servidor de email
 - Mail Relay: Relay de email
 
- Information Gathering
+## Information Gathering
 
  Maltego
 - OSINT: Open Source Intelligence
@@ -47,7 +43,7 @@
 - API Integration: Integração com APIs
 - Data Correlation: Correlação de dados
 
- Scripts Úteis
+# Scripts
 
  SET Usage
 setoolkit

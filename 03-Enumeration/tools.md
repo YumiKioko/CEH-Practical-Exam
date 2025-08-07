@@ -1,12 +1,18 @@
+<<<<<<< HEAD
 Enumeration Tools
 
 # Service Enumeration
+=======
+ Enumeration Tools
+
+ Service Enumeration
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 
  SMB/NetBIOS
 - enum4linux: Enumeração completa SMB/NetBIOS
 - smbclient: Cliente SMB
 - smbmap: Mapeamento de shares SMB
-- rpcclient: Cliente RPC
+<<<<<<< HEAD
 
  FTP
 - ftp: Cliente FTP nativo
@@ -16,16 +22,37 @@ Enumeration Tools
 
  HTTP/HTTPS
 - gobuster: Directory/file brute force
+=======
+- rpcclient: Cliente RPC
+
+ FTP
+- ftp: Cliente FTP nativo
+- ncftp: Cliente FTP avançado
+
+ SSH
+- ssh: Cliente SSH
+- ssh-audit: Auditoria SSH
+
+ HTTP/HTTPS
+- gobuster: Directory/file brute force
+- dirb: Directory brute force
+- wfuzz: Web fuzzer
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 - ffuf: Fast web fuzzer
 
  DNS
 - dig: DNS lookup
 - nslookup: DNS query
+<<<<<<< HEAD
+=======
+- host: DNS lookup simples
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 
  SNMP
 - snmpwalk: SNMP enumeration
 - snmp-check: SNMP scanner
 
+<<<<<<< HEAD
 # Database Enumeration
 
 MySQL
@@ -36,6 +63,24 @@ SQLMAP
 - sqlmap
 
 # Scripts Úteis
+=======
+ Database Enumeration
+
+ MySQL
+- mysql: Cliente MySQL
+- mysqldump: Backup MySQL
+
+ PostgreSQL
+- psql: Cliente PostgreSQL
+- pg_dump: Backup PostgreSQL
+
+ MSSQL
+- sqlcmd: Cliente MSSQL
+- mssql-cli: Cliente moderno MSSQL
+
+
+Scripts Úteis
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 
 SMB Enumeration
 

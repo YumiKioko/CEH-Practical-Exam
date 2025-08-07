@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+# Cryptography Tools
+=======
  Cryptography Tools
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 
  Hash Identification
 
@@ -41,7 +45,11 @@
 - Cipher Solver: Resolução automática
 - Frequency Analysis: Análise de frequência
 
+<<<<<<< HEAD
+# Scripts
+=======
  Scripts Úteis
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 
  Hash identification
 hash-identifier

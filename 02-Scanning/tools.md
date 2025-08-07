@@ -1,6 +1,18 @@
 Scanning Tools
 
+<<<<<<< HEAD
 # Port Scanning
+
+Nmap (Essencial)
+
+# Vulnerability Scanning
+
+ Nikto
+- Scanner de vulnerabilidades web
+
+# Scripts Úteis
+=======
+Port Scanning
 
 Nmap (Essencial)
 - Stealth Scan: `nmap -sS target`
@@ -9,13 +21,28 @@ Nmap (Essencial)
 - Script Scan: `nmap -sC target`
 - UDP Scan: `nmap -sU target`
 
-# Vulnerability Scanning
+ Masscan
+- Fast Scan: `masscan -p1-65535 target --rate=1000`
+
+ Rustscan
+- Quick Scan: `rustscan -a target`
+
+ Vulnerability Scanning
+
+ OpenVAS
+- Scanner de vulnerabilidades completo
+- Interface web para gestão
 
  Nikto
 - Scanner de vulnerabilidades web
 - `nikto -h target`
 
-# Scripts Úteis
+ Nuclei
+- Scanner moderno baseado em templates
+- `nuclei -u target -t cves/`
+
+Scripts Úteis
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 
 Scan completo com nmap
 
@@ -29,6 +56,11 @@ Scan com scripts vulnerabilidades
 
 nmap --script vuln target
 
+<<<<<<< HEAD
+
+
+
+=======
 Masscan para descoberta rápida
 
 masscan -p1-65535 target --rate=1000 -oG masscan.txt
@@ -48,4 +80,5 @@ nuclei -u http://target -t templates/
 
 Update templates:
 nuclei -update-templates
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 

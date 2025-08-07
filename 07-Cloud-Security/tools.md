@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 Cloud Security Tools
 
 AWS Security
 
 AWS CLI
+=======
+ Cloud Security Tools
+
+ AWS Security
+
+ AWS CLI
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 - aws: Linha de comando AWS
 - aws-shell: Shell interativo AWS
 
@@ -29,7 +37,11 @@ AWS CLI
 
  Multi-Cloud Tools
 
+<<<<<<< HEAD
 # Pacu
+=======
+ Pacu
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 - AWS Exploitation Framework: Framework de exploração AWS
 
  Cloud_enum

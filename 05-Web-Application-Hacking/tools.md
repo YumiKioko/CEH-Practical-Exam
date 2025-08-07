@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Web Application Hacking Tools
+=======
+ Web Application Hacking Tools
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 
  Web Proxies
 
@@ -8,6 +12,14 @@
 - Intruder: Ataques automatizados
 - Repeater: Manipulação de requisições
 
+<<<<<<< HEAD
+=======
+ OWASP ZAP
+- Proxy: Interceptação
+- Active Scan: Scanning ativo
+- Passive Scan: Scanning passivo
+
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
  SQL Injection
 
  SQLMap
@@ -31,7 +43,15 @@
 - Web Server Scanner: Vulnerabilidades web
 - CGI Scanner: Problemas em CGI
 
+<<<<<<< HEAD
 # Scripts Úteis
+=======
+ Wapiti
+- Web Application Scanner: Vulnerabilidades em aplicações
+- SQL Injection: Detecção de SQLi
+
+ Scripts Úteis
+>>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 
 
  SQLMap básico
