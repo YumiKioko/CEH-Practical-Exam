@@ -1,5 +1,0 @@
-- [[Aircrack-ng]]: Suite for auditing and cracking Wi-Fi network security.
-- [[Bettercap]]: Network attack, monitoring, and MITM framework.
-- [[Detect DDOS with Wireshark]]: Analyze packet patterns and traffic spikes to identify potential DDoS activity.
-- [[Password Sniffing Using Wireshark]]: Capture and inspect unencrypted credentials in network traffic.
-- [[Wireshark]]: Network protocol analyzer for capturing and inspecting traffic.

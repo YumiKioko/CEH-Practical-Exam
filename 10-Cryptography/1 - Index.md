@@ -1,2 +1,0 @@
-- [[10-Cryptography/hashcat|hashcat]]: GPU-accelerated password recovery and hash cracking tool.
-- [[10-Cryptography/hydra|hydra]]: Fast brute-force tool for cracking credentials on network services.

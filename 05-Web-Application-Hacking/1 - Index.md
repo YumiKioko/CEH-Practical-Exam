@@ -1,5 +1,0 @@
-- [[05-Web-Application-Hacking/burp|burp]]: Web vulnerability scanner and proxy for testing web application security.
-- [[dirbuster]]: Web directory and file brute-forcing tool using wordlists.
-- [[05-Web-Application-Hacking/gobuster|gobuster]]: Web/content and DNS brute-forcing tool using wordlists.
-- [[05-Web-Application-Hacking/nikto|nikto]]: Web server scanner for detecting vulnerabilities and misconfigurations.
-- [[05-Web-Application-Hacking/sqlmap|sqlmap]]: Automated tool for detecting and exploiting SQL injection vulnerabilities.

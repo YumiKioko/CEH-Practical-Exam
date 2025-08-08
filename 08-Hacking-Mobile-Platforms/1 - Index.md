@@ -1,6 +1,0 @@
-- [[adb]]: Android Debug Bridge for managing and debugging Android devices.
-- [[08-Hacking-Mobile-Platforms/burp|burp]]: Web vulnerability scanner and proxy for testing web application security.
-- [[burp intruder]]: Burp Suite tool for automating customized attacks on web applications.
-- [[frida]]: Dynamic instrumentation toolkit for runtime analysis and manipulation of applications.
-- [[mobsf]]: Mobile Security Framework for automated analysis of Android and iOS apps.
-- [[phonesploit]]: Tool for exploiting Android devices via ADB over a network.
