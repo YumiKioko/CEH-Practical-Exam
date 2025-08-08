@@ -1,0 +1,6 @@
+- [[BeEF]]: Browser Exploitation Framework for client-side web attacks.
+- [[creepy]]: Geolocation OSINT tool for gathering location data from online sources.
+- [[maltego]]: OSINT and link analysis tool for mapping relationships between people, organizations, and data.
+- [[11-Social-Engineering/recon-ng|recon-ng]]: Web reconnaissance framework with modular OSINT gathering capabilities.
+- [[Social Engineering]]: Manipulating people to disclose information or perform actions for exploitation.
+- [[social-engineer toolkit (set)]]: Framework for automating social engineering attacks and payload delivery.

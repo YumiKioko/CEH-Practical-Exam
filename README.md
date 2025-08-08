@@ -18,7 +18,6 @@ This repository contains comprehensive notes, tools, and practical resources cov
 - `10-Cryptography` - Cryptanalysis and encryption toolkits.
 - `11-Social-Engineering` - Social engineering tactics and tools.
 - `12-Steganography` - Steganography tools and techniques.
-- `13-Evading.IDS` - Methods and tools to evade Intrusion Detection Systems (IDS).
 - `Windows-Tools` - Tools specifically designed for Windows penetration testing.
 
 ## How to Use

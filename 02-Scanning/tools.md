@@ -1,6 +1,5 @@
 Scanning Tools
 
-<<<<<<< HEAD
 # Port Scanning
 
 Nmap (Essencial)
@@ -42,7 +41,6 @@ Nmap (Essencial)
 - `nuclei -u target -t cves/`
 
 Scripts Úteis
->>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
 
 Scan completo com nmap
 

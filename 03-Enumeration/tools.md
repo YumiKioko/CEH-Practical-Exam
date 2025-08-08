@@ -5,9 +5,6 @@ Enumeration Tools
 =======
  Enumeration Tools
 
- Service Enumeration
->>>>>>> c1b4712547a17da4c827bb6759b6cfb87d5bc851
-
  SMB/NetBIOS
 - enum4linux: Enumeração completa SMB/NetBIOS
 - smbclient: Cliente SMB

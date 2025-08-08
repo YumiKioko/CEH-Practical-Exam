@@ -1,5 +1,5 @@
 
-## 🧭 Phases of Reconnaissance
+## Phases of Reconnaissance
 
 - **Passive Reconnaissance**: No direct interaction with the target (e.g., Whois, Google dorking).
     
@@ -8,7 +8,7 @@
 
 ---
 
-## ⚙️ Best Tools for Reconnaissance
+## Best Tools for Reconnaissance
 
 ### ✅ Passive Reconnaissance Tools
 
@@ -24,7 +24,7 @@
 
 ---
 
-### ✅ Active Reconnaissance Tools
+### Active Reconnaissance Tools
 
 |Tool|Purpose|Script Example|
 |---|---|---|

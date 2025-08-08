@@ -1,0 +1,3 @@
+- [[pacu]]: AWS exploitation framework for security testing of cloud environments.
+- [[ScoutSuite]]: Multi-cloud security auditing tool for assessing cloud environments.
+- [[Scoutsuite - Audit Tools Checklist]]: Cloud auditing tool checklist for security posture assessment.

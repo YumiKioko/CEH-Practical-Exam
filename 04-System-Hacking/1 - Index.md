@@ -1,0 +1,12 @@
+- [[04-System-Hacking/hashcat|hashcat]]: Advanced password recovery tool using GPU-accelerated hash cracking.
+- [[04-System-Hacking/hydra|hydra]]: Fast and flexible tool for brute-force password cracking on network services.
+- [[john]]: Password cracking tool for offline hash attacks (John the Ripper).
+- [[linpeas]]: Linux privilege escalation enumeration script.
+- [[linux-exploit-suggester]]: Tool to identify potential kernel exploits on a Linux system.
+- [[meterpreter]]: Advanced, post-exploitation attack payload in the Metasploit Framework.
+- [[04-System-Hacking/msfvenom|msfvenom]]: Payload generator and encoder tool from the Metasploit Framework.
+- [[powerup]]: PowerShell script for Windows privilege escalation enumeration.
+- [[searchsploit and exploit-db]]: Command-line tool to search Exploit-DB for known vulnerabilities | Public repository of exploits and vulnerability information.
+- [[windows-exploit-suggester]]: Tool to identify missing Windows patches and suggest related exploits.
+- [[04-System-Hacking/winpeas|winpeas]]: Windows privilege escalation enumeration script.
+

