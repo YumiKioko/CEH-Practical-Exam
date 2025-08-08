@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "00 - Index/Index.md",
+                "file": "CEH Walkthrough.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Index"
+              "title": "CEH Walkthrough"
             }
           }
         ]
@@ -171,8 +171,8 @@
   },
   "active": "93f33f49858f3fb1",
   "lastOpenFiles": [
-    "CEH.md",
     "00 - Index/Index.md",
+    "CEH.md",
     "CEH Walkthrough.md",
     "CEH-Practical-Cheat sheet.md",
     "06-Wireless-Security/Aircrack-ng.md",
