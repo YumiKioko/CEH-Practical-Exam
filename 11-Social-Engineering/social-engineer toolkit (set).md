@@ -2,17 +2,11 @@
 ## 💡 Key Features
 
 - 🎣 **Phishing Attacks**
-    
 - 💻 **Website Cloning**
-    
 - 🛠️ **Credential Harvesting**
-    
 - 🧬 **Payload Generation**
-    
 - 📦 **USB Drop Attacks**
-    
 - ☎️ **SMS Spoofing (via 3rd-party APIs)**
-    
 
 ---
 
@@ -54,73 +48,53 @@ python3 setup.py
 ### 1. **Spear-Phishing Attack Vector**
 
 - Send a malicious email with a payload or a fake link.
-    
 - Options: Credential harvester, malware attachment, etc.
-    
 
 ### 2. **Website Attack Vectors**
 
 - Clone a website and host a fake login page.
-    
 - Useful for harvesting usernames/passwords.
-    
 - Can inject JavaScript keyloggers or Metasploit payloads.
-    
 
 ### 3. **Infectious Media Generator**
 
 - Create infected USB/CD payloads.
-    
 - Simulates "lost USB" attacks.
-    
 
 ### 4. **Create a Payload and Listener**
 
 - Generate backdoors using:
-    
-    - Meterpreter reverse shell
-        
+
+    - Meterpreter reverse shell        
     - Shellcode injection
-        
-- Sets up a listener to catch connections.
-    
+
+- Sets up a listener to catch connections.    
 
 ---
-
 ## 🛡️ Common Use Cases (Red Team)
 
-|Scenario|Tool Functionality|
-|---|---|
-|Phishing Simulation|Spear Phishing Attack Vector|
-|Credential Harvesting|Website Cloner + Credential Harvester|
-|USB Drop Test|Infectious Media Generator|
-|Payload Delivery|Python, Bash, PowerShell payloads|
-|Exploit Delivery|Integration with Metasploit|
+| Scenario              | Tool Functionality                    |
+| --------------------- | ------------------------------------- |
+| Phishing Simulation   | Spear Phishing Attack Vector          |
+| Credential Harvesting | Website Cloner + Credential Harvester |
+| USB Drop Test         | Infectious Media Generator            |
+| Payload Delivery      | Python, Bash, PowerShell payloads     |
+| Exploit Delivery      | Integration with Metasploit           |
 
 ---
-
 ## ⚙️ Configuration
 
 Edit `config/set_config` to change:
 
-- SMTP settings (for phishing)
-    
+- SMTP settings (for phishing)    
 - Auto listener IP
-    
 - Apache web server usage
-    
 - Payload options
-    
 
 ---
-
 ## ✅ Best Practices
 
 - Always get **written permission** for assessments.
-    
 - Combine SET with **OSINT tools** like Maltego, Recon-ng.
-    
 - Use in isolated environments or VMs.
-    
 - Log all activity for audit purposes.
-    

@@ -13,71 +13,48 @@
 ### 1. **Phishing**
 
 - **Method:** Fraudulent emails or messages that appear legitimate.
-    
 - **Goal:** Steal credentials, infect systems with malware.
-    
 - **Example:** An email pretending to be from your bank asking you to “verify” your account.
-    
 
 ### 2. **Spear Phishing**
 
 - **Method:** Targeted phishing aimed at a specific individual or organization.
-    
 - **Goal:** Customized deception to increase success rate.
-    
 - **Example:** Email referencing a recent project or person you know.
-    
 
 ### 3. **Vishing (Voice Phishing)**
 
 - **Method:** Phone calls impersonating legitimate entities.
-    
 - **Goal:** Extract sensitive data such as credit card info or passwords.
-    
 - **Example:** "Tech support" calls pretending to fix a nonexistent issue.
-    
 
 ### 4. **Smishing (SMS Phishing)**
 
 - **Method:** Deceptive text messages.
-    
 - **Goal:** Trick users into clicking malicious links or revealing info.
-    
 - **Example:** “Click here to claim your package” type texts.
-    
 
 ### 5. **Pretexting**
 
 - **Method:** Creating a fabricated scenario to obtain information.
-    
 - **Goal:** Gain trust and extract confidential info.
-    
 - **Example:** Posing as an HR rep requesting employee records.
-    
 
 ### 6. **Tailgating / Piggybacking**
 
 - **Method:** Gaining physical access by following authorized personnel.
-    
 - **Goal:** Enter secure areas without proper credentials.
-    
 - **Example:** Walking in behind someone with a keycard.
-    
 
 ---
 
 ## 🔎 Key Techniques Used in Social Engineering
 
-- **Impersonation** – Pretending to be someone else.
-    
+- **Impersonation** – Pretending to be someone else.    
 - **Urgency and Fear** – Rushing targets to act without thinking.
-    
 - **Authority** – Exploiting trust in figures of authority.
-    
 - **Familiarity** – Acting as if they know the victim or their colleagues.
-    
 - **Scarcity** – Offering a "limited-time" deal to pressure quick action.
-    
 
 ---
 
@@ -85,31 +62,23 @@
 
 ### ✅ Awareness and Training
 
-- Conduct regular security awareness sessions.
-    
+- Conduct regular security awareness sessions.    
 - Use phishing simulations to test and train staff.
-    
 
 ### ✅ Verification Protocols
 
 - Always verify identity before sharing sensitive information.
-    
 - Use multi-factor authentication.
-    
 
 ### ✅ Don’t Click Suspicious Links
 
 - Hover over links before clicking.
-    
 - Report suspicious messages to IT/security teams.
-    
 
 ### ✅ Secure Physical Spaces
 
 - Don’t hold doors open for strangers.
-    
 - Report unfamiliar individuals in secure areas.
-    
 
 ---
 

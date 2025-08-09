@@ -11,20 +11,13 @@
 ## 🧰 Key Features
 
 - Modular architecture with over 60 built-in modules
-    
 - API integration with popular services (Shodan, HaveIBeenPwned, VirusTotal, Twitter, etc.)
-    
 - Workspaces to organize data per target/project
-    
 - Database-backed to store results
-    
 - Export data in multiple formats (CSV, JSON, XML)
-    
 - Automation-friendly with scripting capabilities
-    
 
 ---
-
 ## 🚀 Installation
 
 ### Clone and install Recon-ng
@@ -50,12 +43,15 @@ python3 recon-ng
 
 ```bash
 workspaces create example
+```
+
+```
 workspaces select example
 ```
 
 ### Search and load modules
 
-```bash
+```
 marketplace search shodan
 marketplace install recon/hosts-hosts/shodan_hostname
 modules load recon/hosts-hosts/shodan_hostname
@@ -63,19 +59,19 @@ modules load recon/hosts-hosts/shodan_hostname
 
 ### Set module options
 
-```bash
+```
 options set SOURCE example.com
 ```
 
 ### Run the module
 
-```bash
+```
 run
 ```
 
 ### Show gathered data
 
-```bash
+```
 show hosts
 show contacts
 ```
@@ -107,15 +103,11 @@ export csv /path/to/file.csv
 ## 🔗 Integration with Other Tools
 
 - **Maltego:** Export Recon-ng data as CSV and import into Maltego for visualization.
-    
 - **Custom Scripts:** Automate Recon-ng modules and parse/export results for further processing.
-    
 
 ---
 ## 📚 Resources
 
-- 🔗 [Recon-ng GitHub](https://github.com/lanmaster53/recon-ng)
-    
+- 🔗 [Recon-ng GitHub](https://github.com/lanmaster53/recon-ng)    
 - 📘 [Recon-ng Wiki](https://github.com/lanmaster53/recon-ng/wiki)
-    
 - 🎥 [Recon-ng Tutorials on YouTube](https://www.youtube.com/results?search_query=recon-ng+tutorial)

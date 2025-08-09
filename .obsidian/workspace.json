@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "09-Post-Exploitation/metasploit (notes).md",
+                "file": "Windows-Tools/Windows Lateral Movement and Pivoting.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "metasploit (notes)"
+              "title": "Windows Lateral Movement and Pivoting"
             }
           }
         ]
@@ -171,32 +171,32 @@
   },
   "active": "93f33f49858f3fb1",
   "lastOpenFiles": [
-    "09-Post-Exploitation/john - hashcat.md",
-    "09-Post-Exploitation/impacket.md",
-    "09-Post-Exploitation/Hydra - Medusa.md",
-    "09-Post-Exploitation/bloodhound.md",
-    "08-Hacking-Mobile-Platforms/phonesploit.md",
-    "08-Hacking-Mobile-Platforms/mobsf.md",
-    "08-Hacking-Mobile-Platforms/frida.md",
-    "08-Hacking-Mobile-Platforms/burp intruder.md",
-    "08-Hacking-Mobile-Platforms/burp.md",
-    "08-Hacking-Mobile-Platforms/adb.md",
-    "07-Cloud-Security/Scoutsuite - Audit Tools Checklist.md",
-    "07-Cloud-Security/ScoutSuite.md",
-    "07-Cloud-Security/pacu.md",
-    "06-Wireless-Security/Wireshark.md",
-    "06-Wireless-Security/Password Sniffing Using Wireshark.md",
-    "06-Wireless-Security/Detect DDOS with Wireshark.md",
-    "06-Wireless-Security/Bettercap.md",
-    "06-Wireless-Security/Aircrack-ng.md",
-    "05-Web-Application-Hacking/sqlmap.md",
-    "05-Web-Application-Hacking/nikto.md",
-    "05-Web-Application-Hacking/gobuster.md",
-    "05-Web-Application-Hacking/dirbuster.md",
-    "05-Web-Application-Hacking/burp.md",
-    "04-System-Hacking/winpeas.md",
-    "04-System-Hacking/windows-exploit-suggester.md",
-    "04-System-Hacking/tools.md",
+    "Windows-Tools/Responder.md",
+    "Windows-Tools/Windows Lateral Movement and Pivoting.md",
+    "Windows-Tools/WinPEAS.md",
+    "Windows-Tools/README..md",
+    "Windows-Tools/README.md",
+    "Windows-Tools/PSExec.md",
+    "Windows-Tools/PowerShell-Empire.md",
+    "Windows-Tools/Mimikatz.md",
+    "Windows-Tools/Impacket.md",
+    "Windows-Tools/Evil-WinRM.md",
+    "Windows-Tools/Curl.md",
+    "Windows-Tools/BloodHound.md",
+    "12-Steganography/steghide.md",
+    "12-Steganography/Stegdetect & Foremost.md",
+    "12-Steganography/Steganography Commands Cheat Sheet.md",
+    "12-Steganography/README.md",
+    "12-Steganography/OutGuess.md",
+    "11-Social-Engineering/social-engineer toolkit (set).md",
+    "11-Social-Engineering/Social Engineering.md",
+    "11-Social-Engineering/recon-ng.md",
+    "11-Social-Engineering/maltego.md",
+    "11-Social-Engineering/creepy.md",
+    "11-Social-Engineering/BeEF.md",
+    "10-Cryptography/tools.md",
+    "10-Cryptography/hydra.md",
+    "10-Cryptography/hashcat.md",
     "00 - Index"
   ]
 }
