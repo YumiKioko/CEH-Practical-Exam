@@ -93,7 +93,7 @@
 - [steghide](/12-Steganography/steghide.md): Tool for embedding and extracting data within image and audio files.
 
 ## Windows-Tools
-- [BloodHound](/Windows-Tools/Windows-Tools/BloodHound.md)
+- [BloodHound](/Windows-Tools/BloodHound.md)
 - [Curl](/Windows-Tools/Curl.md)
 - [Evil-WinRM](/Windows-Tools/Evil-WinRM.md)
 - [Impacket](/Windows-Tools/Impacket.md)

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Windows-Tools/Windows Lateral Movement and Pivoting.md",
+                "file": "00 - Index/Index.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Windows Lateral Movement and Pivoting"
+              "title": "Index"
             }
           }
         ]
@@ -171,8 +171,14 @@
   },
   "active": "93f33f49858f3fb1",
   "lastOpenFiles": [
-    "Windows-Tools/Responder.md",
+    "01-Reconnaissance/DNSRecon.md",
+    "00 - Index/Index.md",
+    "12-Steganography/Steganography Commands Cheat Sheet.md",
+    "Windows-Tools/Curl.md",
+    "Windows-Tools/Windows-Tools/BloodHound.md",
+    "Windows-Tools/Windows-Tools",
     "Windows-Tools/Windows Lateral Movement and Pivoting.md",
+    "Windows-Tools/Responder.md",
     "Windows-Tools/WinPEAS.md",
     "Windows-Tools/README..md",
     "Windows-Tools/README.md",
@@ -181,11 +187,9 @@
     "Windows-Tools/Mimikatz.md",
     "Windows-Tools/Impacket.md",
     "Windows-Tools/Evil-WinRM.md",
-    "Windows-Tools/Curl.md",
     "Windows-Tools/BloodHound.md",
     "12-Steganography/steghide.md",
     "12-Steganography/Stegdetect & Foremost.md",
-    "12-Steganography/Steganography Commands Cheat Sheet.md",
     "12-Steganography/README.md",
     "12-Steganography/OutGuess.md",
     "11-Social-Engineering/social-engineer toolkit (set).md",
@@ -194,9 +198,6 @@
     "11-Social-Engineering/maltego.md",
     "11-Social-Engineering/creepy.md",
     "11-Social-Engineering/BeEF.md",
-    "10-Cryptography/tools.md",
-    "10-Cryptography/hydra.md",
-    "10-Cryptography/hashcat.md",
     "00 - Index"
   ]
 }
