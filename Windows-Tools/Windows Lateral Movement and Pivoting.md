@@ -16,7 +16,7 @@
     - [SSH Pivoting / Port Forwarding](#ssh-pivoting--port-forwarding)
     - [Using Chisel / Ligolo / Proxychains](#using-chisel--ligolo--proxychains)
 4. [Detecting Lateral Movement](#detecting-lateral-movement)
-5. [Mitigations & Best Practices](#mitigations-best-practices)
+5. [Mitigations & Best Practices](#mitigations-&-best-practices)
 6. [Conclusion](#conclusion)
 
   ---
