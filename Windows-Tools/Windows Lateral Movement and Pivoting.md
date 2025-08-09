@@ -11,7 +11,7 @@
     - [Over-Pass-the-Hash (Pass-the-Key)](#over-pass-the-hash-pass-the-key)
     - [WMI & WinRM Execution](#wmi--winrm-execution)
     - [PsExec & SMB](#psexec--smb)
-3. [Pivoting Through Compromised Hosts](#pivoting-through-compromised-hosts)
+3. [Pivoting Through Compromised Hosts](#Pivoting Through Compromised Hosts)
     - [SOCKS Proxy via Meterpreter](#socks-proxy-via-meterpreter)
     - [SSH Pivoting / Port Forwarding](#ssh-pivoting--port-forwarding)
     - [Using Chisel / Ligolo / Proxychains](#using-chisel--ligolo--proxychains)
