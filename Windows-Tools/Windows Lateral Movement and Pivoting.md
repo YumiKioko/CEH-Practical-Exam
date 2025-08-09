@@ -21,7 +21,7 @@
 
   ---
 
-## 🛠 Techniques for Lateral Movement
+## Techniques for Lateral Movement
 
 ### Using Credential Dumping
 
@@ -78,7 +78,7 @@ psexec.py Administrator@10.10.10.10
   
 ---
   
-## 🔀 Pivoting Through Compromised Hosts
+## Pivoting Through Compromised Hosts
   
 ### SOCKS Proxy via Meterpreter
 
