@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CEH Walkthrough.md",
+                "file": "09-Post-Exploitation/metasploit (notes).md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CEH Walkthrough"
+              "title": "metasploit (notes)"
             }
           }
         ]
@@ -171,32 +171,32 @@
   },
   "active": "93f33f49858f3fb1",
   "lastOpenFiles": [
-    "CEH-Practical-Cheat sheet.md",
-    "CEH Walkthrough.md",
-    "00 - Index/Index.md",
-    "CEH.md",
+    "09-Post-Exploitation/john - hashcat.md",
+    "09-Post-Exploitation/impacket.md",
+    "09-Post-Exploitation/Hydra - Medusa.md",
+    "09-Post-Exploitation/bloodhound.md",
+    "08-Hacking-Mobile-Platforms/phonesploit.md",
+    "08-Hacking-Mobile-Platforms/mobsf.md",
+    "08-Hacking-Mobile-Platforms/frida.md",
+    "08-Hacking-Mobile-Platforms/burp intruder.md",
+    "08-Hacking-Mobile-Platforms/burp.md",
+    "08-Hacking-Mobile-Platforms/adb.md",
+    "07-Cloud-Security/Scoutsuite - Audit Tools Checklist.md",
+    "07-Cloud-Security/ScoutSuite.md",
+    "07-Cloud-Security/pacu.md",
+    "06-Wireless-Security/Wireshark.md",
+    "06-Wireless-Security/Password Sniffing Using Wireshark.md",
+    "06-Wireless-Security/Detect DDOS with Wireshark.md",
+    "06-Wireless-Security/Bettercap.md",
     "06-Wireless-Security/Aircrack-ng.md",
-    "05-Web-Application-Hacking/Aircrack-ng.md",
-    "sublist3r.md",
-    "01-Reconnaissance/DNSRecon.md",
-    "03-Enumeration/SSH (Secure Shell).md",
-    "dig.md",
-    "02-Scanning/nmap.md",
-    "02-Scanning/Nikto.md",
-    "nmap.md",
-    "Windows-Tools/1 - Index.md",
-    "00 - Index",
-    "Windows-Tools/WinPEAS.md",
-    "Windows-Tools/BloodHound.md",
-    "Windows-Tools/Mimikatz.md",
-    "Windows-Tools/Impacket.md",
-    "Windows-Tools/Evil-WinRM.md",
-    "Windows-Tools/Curl.md",
-    "12-Steganography/1 - Index.md",
-    "11-Social-Engineering/1 - Index.md",
-    "10-Cryptography/1 - Index.md",
-    "09-Post-Exploitation/1 - Index.md",
-    "08-Hacking-Mobile-Platforms/1 - Index.md",
-    "07-Cloud-Security/1 - Index.md"
+    "05-Web-Application-Hacking/sqlmap.md",
+    "05-Web-Application-Hacking/nikto.md",
+    "05-Web-Application-Hacking/gobuster.md",
+    "05-Web-Application-Hacking/dirbuster.md",
+    "05-Web-Application-Hacking/burp.md",
+    "04-System-Hacking/winpeas.md",
+    "04-System-Hacking/windows-exploit-suggester.md",
+    "04-System-Hacking/tools.md",
+    "00 - Index"
   ]
 }

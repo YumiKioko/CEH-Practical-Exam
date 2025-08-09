@@ -8,10 +8,25 @@ Query Specific Record Types
 
 ```
 dig example.com A      # IPv4 address
+```
+
+```
 dig example.com AAAA   # IPv6 address
+```
+
+```
 dig example.com MX     # Mail servers
+```
+
+```
 dig example.com NS     # Name servers
+```
+
+```
 dig example.com TXT    # Text records
+```
+
+```
 dig example.com CNAME  # Canonical name
 ```
 
@@ -50,4 +65,3 @@ dig +noall +answer example.com
 ```
 dig +tcp example.com
 ```
-

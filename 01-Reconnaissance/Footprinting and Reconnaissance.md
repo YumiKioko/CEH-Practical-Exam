@@ -2,40 +2,37 @@
 ## Phases of Reconnaissance
 
 - **Passive Reconnaissance**: No direct interaction with the target (e.g., Whois, Google dorking).
-    
 - **Active Reconnaissance**: Direct interaction with the target (e.g., port scanning, service enumeration).
-    
-
 ---
 
 ## Best Tools for Reconnaissance
 
 ### ✅ Passive Reconnaissance Tools
 
-|Tool|Purpose|Script Example|
-|---|---|---|
-|`whois`|Domain registration info|`whois example.com`|
-|`nslookup` / `dig`|DNS information|`dig example.com any`|
-|`theHarvester`|Emails, subdomains, hosts, etc.|`theHarvester -d example.com -b google`|
-|`Shodan`|Public device search|`shodan search apache`|
-|`Google Dorks`|Advanced search queries|`site:example.com filetype:pdf`|
-|`Maltego`|Graph-based OSINT|GUI-based, Python transforms|
-|`Recon-ng`|Modular recon framework|See below for script|
+| Tool               | Purpose                         | Script Example                          |
+| ------------------ | ------------------------------- | --------------------------------------- |
+| `whois`            | Domain registration info        | `whois example.com`                     |
+| `nslookup` / `dig` | DNS information                 | `dig example.com any`                   |
+| `theHarvester`     | Emails, subdomains, hosts, etc. | `theHarvester -d example.com -b google` |
+| `Shodan`           | Public device search            | `shodan search apache`                  |
+| `Google Dorks`     | Advanced search queries         | `site:example.com filetype:pdf`         |
+| `Maltego`          | Graph-based OSINT               | GUI-based, Python transforms            |
+| `Recon-ng`         | Modular recon framework         | See below for script                    |
 
 ---
 
 ### Active Reconnaissance Tools
 
-|Tool|Purpose|Script Example|
-|---|---|---|
-|`nmap`|Port scan, service, OS detection|`nmap -sV -O example.com`|
-|`Netcat (nc)`|Banner grabbing|`nc -v example.com 80`|
-|`WhatWeb`|Web fingerprinting|`whatweb example.com`|
-|`Wappalyzer`|Tech stack discovery|`wappalyzer https://example.com`|
-|`Nikto`|Web vulnerability scan|`nikto -h http://example.com`|
-|`Burp Suite`|Manual testing proxy|GUI tool|
-|`httprobe`|Live hosts discovery|`cat subdomains.txt \| httprobe`|
-|`Amass`|Subdomain enumeration|`amass enum -d example.com`|
+| Tool          | Purpose                          | Script Example                   |
+| ------------- | -------------------------------- | -------------------------------- |
+| `nmap`        | Port scan, service, OS detection | `nmap -sV -O example.com`        |
+| `Netcat (nc)` | Banner grabbing                  | `nc -v example.com 80`           |
+| `WhatWeb`     | Web fingerprinting               | `whatweb example.com`            |
+| `Wappalyzer`  | Tech stack discovery             | `wappalyzer https://example.com` |
+| `Nikto`       | Web vulnerability scan           | `nikto -h http://example.com`    |
+| `Burp Suite`  | Manual testing proxy             | GUI tool                         |
+| `httprobe`    | Live hosts discovery             | `cat subdomains.txt \| httprobe` |
+| `Amass`       | Subdomain enumeration            | `amass enum -d example.com`      |
 
 ---
 
@@ -67,19 +64,12 @@ nmap -sS -sV -O -A -T4 -p- example.com -oN fullscan.txt
 Options explained:
 
 - `-sS`: Stealth scan
-    
 - `-sV`: Version detection
-    
 - `-O`: OS detection
-    
 - `-A`: Aggressive scan
-    
 - `-p-`: Scan all 65535 ports
-    
 - `-T4`: Faster execution
-    
 - `-oN`: Output to file
-    
 
 ---
 
@@ -90,13 +80,9 @@ theHarvester -d example.com -b all -l 200 -f results.html
 ```
 
 - `-d`: Domain to search
-    
 - `-b`: Data sources (e.g., google, bing, linkedin)
-    
 - `-l`: Limit of results
-    
 - `-f`: Output file
-    
 
 ---
 

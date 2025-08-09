@@ -3,5 +3,3 @@ After capturing the traffic of a given site, one can use wireshark the communica
 ```
 http.request.method==POST
 ```
-
-![[Pasted image 20250420171112.png]]

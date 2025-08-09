@@ -6,9 +6,8 @@ dnsrecon -t brt -d acmeitsupport.th
 
 Explanation of Flags:
 
--t brt: Specifies the brute-force enumeration technique.
-
--d acmeitsupport.th: Target domain for the enumeration.
+- -t brt: Specifies the brute-force enumeration technique.
+- -d acmeitsupport.th: Target domain for the enumeration.
 
 Objective: To identify valid subdomains of acmeitsupport.th that may not be visible through passive reconnaissance methods.
 
@@ -18,12 +17,12 @@ Standard Enumeration:
 dnsrecon -d acmeitsupport.th
 ```
 
-Performs standard DNS queries including SOA, NS, MX, A, and AAAA records.
+## Performs standard DNS queries including SOA, NS, MX, A, and AAAA records.
 
 Zone Transfer Check (AXFR):
 
-dnsrecon -t axfr -d acmeitsupport.th
-Attempts a DNS zone transfer, which could disclose all DNS records if misconfigured.
+- dnsrecon -t axfr -d acmeitsupport.th
+- Attempts a DNS zone transfer, which could disclose all DNS records if misconfigured.
 
 Google Dorking for Subdomains:
 

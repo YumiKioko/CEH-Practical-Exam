@@ -5,9 +5,7 @@
 This document includes:
 
 1. ✅ Cloud Audit Checklist (based on ScoutSuite findings)
-
 2. ⚙️ CI/CD Pipeline Automation Script
-
 3. 📚 CIS Benchmark Mapping Guide
  
 ---
@@ -121,14 +119,10 @@ audit_cloud:
 
 name: Cloud Audit
 
-  
-
 on:
 
   workflow_dispatch:
-
   
-
 jobs:
 
   scoutsuite:
@@ -181,32 +175,18 @@ jobs:
 
 ## 📚 3. CIS Benchmark Mapping
   
-
-| ScoutSuite Finding                    | CIS Control Reference              |
-
-|--------------------------------------|------------------------------------|
-
-| MFA not enabled                      | CIS AWS 1.5 / Azure 1.1 / GCP 1.1  |
-
-| Root account in use                  | CIS AWS 1.3                        |
-
-| S3 bucket publicly accessible        | CIS AWS 2.1                        |
-
-| CloudTrail not multi-region          | CIS AWS 4.1 / GCP 2.1              |
-
-| Open Security Group (0.0.0.0/0)      | CIS AWS 5.1                        |
-
-| No log file validation               | CIS AWS 4.4                        |
-
-| No encryption on storage             | CIS AWS 2.2 / Azure 6.2            |
-
-| Key rotation not enabled             | CIS AWS 3.4 / Azure 5.2 / GCP 3.3  |
-
-| Unused IAM keys                      | CIS AWS 1.20                       |
-
-| No tagging of resources              | Best Practice (CIS 2.5 optional)   |
-
-  
+| ScoutSuite Finding                  | CIS Control Reference               |
+|--------------------------------------|--------------------------------------|
+| MFA not enabled                      | CIS AWS 1.5 / Azure 1.1 / GCP 1.1    |
+| Root account in use                  | CIS AWS 1.3                          |
+| S3 bucket publicly accessible        | CIS AWS 2.1                          |
+| CloudTrail not multi-region          | CIS AWS 4.1 / GCP 2.1                 |
+| Open Security Group (0.0.0.0/0)      | CIS AWS 5.1                          |
+| No log file validation               | CIS AWS 4.4                          |
+| No encryption on storage             | CIS AWS 2.2 / Azure 6.2               |
+| Key rotation not enabled              | CIS AWS 3.4 / Azure 5.2 / GCP 3.3     |
+| Unused IAM keys                      | CIS AWS 1.20                         |
+| No tagging of resources              | Best Practice (CIS 2.5 optional)     |
 
 **Note**: Use this mapping as a guideline to prioritize findings against the [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks/).
   
@@ -216,11 +196,8 @@ jobs:
 
   
 - Use the JSON output for custom dashboards
-
 - Integrate with SIEM for alerting on config drift
-
 - Auto-upload reports to S3 with versioning
-
 - Add ScoutSuite as a gate in Terraform pipelines
   
 ---

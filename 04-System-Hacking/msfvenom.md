@@ -2,21 +2,20 @@
 ## 📌 Basic Syntax
 
 ---
-
 ## 🧰 Common Options
 
-| Option | Description |
-|--------|-------------|
-| `-p` | Specify the payload (e.g., windows/meterpreter/reverse_tcp) |
-| `LHOST` | Local host IP (attacker's IP) |
-| `LPORT` | Local port to listen on |
-| `-f` | Output format (e.g., exe, elf, raw, c, python) |
-| `-o` | Output file |
-| `-e` | Encoder (e.g., x86/shikata_ga_nai) |
-| `-b` | Bad characters to avoid (e.g., `\x00\x0a`) |
-| `-a` | Architecture (e.g., x86, x64) |
-| `--platform` | Target OS (e.g., Windows, Linux) |
-| `-i` | Number of encoding iterations |
+| Option       | Description                                                 |
+| ------------ | ----------------------------------------------------------- |
+| `-p`         | Specify the payload (e.g., windows/meterpreter/reverse_tcp) |
+| `LHOST`      | Local host IP (attacker's IP)                               |
+| `LPORT`      | Local port to listen on                                     |
+| `-f`         | Output format (e.g., exe, elf, raw, c, python)              |
+| `-o`         | Output file                                                 |
+| `-e`         | Encoder (e.g., x86/shikata_ga_nai)                          |
+| `-b`         | Bad characters to avoid (e.g., `\x00\x0a`)                  |
+| `-a`         | Architecture (e.g., x86, x64)                               |
+| `--platform` | Target OS (e.g., Windows, Linux)                            |
+| `-i`         | Number of encoding iterations                               |
 
 ---
 
