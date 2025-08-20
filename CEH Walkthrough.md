@@ -1617,12 +1617,12 @@ curl http://10.10.10.10/uploads/shell.php?cmd=id
 
 ### Exam-Critical Reference Table
 
-| Attack Type   | Tool           | Command Example                 | Detection Method           |
-|---------------|----------------|----------------------------------|----------------------------|
-| Brute Force   | Hydra          | `http-post-form` target syntax  | Failed login monitoring    |
-| SQL Injection | SQLmap         | `--risk=3 --level=5`             | WAF rule analysis          |
-| XSS           | Manual Testing | `<script>alert()</script>`       | Input sanitization checks  |
-| File Upload   | cURL           | `-F` for form submission         | MIME type verification     |
+| Attack Type   | Tool           | Command Example                | Detection Method          |
+| ------------- | -------------- | ------------------------------ | ------------------------- |
+| Brute Force   | Hydra          | `http-post-form` target syntax | Failed login monitoring   |
+| SQL Injection | SQLmap         | `--risk=3 --level=5`           | WAF rule analysis         |
+| XSS           | Manual Testing | `<script>alert()</script>`     | Input sanitization checks |
+| File Upload   | cURL           | `-F` for form submission       | MIME type verification    |
 
 ### Practical Exam Checklist
 

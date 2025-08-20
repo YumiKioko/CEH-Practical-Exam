@@ -27,16 +27,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Link RstPro Pentest Lab Notebook.md",
+                "file": "03-Enumeration/telnet.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Link RstPro Pentest Lab Notebook"
+              "title": "telnet"
+            }
+          },
+          {
+            "id": "96eebd89dd0445ec",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CEH Walkthrough.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CEH Walkthrough"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -68,7 +82,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "find",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -89,7 +103,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -176,6 +191,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -184,10 +200,31 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c143b58b5448e9ab",
+  "active": "96eebd89dd0445ec",
   "lastOpenFiles": [
-    "01-Reconnaissance/DNSRecon.md",
+    "13-On Ports/2049 - nfs.md",
+    "13-On Ports/workflow_nfs.md",
+    "13-On Ports",
+    "13-nfs/workflow_nfs.md",
+    "13-nfs/tools.md",
+    "13-nfs/steghide.md",
+    "13-nfs/Steganography Commands Cheat Sheet.md",
+    "13-nfs/README.md",
+    "13-nfs/Stegdetect & Foremost.md",
+    "13-nfs/OutGuess.md",
+    "13-nfs",
+    "12-Steganography - Copy/tools.md",
+    "12-Steganography - Copy/steghide.md",
+    "12-Steganography - Copy/Stegdetect & Foremost.md",
+    "12-Steganography - Copy/Steganography Commands Cheat Sheet.md",
+    "12-Steganography - Copy/README.md",
+    "12-Steganography - Copy/OutGuess.md",
+    "12-Steganography - Copy",
+    "workflow_nfs.md",
+    "03-Enumeration/telnet.md",
+    "CEH Walkthrough.md",
     "Link RstPro Pentest Lab Notebook.md",
+    "01-Reconnaissance/DNSRecon.md",
     "00 - Index/Index.md",
     "12-Steganography/Steganography Commands Cheat Sheet.md",
     "Windows-Tools/Curl.md",
@@ -195,24 +232,6 @@
     "Windows-Tools/Windows-Tools",
     "Windows-Tools/Windows Lateral Movement and Pivoting.md",
     "Windows-Tools/Responder.md",
-    "Windows-Tools/WinPEAS.md",
-    "Windows-Tools/README..md",
-    "Windows-Tools/README.md",
-    "Windows-Tools/PSExec.md",
-    "Windows-Tools/PowerShell-Empire.md",
-    "Windows-Tools/Mimikatz.md",
-    "Windows-Tools/Impacket.md",
-    "Windows-Tools/Evil-WinRM.md",
-    "Windows-Tools/BloodHound.md",
-    "12-Steganography/steghide.md",
-    "12-Steganography/Stegdetect & Foremost.md",
-    "12-Steganography/README.md",
-    "12-Steganography/OutGuess.md",
-    "11-Social-Engineering/social-engineer toolkit (set).md",
-    "11-Social-Engineering/Social Engineering.md",
-    "11-Social-Engineering/recon-ng.md",
-    "11-Social-Engineering/maltego.md",
-    "11-Social-Engineering/creepy.md",
     "00 - Index"
   ]
 }
