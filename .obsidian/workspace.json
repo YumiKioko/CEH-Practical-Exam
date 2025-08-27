@@ -41,16 +41,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CEH Walkthrough.md",
+                "file": "13-On Ports/nfs_2049_complete.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CEH Walkthrough"
+              "title": "nfs_2049_complete"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -82,7 +81,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "find",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -103,8 +102,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -200,38 +198,40 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "96eebd89dd0445ec",
+  "active": "93f33f49858f3fb1",
   "lastOpenFiles": [
+    "03-Enumeration/telnet.md",
+    "13-On Ports/nfs_2049_complete.md",
+    "01-Reconnaissance/DNSRecon.md",
+    "13-On Ports/Java RMI_1099, 1617, 8686.md",
+    "CEH Walkthrough.md",
+    "Linux-Tools/aircrack_guide.md",
+    "Linux-Tools/wifi_attack_guide.md",
+    "Linux-Tools/aircrack.md",
+    "09-Post-Exploitation/metasploit (notes).md",
+    "Linux-Tools/# cURL Complete Walkthrough for Linux.md",
+    "13-On Ports/ftp_vsftpd_21.md",
+    "Linux-Tools/Netcat.md",
+    "Linux-Tools",
+    "New folder",
+    "10-Cryptography/hydra.md",
+    "04-System-Hacking/searchsploit and exploit-db.md",
+    "Windows-Tools/Evil-WinRM.md",
+    "13-On Ports/nfs_2049.md",
     "13-On Ports/UnrealIRCd_6667.md",
     "13-On Ports/Bind Shell_1524.md",
     "13-On Ports/UnrealIRCd_6667).md",
-    "13-On Ports/ftp_vsftpd_21.md",
     "13-On Ports/distccd RCE_3632.md",
     "13-On Ports/VNC_5900.md",
     "13-On Ports/PostgreSQL_5432.md",
     "13-On Ports/UnrealIRCd Backdoor (Port 6667).md",
     "13-On Ports/Bind Shell on Port 1524.md",
     "13-On Ports/distccd_3632.md",
-    "13-On Ports/nfs_2049_complete.md",
     "13-On Ports/rservices_512_513_514.md",
     "13-On Ports/Target Linux",
     "13-On Ports/New folder",
-    "13-On Ports/mysql_3306.md",
-    "13-On Ports/nfs_2049.md",
-    "13-On Ports/samba_139_445.md",
-    "13-On Ports/ftp_21_vsftpd.md",
-    "13-On Ports/telnet_23.md",
-    "13-On Ports/irc_6667_unrealircd.md",
-    "13-On Ports/postgresql_5432.md",
     "13-On Ports/vuln_workflows.zip",
-    "13-On Ports/2049 - nfs.md",
-    "13-On Ports/workflow_nfs.md",
     "13-On Ports",
-    "13-nfs/workflow_nfs.md",
-    "13-nfs/tools.md",
-    "13-nfs/steghide.md",
-    "13-nfs/Steganography Commands Cheat Sheet.md",
-    "13-nfs/README.md",
     "13-nfs",
     "12-Steganography - Copy",
     "Windows-Tools/Windows-Tools",
