@@ -27,7 +27,11 @@
   "file-recovery": true,
   "publish": false,
   "sync": true,
+<<<<<<< HEAD
   "webviewer": false,
   "footnotes": false,
   "bases": true
+=======
+  "webviewer": false
+>>>>>>> 69ea39e (more updates)
 }
