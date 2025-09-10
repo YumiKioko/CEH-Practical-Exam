@@ -1,5 +1,6 @@
 {
   "main": {
+<<<<<<< HEAD
     "id": "cf8c35718572170e",
     "type": "split",
     "children": [
@@ -22,15 +23,31 @@
           },
           {
             "id": "c143b58b5448e9ab",
+=======
+    "id": "d6d4789cc0bd9d91",
+    "type": "split",
+    "children": [
+      {
+        "id": "49cde1d4031c8e04",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7c057132853bafb4",
+>>>>>>> 69ea39e (more updates)
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
+<<<<<<< HEAD
                 "file": "03-Enumeration/telnet.md",
+=======
+                "file": "06-Wireless-Security/tools.md",
+>>>>>>> 69ea39e (more updates)
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
+<<<<<<< HEAD
               "title": "telnet"
             }
           },
@@ -47,6 +64,9 @@
               "icon": "lucide-file",
               "title": "nfs_2049_complete"
 >>>>>>> 1f6e19fddb0fe0237dbaf3d58219dbb872ff0bc1
+=======
+              "title": "tools"
+>>>>>>> 69ea39e (more updates)
             }
           }
         ]
@@ -55,6 +75,7 @@
     "direction": "vertical"
   },
   "left": {
+<<<<<<< HEAD
     "id": "4aa589d279e2227c",
     "type": "split",
     "children": [
@@ -64,6 +85,17 @@
         "children": [
           {
             "id": "5c36862084266aa8",
+=======
+    "id": "4c03b0ea4aa69e71",
+    "type": "split",
+    "children": [
+      {
+        "id": "f72e25d0850a36ee",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e0f2ed98ca2cc40b",
+>>>>>>> 69ea39e (more updates)
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -76,7 +108,11 @@
             }
           },
           {
+<<<<<<< HEAD
             "id": "9e56bf8f8571a23c",
+=======
+            "id": "fe46b303035a8a30",
+>>>>>>> 69ea39e (more updates)
             "type": "leaf",
             "state": {
               "type": "search",
@@ -93,7 +129,11 @@
             }
           },
           {
+<<<<<<< HEAD
             "id": "0cf153da197e6459",
+=======
+            "id": "8e807f1f5ac1382d",
+>>>>>>> 69ea39e (more updates)
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -109,6 +149,7 @@
     "width": 300
   },
   "right": {
+<<<<<<< HEAD
     "id": "bfccaa21d7b25ccb",
     "type": "split",
     "children": [
@@ -118,11 +159,26 @@
         "children": [
           {
             "id": "489c623c5b8fb6ae",
+=======
+    "id": "8e1650a299ccc432",
+    "type": "split",
+    "children": [
+      {
+        "id": "70c8ae6cf690c839",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9fbd05094010405c",
+>>>>>>> 69ea39e (more updates)
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
+<<<<<<< HEAD
                 "file": "00 - Index/Index.md",
+=======
+                "file": "03-Enumeration/dnsrecon.md",
+>>>>>>> 69ea39e (more updates)
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -132,25 +188,45 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
+<<<<<<< HEAD
               "title": "Backlinks for Index"
             }
           },
           {
             "id": "290e9791317da1c6",
+=======
+              "title": "Backlinks for dnsrecon"
+            }
+          },
+          {
+            "id": "d77560dea7938da9",
+>>>>>>> 69ea39e (more updates)
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
+<<<<<<< HEAD
                 "file": "00 - Index/Index.md",
+=======
+                "file": "03-Enumeration/dnsrecon.md",
+>>>>>>> 69ea39e (more updates)
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
+<<<<<<< HEAD
               "title": "Outgoing links from Index"
             }
           },
           {
             "id": "39c98d78a81644f3",
+=======
+              "title": "Outgoing links from dnsrecon"
+            }
+          },
+          {
+            "id": "e00feb54095ff3e3",
+>>>>>>> 69ea39e (more updates)
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -165,22 +241,37 @@
             }
           },
           {
+<<<<<<< HEAD
             "id": "9b14c40b3fbea19a",
+=======
+            "id": "d7f030494edddc53",
+>>>>>>> 69ea39e (more updates)
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
+<<<<<<< HEAD
                 "file": "00 - Index/Index.md",
+=======
+                "file": "03-Enumeration/dnsrecon.md",
+>>>>>>> 69ea39e (more updates)
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
+<<<<<<< HEAD
               "title": "Outline of Index"
             }
           }
         ],
         "currentTab": 1
+=======
+              "title": "Outline of dnsrecon"
+            }
+          }
+        ]
+>>>>>>> 69ea39e (more updates)
       }
     ],
     "direction": "horizontal",
@@ -189,7 +280,10 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+<<<<<<< HEAD
       "bases:Create new base": false,
+=======
+>>>>>>> 69ea39e (more updates)
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -198,6 +292,7 @@
       "command-palette:Open command palette": false
     }
   },
+<<<<<<< HEAD
 <<<<<<< HEAD
   "active": "9e56bf8f8571a23c",
   "lastOpenFiles": [
@@ -249,5 +344,16 @@
     "12-Steganography - Copy",
     "Windows-Tools/Windows-Tools",
     "00 - Index"
+=======
+  "active": "7c057132853bafb4",
+  "lastOpenFiles": [
+    "04-System-Hacking/tools.md",
+    "07-Cloud-Security/tools.md",
+    "06-Wireless-Security/tools.md",
+    "03-Enumeration/tools.md",
+    "03-Enumeration/dnsrecon.md",
+    "02-Scanning/tools.md",
+    "01-Reconnaissance/notes/tools.md"
+>>>>>>> 69ea39e (more updates)
   ]
 }
