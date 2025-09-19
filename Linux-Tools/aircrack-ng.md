@@ -1,6 +1,6 @@
 # Aircrack-ng Suite Complete Walkthrough
 
-> **âš ï¸ LEGAL DISCLAIMER âš ï¸**  
+> **LEGAL DISCLAIMER**  
 > This guide is for educational and authorized penetration testing purposes only. Only test on networks you own or have explicit written permission to test. Unauthorized wireless network attacks are illegal and may result in severe legal consequences.
 
 ## Table of Contents

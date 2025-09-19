@@ -1,10 +1,12 @@
-Description: Whois is a protocol used to query databases that store
-registered users or assignees of domain names, IP addresses, and
-autonomous system numbers.
+
+Description:
+Whois is a protocol used to query databases that store registered users or assignees of domain names, IP addresses, and autonomous system numbers.
 
 Basic Syntax:
 
-bash whois \[options\] domain_name Common Commands:
+bash
+whois [options] domain_name
+Common Commands:
 
 whois example.com - Basic domain lookup
 
@@ -32,5 +34,7 @@ Find contact information (though often redacted now)
 
 Examples:
 
-bash whois google.com whois 8.8.8.8 whois -H example.com \# Hide legal
-disclaimers
+bash
+whois google.com
+whois 8.8.8.8
+whois -H example.com  # Hide legal disclaimers
