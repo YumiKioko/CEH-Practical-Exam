@@ -370,3 +370,108 @@ use exploit/linux/http/webmin_backdoor
 
 *Disclaimer:* This guide is a study aid for authorized testing only.
 
+---
+
+## CEH Practical — Attack Playbook (Actionable)
+This section converts the port/module reference into **repeatable attack flows** you can execute under exam conditions. Timebox each step (see "Exam day strategy"). Treat these as recipes — enumerate first, exploit second, document continuously.
+
+### 1) Attack methodology (the canonical flow)
+1. **Recon / Discovery (5–15m):** `nmap -sS -sU -p- -T4 -oA scans/full <target>` then `nmap -sV -sC -p <top_ports> -oA scans/services <target>`.
+2. **Service enumeration (10–30m):** For each open port: banners, versions, directories, shares, users. Use service-specific tools (see per-service flows below).
+3. **Credential checks (5–20m per service):** Try default creds, common creds lists, quick Hydra/Metasploit scanners.
+4. **Exploit (10–60m):** Only after confirming versions & safe exploitability in the lab. Prefer non-destructive options that provide shells or credentials.
+5. **Post-exploitation (10–40m):** Lateral movement, credential harvesting, persistence (only within lab).
+6. **Documentation:** Record commands, outputs, screenshots and timeline — critical for CEH reports.
+
+### 2) Per-service quick workflows (copy/paste ready)
+- **HTTP (80/443/8080/9000/8000/8443/8888)**
+  1. `nmap -sV --script=http-enum,http-headers -p <port>`
+  2. `gobuster dir -u http://<ip>:<port> -w /usr/share/wordlists/dirb/common.txt -x php,asp,aspx,html`.
+  3. `nikto -h http://<ip>:<port>`.
+  4. If admin console found (Jenkins/Tomcat/vCenter): attempt enum creds then Metasploit exploit listed in main doc.
+  5. Test for SQLi with `sqlmap -u 'http://<ip>:<port>/vuln.php?id=1' --batch --level=3 --risk=2` (only in authorized lab).
+
+- **SMB (139/445)**
+  1. `nmap --script smb-os-discovery,smb-enum-shares -p 139,445 <ip>`
+  2. `enum4linux -a <ip>`
+  3. `smbclient -L //<ip> -N` (anonymous)
+  4. If writable share: upload a reverse shell or scheduled task payload; if MS17-010 present use the module shown in the doc.
+
+- **RDP (3389)**
+  1. `nmap -sV --script rdp-enum-encryption -p 3389 <ip>`
+  2. Try `rdp_check` or `xfreerdp` with common creds.
+  3. Use Metasploit `auxiliary/scanner/rdp/rdp_login` for quick brute force if allowed.
+
+- **Databases (MySQL 3306, PostgreSQL 5432, MSSQL 1433, MongoDB 27017)**
+  1. `nmap -sV --script=mysql-info -p 3306 <ip>` (example for MySQL)
+  2. `msf` scanner modules (listed in main doc) or `hydra` brute for creds.
+  3. If unauthenticated DB: dump data, search for credentials, connection strings.
+
+- **SNMP (161/162)**
+  1. `snmpwalk -v2c -c public <ip>`
+  2. `nmap --script snmp-info --script-args snmpcommunity=public -p 161 <ip>`
+  3. Look for `sysLocation`, device lists, ARP tables and plaintext credentials.
+
+- **VNC (5900+)**
+  1. `nmap -sV -p 5900-5910 --script vnc-info <ip>`
+  2. `msf auxiliary/scanner/vnc/vnc_login` or try `vncviewer` with blank password.
+
+- **Redis / Elasticsearch / CouchDB / Memcached**
+  1. Check if unauthenticated. These often expose data (keys, indices). Use the scanner modules in the doc.
+
+- **Docker (2375)**
+  1. `curl http://<ip>:2375/containers/json` — if accessible, you can create containers or mount host volumes (lab-dependent; be safe).
+
+### 3) Privilege escalation cheatsheet (quick)
+#### Linux (common checks)
+- Enumerate kernel & distro: `uname -a; cat /etc/os-release`.
+- Check sudo rights: `sudo -l`.
+- Search for SUID binaries: `find / -perm -4000 -type f 2>/dev/null`.
+- Look for credentials in files: `grep -R "password\|passwd\|secret" /etc /var /home 2>/dev/null`.
+- Check cron jobs: `cat /etc/crontab`, `ls -la /etc/cron.*`.
+- Check running services: `ps aux --forest` & `ss -tulpen`.
+- Kernel exploits (only in lab): check kernel version and search local exploit repo; prefer post-exploit enumeration first.
+
+#### Windows (common checks)
+- Enumerate domain & local info: `whoami /priv`, `systeminfo`, `net user`, `net localgroup administrators`.
+- Check for weak service permissions: `accesschk.exe -accepteula -uwcqv *` (Sysinternals). If not available, enumerate services with PowerShell.
+- Check scheduled tasks: `schtasks /query /fo LIST /v`.
+- Dump creds: `mimikatz` (lab only) — document and justify use.
+- Look for stored credentials in files, scripts or configuration XMLs (IIS, SQL connection strings).
+
+### 4) Post-exploitation checklist
+- Enumerate credentials and tokens, pivot vectors (RDP/SMB/WinRM), and data of interest.
+- Set up a reversible persistence only if required by lab (e.g., create a user with documented password in a safe directory). Avoid destructive changes.
+- Capture screenshots, command output, and proof-of-concept in a non-destructive way.
+
+### 5) Reporting template (short)
+- **Target:** IP/hostname
+- **Scope/Authorization:** Lab name, CEH practical environment (prove authorized)
+- **Findings:** ordered by severity (open ports, vulnerabilities, evidence)
+- **Exploit steps:** commands run (copy/paste), timestamps, outputs
+- **Impact:** what access or data was obtained
+- **Remediation:** quick fixes (patch, disable service, restrict network)
+
+### 6) Exam day strategy & timeboxing
+- **0–15m:** Full discovery scan (TCP+UDP). Export results.
+- **15–45m:** Rapid enumeration & quick wins (SMB, VNC, SNMP, any unauth DB).
+- **45–120m:** Deeper exploitation & privilege escalation attempts.
+- **120–150m:** Post-exploitation evidence gathering & documentation.
+- **Final 15–30m:** Clean up (if required by lab) & finalize report. Screenshot every major step.
+
+### 7) One-page printable quick reference (for exam)
+- Top nmap commands, quick Metasploit scanner commands, default creds list location, critical port list.
+- I added a condensed one-page under the new "One-page quick checklist" heading in the doc for you to pin.
+
+---
+
+## How I can help next (live prep)
+- I can generate **mock lab scenarios** and walk you through the steps; you narrate commands and I give feedback and expected outputs.
+- I can convert this document into separate `.md` files (one per port) and ZIP them for download.
+- I can produce a dataview-friendly format for Obsidian so you can quickly query ports/modules.
+
+---
+
+*Good luck on Sep 27, 2025 — you got this.*
+
+
