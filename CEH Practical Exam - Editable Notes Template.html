@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEH Practical Exam - Notes Template</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            background: #ecf0f1;
+            padding: 10px;
+            border-left: 5px solid #3498db;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2980b9;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 5px;
+        }
+        .info-section {
+            background: #e8f6f3;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="time"], input[type="date"], textarea {
+            border: 1px solid #bdc3c7;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        input[type="text"] {
+            width: 150px;
+        }
+        textarea {
+            width: 100%;
+            min-height: 80px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        table, th, td {
+            border: 1px solid #bdc3c7;
+        }
+        th {
+            background: #3498db;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        td {
+            padding: 8px;
+        }
+        td input {
+            width: 95%;
+            border: none;
+            padding: 5px;
+        }
+        .checkbox-item {
+            margin: 8px 0;
+            padding: 5px;
+            background: #f8f9fa;
+            border-radius: 3px;
+        }
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+        }
+        .priority-high { background-color: #ffe6e6; }
+        .priority-medium { background-color: #fff3cd; }
+        .priority-low { background-color: #d1ecf1; }
+        .phase-timer {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+        }
+        .save-note {
+            background: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .save-note:hover {
+            background: #219a52;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CEH Practical Exam - Live Notes</h1>
+        
+        <div class="info-section">
+            <strong>Exam Info:</strong>
+            Date: <input type="date" id="examDate">
+            Start: <input type="time" id="startTime">
+            End: <input type="time" id="endTime">
+            Target Range: <input type="text" id="targetRange" placeholder="e.g., 192.168.1.0/24">
+            <button class="save-note" onclick="saveToLocal()">💾 Save Progress</button>
+        </div>
+
+        <h2>🎯 Quick Reference Dashboard</h2>
+        
+        <h3>Live Hosts & Key IPs</h3>
+        <table>
+            <tr>
+                <th>IP Address</th>
+                <th>OS/Services</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Notes</th>
+            </tr>
+            <tr><td><input type="text" placeholder="192.168.1.10"></td><td><input type="text" placeholder="Windows/HTTP"></td><td><select><option>High</option><option>Medium</option><option>Low</option></select></td><td><select><option>Active</option><option>Exploited</option><option>Complete</option></select></td><td><input type="text" placeholder="Web server, port 80"></td></tr>
+            <tr><td><input type="text"></td><td><input type="text"></td><td><select><option>High</option><option>Medium</option><option>Low</option></select></td><td><select><option>Active</option><option>Exploited</option><option>Complete</option></select></td><td><input type="text"></td></tr>
+            <tr><td><input type="text"></td><td><input type="text"></td><td><select><option>High</option><option>Medium</option><option>Low</option></select></td><td><select><option>Active</option><option>Exploited</option><option>Complete</option></select></td><td><input type="text"></td></tr>
+            <tr><td><input type="text"></td><td><input type="text"></td><td><select><option>High</option><option>Medium</option><option>Low</option></select></td><td><select><option>Active</option><option>Exploited</option><option>Complete</option></select></td><td><input type="text"></td></tr>
+        </table>
+
+        <h3>🔐 Credentials Captured</h3>
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Service/Port</th>
+                <th>IP</th>
+                <th>Access Level</th>
+            </tr>
+            <tr><td><input type="text" placeholder="admin"></td><td><input type="text" placeholder="password123"></td><td><input type="text" placeholder="SSH/22"></td><td><input type="text" placeholder="192.168.1.10"></td><td><select><option>User</option><option>Admin</option><option>Root</option></select></td></tr>
+            <tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option>User</option><option>Admin</option><option>Root</option></select></td></tr>
+            <tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option>User</option><option>Admin</option><option>Root</option></select></td></tr>
+        </table>
+
+        <h2>🔍 Reconnaissance & Scanning</h2>
+        
+        <h3>Network Discovery</h3>
+        <strong>Command:</strong> <input type="text" value="nmap -sn " style="width: 300px;">
+        <br><br>
+        <strong>Results:</strong>
+        <textarea placeholder="Paste nmap host discovery results here..."></textarea>
+        
+        <h3>Port Scanning Results</h3>
+        <strong>Command:</strong> <input type="text" value="nmap -sS -sV -O -A " style="width: 400px;">
+        <br><br>
+        <strong>Detailed Results:</strong>
+        <textarea placeholder="Paste detailed nmap scan results here..."></textarea>
+
+        <h2>🎯 Target Analysis</h2>
+        
+        <div style="border: 1px solid #ddd; padding: 15px; margin: 15px 0; border-radius: 5px;">
+            <h3>Target 1: <input type="text" placeholder="IP Address" style="width: 120px;"></h3>
+            
+            <div class="checkbox-item">
+                <input type="checkbox"> <strong>HTTP/HTTPS (80/443):</strong>
+                <br>Directory enum: <input type="text" placeholder="dirb/gobuster results" style="width: 300px;">
+                <br>Technology: <input type="text" placeholder="Apache, PHP, etc." style="width: 200px;">
+                <br>Vulnerabilities: <textarea rows="2" placeholder="List potential web vulnerabilities..."></textarea>
+            </div>
+            
+            <div class="checkbox-item">
+                <input type="checkbox"> <strong>SSH (22):</strong>
+                Version: <input type="text" placeholder="OpenSSH 7.4" style="width: 150px;">
+                Brute force: <select><option>Not attempted</option><option>In progress</option><option>Success</option><option>Failed</option></select>
+            </div>
+            
+            <div class="checkbox-item">
+                <input type="checkbox"> <strong>FTP (21):</strong>
+                Anonymous: <select><option>No</option><option>Yes</option></select>
+                Version: <input type="text" style="width: 150px;">
+                Files: <input type="text" placeholder="Interesting files found" style="width: 300px;">
+            </div>
+            
+            <div class="checkbox-item">
+                <input type="checkbox"> <strong>SMB (139/445):</strong>
+                Shares: <input type="text" placeholder="enum4linux results" style="width: 300px;">
+                Access: <input type="text" placeholder="anonymous, authenticated" style="width: 200px;">
+            </div>
+            
+            <strong>Exploits Attempted:</strong>
+            <textarea rows="3" placeholder="1. Exploit name - Success/Failed - Notes
+2. Another exploit - Success/Failed - Notes"></textarea>
+        </div>
+
+        <div style="border: 1px solid #ddd; padding: 15px; margin: 15px 0; border-radius: 5px;">
+            <h3>Target 2: <input type="text" placeholder="IP Address" style="width: 120px;"></h3>
+            
+            <div class="checkbox-item">
+                <input type="checkbox"> <strong>HTTP/HTTPS (80/443):</strong>
+                <br>Directory enum: <input type="text" placeholder="dirb/gobuster results" style="width: 300px;">
+                <br>Technology: <input type="text" placeholder="Apache, PHP, etc." style="width: 200px;">
+                <br>Vulnerabilities: <textarea rows="2" placeholder="List potential web vulnerabilities..."></textarea>
+            </div>
+            
+            <div class="checkbox-item">
+                <input type="checkbox"> <strong>SSH (22):</strong>
+                Version: <input type="text" placeholder="OpenSSH 7.4" style="width: 150px;">
+                Brute force: <select><option>Not attempted</option><option>In progress</option><option>Success</option><option>Failed</option></select>
+            </div>
+            
+            <div class="checkbox-item">
+                <input type="checkbox"> <strong>FTP (21):</strong>
+                Anonymous: <select><option>No</option><option>Yes</option></select>
+                Version: <input type="text" style="width: 150px;">
+                Files: <input type="text" placeholder="Interesting files found" style="width: 300px;">
+            </div>
+            
+            <div class="checkbox-item">
+                <input type="checkbox"> <strong>SMB (139/445):</strong>
+                Shares: <input type="text" placeholder="enum4linux results" style="width: 300px;">
+                Access: <input type="text" placeholder="anonymous, authenticated" style="width: 200px;">
+            </div>
+            
+            <strong>Exploits Attempted:</strong>
+            <textarea rows="3" placeholder="1. Exploit name - Success/Failed - Notes
+2. Another exploit - Success/Failed - Notes"></textarea>
+        </div>
+
+        <h2>💥 Exploitation Log</h2>
+        
+        <table>
+            <tr>
+                <th>Time</th>
+                <th>Target IP</th>
+                <th>Vulnerability</th>
+                <th>Exploit/Tool</th>
+                <th>Result</th>
+                <th>Shell/Access</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td><input type="time"></td>
+                <td><input type="text"></td>
+                <td><input type="text" placeholder="CVE or vuln type"></td>
+                <td><input type="text" placeholder="msfconsole, manual, etc."></td>
+                <td><select><option>Success</option><option>Failed</option><option>Partial</option></select></td>
+                <td><input type="text" placeholder="meterpreter, reverse shell"></td>
+                <td><input type="text" placeholder="privilege level, next steps"></td>
+            </tr>
+            <tr>
+                <td><input type="time"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><select><option>Success</option><option>Failed</option><option>Partial</option></select></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="time"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><select><option>Success</option><option>Failed</option><option>Partial</option></select></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+        </table>
+
+        <h2>🏆 Flags & Answers</h2>
+        
+        <table>
+            <tr>
+                <th>Question #</th>
+                <th>Answer/Flag</th>
+                <th>Evidence Location</th>
+                <th>Screenshot</th>
+                <th>Confidence</th>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Q1" style="width: 60px;"></td>
+                <td><input type="text" placeholder="Flag or answer"></td>
+                <td><input type="text" placeholder="File path or method used"></td>
+                <td><select><option>Taken</option><option>Needed</option></select></td>
+                <td><select><option>High</option><option>Medium</option><option>Low</option></select></td>
+            </tr>
+            <tr>
+                <td><input type="text" style="width: 60px;"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><select><option>Taken</option><option>Needed</option></select></td>
+                <td><select><option>High</option><option>Medium</option><option>Low</option></select></td>
+            </tr>
+            <tr>
+                <td><input type="text" style="width: 60px;"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><select><option>Taken</option><option>Needed</option></select></td>
+                <td><select><option>High</option><option>Medium</option><option>Low</option></select></td>
+            </tr>
+            <tr>
+                <td><input type="text" style="width: 60px;"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><select><option>Taken</option><option>Needed</option></select></td>
+                <td><select><option>High</option><option>Medium</option><option>Low</option></select></td>
+            </tr>
+        </table>
+
+        <h2>⏱️ Time Management</h2>
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 5px;">
+            <div class="phase-timer">
+                <strong>Recon Phase:</strong><br>
+                Start: <input type="time"> End: <input type="time">
+            </div>
+            <div class="phase-timer">
+                <strong>Exploitation:</strong><br>
+                Start: <input type="time"> End: <input type="time">
+            </div>
+            <div class="phase-timer">
+                <strong>Post-Exploit:</strong><br>
+                Start: <input type="time"> End: <input type="time">
+            </div>
+        </div>
+
+        <h2>📝 Quick Notes & Commands</h2>
+        <strong>Commands That Worked:</strong>
+        <textarea rows="4" placeholder="Paste successful commands here for easy copy/paste..."></textarea>
+        
+        <strong>Important Findings:</strong>
+        <textarea rows="4" placeholder="Key findings, passwords, file locations, etc."></textarea>
+        
+        <strong>Todo/Follow-up:</strong>
+        <textarea rows="3" placeholder="Things to check, exploits to try, areas to investigate..."></textarea>
+
+        <div style="text-align: center; margin-top: 30px; padding: 20px; background: #e8f6f3; border-radius: 5px;">
+            <button class="save-note" onclick="saveToLocal()" style="font-size: 18px; padding: 15px 30px;">💾 SAVE ALL PROGRESS</button>
+            <br><br>
+            <small>💡 Tip: Save frequently! Use Ctrl+S or click the save button. Your progress is saved locally in your browser.</small>
+        </div>
+    </div>
+
+    <script>
+        // Auto-save functionality
+        function saveToLocal() {
+            const formData = {};
+            
+            // Save all input values
+            document.querySelectorAll('input, select, textarea').forEach((element, index) => {
+                if (element.type === 'checkbox') {
+                    formData[`element_${index}`] = element.checked;
+                } else {
+                    formData[`element_${index}`] = element.value;
+                }
+            });
+            
+            localStorage.setItem('ceh_exam_progress', JSON.stringify(formData));
+            
+            // Visual feedback
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '✅ Saved!';
+            button.style.background = '#27ae60';
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.style.background = '#27ae60';
+            }, 2000);
+        }
+
+        // Load saved data
+        function loadFromLocal() {
+            const saved = localStorage.getItem('ceh_exam_progress');
+            if (saved) {
+                const formData = JSON.parse(saved);
+                document.querySelectorAll('input, select, textarea').forEach((element, index) => {
+                    const savedValue = formData[`element_${index}`];
+                    if (savedValue !== undefined) {
+                        if (element.type === 'checkbox') {
+                            element.checked = savedValue;
+                        } else {
+                            element.value = savedValue;
+                        }
+                    }
+                });
+            }
+        }
+
+        // Auto-save every 30 seconds
+        setInterval(() => {
+            saveToLocal();
+        }, 30000);
+
+        // Save on page unload
+        window.addEventListener('beforeunload', saveToLocal);
+
+        // Load saved data on page load
+        window.addEventListener('load', loadFromLocal);
+
+        // Keyboard shortcut for save (Ctrl+S)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                saveToLocal();
+            }
+        });
+    </script>
+</body>
+</html>
