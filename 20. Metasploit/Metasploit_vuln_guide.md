@@ -14,7 +14,7 @@ A comprehensive guide for discovering, analyzing, and exploiting vulnerabilities
 
 ---
 
-## 🔍 Basic Vulnerability Searching
+## Basic Vulnerability Searching
 
 ### Core Search Commands
 
@@ -77,7 +77,7 @@ vulns --clear
 
 ---
 
-## 🕷️ Web Application Vulnerabilities
+## Web Application Vulnerabilities
 
 ### SQL Injection Testing
 
@@ -179,7 +179,7 @@ run
 
 ---
 
-## 🌐 Network Service Vulnerabilities
+## Network Service Vulnerabilities
 
 ### SMB Service Vulnerabilities
 
@@ -267,8 +267,10 @@ set RHOSTS 192.168.1.100
 run
 ```
 
-### 💡 Pro Tip
+### Pro Tip: Comprehensive Network Scanning
+
 Combine Metasploit scanning with Nmap for comprehensive network analysis:
+
 ```bash
 # From within Metasploit
 db_nmap -sV --script vuln 192.168.1.0/24
@@ -276,7 +278,7 @@ db_nmap -sV --script vuln 192.168.1.0/24
 
 ---
 
-## ⬆️ Privilege Escalation Techniques
+## Privilege Escalation Techniques
 
 ### Windows Privilege Escalation
 
@@ -359,7 +361,7 @@ run
 
 ---
 
-## 💥 Exploit Discovery and Matching
+## Exploit Discovery and Matching
 
 ### Manual Exploit Discovery
 
@@ -417,7 +419,7 @@ run
 
 ---
 
-## 🔧 Advanced Techniques
+## Advanced Techniques
 
 ### Database Integration
 
@@ -466,7 +468,7 @@ run
 
 ---
 
-## 📋 Best Practices
+## Best Practices
 
 ### Planning and Preparation
 
@@ -498,4 +500,18 @@ run
 2. **Vulnerability Validation**: Confirm all findings are legitimate
 3. **Report Generation**: Create clear, actionable reports for stakeholders
 
+### Legal and Ethical Considerations
+
+> **WARNING**: These tools and techniques should only be used on systems you own or have explicit written permission to test. Unauthorized access to computer systems is illegal and may result in criminal charges.
+
+#### Key Points
+
+- Always obtain proper authorization before testing
+- Respect scope limitations and boundaries
+- Follow responsible disclosure practices
+- Maintain confidentiality of discovered vulnerabilities
+- Document all activities for accountability
+
 ---
+
+*This guide is for educational and authorized security testing purposes only. Always ensure you have proper authorization before conducting any security assessments.*
