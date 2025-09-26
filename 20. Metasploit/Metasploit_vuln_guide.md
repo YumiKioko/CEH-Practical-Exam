@@ -23,16 +23,25 @@ The `vulns` command is your primary tool for vulnerability management in Metaspl
 ```bash
 # List all discovered vulnerabilities
 vulns
+```
 
+```
 # Filter vulnerabilities by target IP
 vulns -i 192.168.1.100
+```
+```
 
 # Filter by specific ports
 vulns -p 80,443,445,22
+```
+
+```
 
 # Search for specific CVE
 vulns -c CVE-2017-0144
+```
 
+```
 # Show only critical severity vulnerabilities
 vulns --severity critical
 
@@ -43,18 +52,29 @@ vulns --severity high,critical
 ### Advanced Search and Filtering
 
 ```bash
+```
+
+```
 # Complex search with multiple criteria
 vulns -S "os:windows port:445 has_exploit:true"
+```
 
+```
 # Search by service name
 vulns -S "service:http"
+```
 
+```
 # Filter by vulnerability type
 vulns -S "type:sql_injection"
+```
 
+```
 # Show detailed vulnerability information
 vulns -v -i 192.168.1.100
+```
 
+```
 # List vulnerabilities with available exploits
 vulns -S "has_exploit:true"
 ```
@@ -62,15 +82,24 @@ vulns -S "has_exploit:true"
 ### Database Management
 
 ```bash
+```
+
+```
 # Update vulnerability database
 vulns --update
+```
 
+```
 # Export results to CSV for reporting
 vulns -o vuln_report.csv
+```
 
+```
 # Import vulnerability data
 vulns --import vulnerability_data.xml
+```
 
+```
 # Clear vulnerability database
 vulns --clear
 ```
@@ -366,18 +395,29 @@ run
 ### Manual Exploit Discovery
 
 ```bash
+```
+
+```
 # Search for exploits by service type
 search type:exploit platform:windows target:smb
+```
 
+```
 # Search by specific CVE identifier
 search cve:CVE-2017-0144
+```
 
+```
 # Search for remote exploits
 search type:exploit rank:excellent
+```
 
+```
 # Search by application name
 search name:apache type:exploit
+```
 
+```
 # Search for post-exploitation modules
 search type:post platform:linux
 ```
@@ -385,18 +425,29 @@ search type:post platform:linux
 ### Exploit Information Gathering
 
 ```bash
+```
+
+```
 # Get detailed information about an exploit
 info exploit/windows/smb/ms17_010_eternalblue
+```
 
+```
 # Show exploit options and requirements
 show options
+```
 
+```
 # Display exploit targets
 show targets
+```
 
+```
 # Show available payloads
 show payloads
+```
 
+```
 # Check exploit ranking and reliability
 info exploit/linux/local/overlayfs_priv_esc
 ```
@@ -424,16 +475,25 @@ run
 ### Database Integration
 
 ```bash
+```
+
+```
 # Initialize database connection
 db_status
+```
 
+```
 # Import Nmap XML results
 db_import /path/to/nmap_results.xml
+```
 
+```
 # Create and switch workspaces
 workspace -a project_name
 workspace project_name
+```
 
+```
 # Export data for external analysis
 db_export -f xml /path/to/export.xml
 ```
