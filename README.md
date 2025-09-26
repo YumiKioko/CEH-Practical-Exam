@@ -59,6 +59,10 @@ Contributions are welcome!
 - Open an **issue** for corrections or improvements.  
 - Submit a **pull request** for new notes, scripts, or resources.  
 
+Lab Notebook - https://github.com/RStPro/Pentest-Lab-Notebook/tree/master/Notes
+
+Antonio - https://github.com/YumiKioko/CEH-Practical-Exam
+
 ---
 
 ## 📜 License
