@@ -44,6 +44,9 @@ vulns -c CVE-2017-0144
 ```
 # Show only critical severity vulnerabilities
 vulns --severity critical
+```
+
+```
 
 # Display high and critical vulnerabilities
 vulns --severity high,critical
