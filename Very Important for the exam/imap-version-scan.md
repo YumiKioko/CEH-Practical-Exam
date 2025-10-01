@@ -1,3 +1,4 @@
+``` bash
 #!/usr/bin/env bash
 # imap-version-scan.sh
 # Usage: ./imap-version-scan.sh ips.txt
@@ -83,3 +84,4 @@ while IFS= read -r ip || [[ -n "$ip" ]]; do
 done < "$IPFILE"
 
 echo "Done. Results saved to $OUTCSV"
+```
