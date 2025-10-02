@@ -15,6 +15,7 @@
 DNSMap is a tool for DNS subdomain brute-forcing that helps discover hidden subdomains of a target domain.
 
 ### Installation
+
 ```bash
 # Kali Linux (pre-installed)
 apt update && apt install dnsmap
@@ -245,3 +246,14 @@ cat subdomains_clean.txt | while read sub; do ping -c 1 $sub && echo "$sub is li
 
 # Port scan discovered subdomains
 cat subdomains_clean.txt | while read sub; do nmap -p 80,443,22 $sub; done
+Important Considerations I Noticed:
+
+Legal Compliance: Emphasize that this should only be used on domains you own or have explicit permission to test
+
+Stealth Operations: The delay option (-d) is crucial for avoiding detection in monitored environments
+
+Wordlist Selection: Start with smaller wordlists to avoid unnecessary noise
+
+DNS Server Choice: Using different DNS resolvers can yield different results
+
+Result Validation: Always verify discovered subdomains as DNS records can contain outdated information
