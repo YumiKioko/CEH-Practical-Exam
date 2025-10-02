@@ -116,15 +116,15 @@ Output Formats
 Basic Output
 text
 dnsmap version 0.30 [IP address 127.0.1.1]
- 
+
 [+] searching (sub)domains for example.com using wordlist file: built-in wordlist ...
 [+] using maximum random delay of 10 millisecond(s) between requests
- 
+
 address: 93.184.216.34    hostname: www.example.com
 address: 93.184.216.34    hostname: example.com
 address: 203.0.113.100    hostname: api.example.com
 address: 198.51.100.42    hostname: admin.example.com
- 
+
 [+] 4 (sub)domains and 3 IP address(es) found
 [+] completion time: 12 second(s)
 [+] results written to: dnsmap_example.com_hl2.txt
@@ -245,4 +245,4 @@ grep "hostname:" dnsmap_results.txt | awk '{print $3}' | sort -u > subdomains_cl
 cat subdomains_clean.txt | while read sub; do ping -c 1 $sub && echo "$sub is live"; done
 
 # Port scan discovered subdomains
-cat subdomains_clean.txt | while read sub; do nmap -p 80,443,22 $sub; done
+cat subdomains_clean.txt | while read sub; do nmap -p 80,443,22 $sub; done envia para ficheiro .md
