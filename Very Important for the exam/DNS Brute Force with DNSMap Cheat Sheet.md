@@ -1,5 +1,3 @@
-```bash
-cat > dnsmap-cheatsheet.md << 'EOF'
 # DNS Brute Force with DNSMap Cheat Sheet
 
 ## Table of Contents
@@ -17,6 +15,7 @@ cat > dnsmap-cheatsheet.md << 'EOF'
 DNSMap is a tool for DNS subdomain brute-forcing that helps discover hidden subdomains of a target domain.
 
 ### Installation
+
 ```bash
 # Kali Linux (pre-installed)
 apt update && apt install dnsmap
