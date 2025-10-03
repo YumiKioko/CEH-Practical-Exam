@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptography Tools Cheat Sheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .tool-section {
+            margin-bottom: 50px;
+            border-left: 4px solid #667eea;
+            padding-left: 30px;
+        }
+        
+        .tool-section h2 {
+            color: #2a5298;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .tool-section .purpose {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #555;
+        }
+        
+        h3 {
+            color: #667eea;
+            font-size: 1.4em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 8px;
+        }
+        
+        h4 {
+            color: #764ba2;
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        .code-block .comment {
+            color: #6272a4;
+        }
+        
+        .inline-code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+            font-size: 0.9em;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .info-box {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            transition: transform 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        footer {
+            background: #2d2d2d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        
+        .toc h3 {
+            color: #2a5298;
+            border: none;
+            margin-top: 0;
+        }
+        
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            display: block;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        
+        .toc a:hover {
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Cryptography Tools Cheat Sheet</h1>
+            <p>Essential Guide to HashCalc, VeraCrypt, Hash Cracking, BCTextEncoder & CrypTool</p>
+        </header>
+        
+        <div class="content">
+            <div class="toc">
+                <h3>📑 Table of Contents</h3>
+                <ul>
+                    <li><a href="#hashcalc">1. HashCalc</a></li>
+                    <li><a href="#veracrypt">2. VeraCrypt</a></li>
+                    <li><a href="#cracking">3. Cracking Hashes</a></li>
+                    <li><a href="#bctextencoder">4. BCTextEncoder</a></li>
+                    <li><a href="#cryptool">5. CrypTool</a></li>
+                    <li><a href="#bestpractices">6. Security Best Practices</a></li>
+                    <li><a href="#quickref">7. Quick Reference</a></li>
+                </ul>
+            </div>
+
+            <div id="hashcalc" class="tool-section">
+                <h2>1. HashCalc</h2>
+                <div class="purpose">
+                    <strong>Purpose:</strong> Calculate and verify hash values for files and text strings.
+                </div>
+
+                <h3>Supported Hash Algorithms</h3>
+                <div class="grid">
+                    <div class="card">
+                        <strong>MD5</strong><br>
+                        128-bit hash (deprecated)
+                    </div>
+                    <div class="card">
+                        <strong>SHA-1</strong><br>
+                        160-bit hash (deprecated)
+                    </div>
+                    <div class="card">
+                        <strong>SHA-256</strong><br>
+                        256-bit hash (recommended)
+                    </div>
+                    <div class="card">
+                        <strong>SHA-512</strong><br>
+                        512-bit hash (highly secure)
+                    </div>
+                </div>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li>File hash calculation with drag-and-drop support</li>
+                    <li>Text string hashing for passwords and data</li>
+                    <li>Hash comparison and verification</li>
+                    <li>Clipboard integration for quick workflows</li>
+                    <li>Multiple hash algorithms simultaneously</li>
+                </ul>
+
+                <h3>Common Use Cases</h3>
+                <ul>
+                    <li>Verify file integrity after downloads</li>
+                    <li>Check software authenticity</li>
+                    <li>Compare file versions</li>
+                    <li>Generate checksums for backups</li>
+                </ul>
+            </div>
+
+            <div id="veracrypt" class="tool-section">
+                <h2>2. VeraCrypt</h2>
+                <div class="purpose">
+                    <strong>Purpose:</strong> Open-source disk encryption software (successor to TrueCrypt).
+                </div>
+
+                <h3>Core Features</h3>
+                <ul>
+                    <li><strong>Encrypted Containers:</strong> Virtual encrypted disks stored as files</li>
+                    <li><strong>Full Disk Encryption:</strong> Encrypt entire system drives</li>
+                    <li><strong>Partition Encryption:</strong> Protect specific disk partitions</li>
+                    <li><strong>Hidden Volumes:</strong> Plausible deniability with secret volumes</li>
+                </ul>
+
+                <h3>Encryption Algorithms</h3>
+                <table>
+                    <tr>
+                        <th>Algorithm</th>
+                        <th>Key Size</th>
+                        <th>Security Level</th>
+                    </tr>
+                    <tr>
+                        <td>AES</td>
+                        <td>256-bit</td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td>Serpent</td>
+                        <td>256-bit</td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td>Twofish</td>
+                        <td>256-bit</td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td>AES-Twofish-Serpent</td>
+                        <td>768-bit cascade</td>
+                        <td>Maximum</td>
+                    </tr>
+                </table>
+
+                <h3>Basic Workflow</h3>
+                <div class="code-block">
+<span class="comment"># Create encrypted container</span>
+1. VeraCrypt → Create Volume
+2. Select "Create an encrypted file container"
+3. Choose volume type (Standard or Hidden)
+4. Select file location and size
+5. Choose encryption algorithm
+6. Set password (20+ characters recommended)
+7. Format volume
+
+<span class="comment"># Mount volume</span>
+1. VeraCrypt → Select File
+2. Click Mount
+3. Enter password
+4. Access mounted drive
+
+<span class="comment"># Dismount</span>
+Select mounted volume → Click Dismount
+                </div>
+
+                <div class="success-box">
+                    <strong>Best Practices:</strong>
+                    <ul>
+                        <li>Use passwords with 20+ characters</li>
+                        <li>Enable keyfiles for two-factor authentication</li>
+                        <li>Regular backups of volume headers</li>
+                        <li>Always dismount volumes when not in use</li>
+                        <li>Use PIM for additional iterations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="cracking" class="tool-section">
+                <h2>3. Cracking Hashes</h2>
+                <div class="purpose">
+                    <strong>Purpose:</strong> Password recovery and security testing by reversing hash values.
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Ethical Notice:</strong> Only crack hashes you own or have explicit permission to test. Unauthorized access is illegal.
+                </div>
+
+                <h3>Hashcat - GPU Accelerated</h3>
+                <div class="code-block">
+<span class="comment"># Basic syntax</span>
+hashcat -m [hash_type] -a [attack_mode] [hash_file] [wordlist]
+
+<span class="comment"># MD5 dictionary attack</span>
+hashcat -m 0 -a 0 hashes.txt rockyou.txt
+
+<span class="comment"># SHA-256 brute force (6 characters)</span>
+hashcat -m 1400 -a 3 hash.txt ?a?a?a?a?a?a
+
+<span class="comment"># Common hash types</span>
+-m 0     <span class="comment">MD5</span>
+-m 100   <span class="comment">SHA1</span>
+-m 1400  <span class="comment">SHA256</span>
+-m 1800  <span class="comment">SHA512</span>
+-m 3200  <span class="comment">bcrypt</span>
+-m 1000  <span class="comment">NTLM (Windows)</span>
+
+<span class="comment"># Attack modes</span>
+-a 0  <span class="comment">Dictionary attack</span>
+-a 3  <span class="comment">Brute-force</span>
+-a 6  <span class="comment">Hybrid (wordlist + mask)</span>
+-a 7  <span class="comment">Hybrid (mask + wordlist)</span>
+                </div>
+
+                <h3>John the Ripper</h3>
+                <div class="code-block">
+<span class="comment"># Basic usage with wordlist</span>
+john --wordlist=rockyou.txt hashes.txt
+
+<span class="comment"># Show cracked passwords</span>
+john --show hashes.txt
+
+<span class="comment"># Brute force mode</span>
+john --incremental hashes.txt
+
+<span class="comment"># Specify hash format</span>
+john --format=raw-md5 hashes.txt
+john --format=bcrypt hashes.txt
+
+<span class="comment"># Use rules for mutations</span>
+john --wordlist=passwords.txt --rules hashes.txt
+                </div>
+
+                <h3>Attack Strategies</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>Dictionary Attack</h4>
+                        Uses wordlists to match hashes. Fast and effective for common passwords.
+                    </div>
+                    <div class="card">
+                        <h4>Brute Force</h4>
+                        Tries all possible combinations. Slow but guaranteed if enough time.
+                    </div>
+                    <div class="card">
+                        <h4>Hybrid Attack</h4>
+                        Combines wordlists with rules and mutations for variations.
+                    </div>
+                    <div class="card">
+                        <h4>Rainbow Tables</h4>
+                        Pre-computed hash lookups. Fast but requires storage space.
+                    </div>
+                </div>
+
+                <h3>Hash Identification</h3>
+                <div class="code-block">
+<span class="comment"># Using hashid</span>
+hashid -m [hash_value]
+
+<span class="comment"># Example</span>
+hashid -m 5f4dcc3b5aa765d61d8327deb882cf99
+<span class="comment"># Outputs: MD5 (-m 0 for hashcat)</span>
+                </div>
+            </div>
+
+            <div id="bctextencoder" class="tool-section">
+                <h2>4. BCTextEncoder</h2>
+                <div class="purpose">
+                    <strong>Purpose:</strong> Text encryption and encoding tool with multiple transformation methods.
+                </div>
+
+                <h3>Supported Methods</h3>
+                <ul>
+                    <li><strong>Base64:</strong> Binary-to-text encoding</li>
+                    <li><strong>Hex:</strong> Hexadecimal representation</li>
+                    <li><strong>URL Encoding:</strong> Percent-encoding for URLs</li>
+                    <li><strong>Binary:</strong> Binary string conversion</li>
+                    <li><strong>ROT13:</strong> Simple letter substitution</li>
+                    <li><strong>Various ciphers:</strong> Caesar, Vigenère, etc.</li>
+                </ul>
+
+                <h3>Basic Workflow</h3>
+                <div class="code-block">
+<span class="comment"># Encoding Process</span>
+1. Enter plaintext in input field
+2. Select encoding method (Base64, Hex, etc.)
+3. Click "Encode" button
+4. Copy encoded result
+
+<span class="comment"># Decoding Process</span>
+1. Paste encoded text
+2. Select same encoding method
+3. Click "Decode" button
+4. View original plaintext
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Security Note:</strong> Basic encoding (Base64, Hex, URL) is NOT encryption. These methods are easily reversible and provide no security. Use proper encryption for sensitive data.
+                </div>
+
+                <h3>Use Cases</h3>
+                <ul>
+                    <li>Obfuscate configuration data (not security-critical)</li>
+                    <li>Quick text transformations for development</li>
+                    <li>Data format conversions</li>
+                    <li>Educational purposes for learning encoding schemes</li>
+                </ul>
+            </div>
+
+            <div id="cryptool" class="tool-section">
+                <h2>5. CrypTool</h2>
+                <div class="purpose">
+                    <strong>Purpose:</strong> Comprehensive educational platform for cryptography and cryptanalysis.
+                </div>
+
+                <h3>Available Versions</h3>
+                <table>
+                    <tr>
+                        <th>Version</th>
+                        <th>Platform</th>
+                        <th>Features</th>
+                    </tr>
+                    <tr>
+                        <td>CrypTool 1 (CT1)</td>
+                        <td>Windows</td>
+                        <td>Classic cryptography, extensive analysis tools</td>
+                    </tr>
+                    <tr>
+                        <td>CrypTool 2 (CT2)</td>
+                        <td>Windows</td>
+                        <td>Visual programming, workflow-based</td>
+                    </tr>
+                    <tr>
+                        <td>JCrypTool</td>
+                        <td>Cross-platform</td>
+                        <td>Java-based, plugin architecture</td>
+                    </tr>
+                    <tr>
+                        <td>CrypTool-Online</td>
+                        <td>Web Browser</td>
+                        <td>No installation required</td>
+                    </tr>
+                </table>
+
+                <h3>Classical Ciphers</h3>
+                <ul>
+                    <li><strong>Caesar Cipher:</strong> Simple shift cipher</li>
+                    <li><strong>Vigenère Cipher:</strong> Polyalphabetic substitution</li>
+                    <li><strong>Playfair Cipher:</strong> Digraph substitution</li>
+                    <li><strong>Transposition:</strong> Rearrangement of letters</li>
+                    <li><strong>Enigma Machine:</strong> Historical rotor machine simulator</li>
+                </ul>
+
+                <h3>Modern Cryptography</h3>
+                <div class="grid">
+                    <div class="card">
+                        <strong>Symmetric</strong><br>
+                        AES, DES, 3DES, Blowfish
+                    </div>
+                    <div class="card">
+                        <strong>Asymmetric</strong><br>
+                        RSA, ECC, ElGamal
+                    </div>
+                    <div class="card">
+                        <strong>Hash Functions</strong><br>
+                        MD5, SHA-1, SHA-256, SHA-3
+                    </div>
+                    <div class="card">
+                        <strong>Digital Signatures</strong><br>
+                        RSA, DSA, ECDSA
+                    </div>
+                </div>
+
+                <h3>Cryptanalysis Tools</h3>
+                <ul>
+                    <li><strong>Frequency Analysis:</strong> Letter, bigram, trigram distributions</li>
+                    <li><strong>Brute Force:</strong> Exhaustive key search</li>
+                    <li><strong>Dictionary Attacks:</strong> Known plaintext attacks</li>
+                    <li><strong>Pattern Recognition:</strong> Identify cipher types</li>
+                </ul>
+
+                <h3>Learning Path</h3>
+                <div class="info-box">
+                    <strong>Beginner Level:</strong>
+                    <ul>
+                        <li>Start with Caesar cipher and frequency analysis</li>
+                        <li>Learn hash functions (MD5, SHA-256)</li>
+                        <li>Explore symmetric encryption (AES)</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <strong>Intermediate Level:</strong>
+                    <ul>
+                        <li>Study public key cryptography (RSA)</li>
+                        <li>Understand digital signatures</li>
+                        <li>Practice key exchange protocols</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <strong>Advanced Level:</strong>
+                    <ul>
+                        <li>Advanced cryptanalysis techniques</li>
+                        <li>Protocol security analysis</li>
+                        <li>Side-channel attack simulations</li>
+                    </ul>
+                </div>
+
+                <h3>Example: AES Encryption</h3>
+                <div class="code-block">
+<span class="comment"># Workflow in CrypTool</span>
+1. Navigate to: Encrypt/Decrypt → Symmetric → AES
+2. Enter plaintext message
+3. Configure parameters:
+   - Key size: 128, 192, or 256 bits
+   - Mode: CBC, ECB, CTR, GCM
+   - Enter encryption key
+4. Click "Encrypt"
+5. View and analyze ciphertext
+                </div>
+            </div>
+
+            <div id="bestpractices" class="tool-section">
+                <h2>6. Security Best Practices</h2>
+
+                <h3>Password Security</h3>
+                <div class="success-box">
+                    <ul>
+                        <li>Use 16+ characters with mixed complexity</li>
+                        <li>Never reuse passwords across services</li>
+                        <li>Use a password manager (KeePass, Bitwarden)</li>
+                        <li>Enable multi-factor authentication everywhere</li>
+                        <li>Avoid dictionary words and personal information</li>
+                    </ul>
+                </div>
+
+                <h3>Encryption Guidelines</h3>
+                <ul>
+                    <li><strong>Avoid deprecated algorithms:</strong> MD5, SHA-1, DES, RC4</li>
+                    <li><strong>Use modern standards:</strong> AES-256, SHA-256, RSA-4096</li>
+                    <li><strong>For passwords:</strong> Use bcrypt, scrypt, or Argon2</li>
+                    <li><strong>Key management:</strong> Store keys separately from encrypted data</li>
+                </ul>
+
+                <h3>Recommended Hash Functions</h3>
+                <table>
+                    <tr>
+                        <th>Purpose</th>
+                        <th>Recommended</th>
+                        <th>Avoid</th>
+                    </tr>
+                    <tr>
+                        <td>File Integrity</td>
+                        <td>SHA-256, SHA-3</td>
+                        <td>MD5, SHA-1</td>
+                    </tr>
+                    <tr>
+                        <td>Password Storage</td>
+                        <td>bcrypt, Argon2</td>
+                        <td>Plain SHA, MD5</td>
+                    </tr>
+                    <tr>
+                        <td>Digital Signatures</td>
+                        <td>SHA-256, SHA-512</td>
+                        <td>SHA-1</td>
+                    </tr>
+                </table>
+
+                <h3>Ethical Considerations</h3>
+                <div class="warning-box">
+                    <ul>
+                        <li>Only test systems you own or have written permission to test</li>
+                        <li>Use encryption to protect sensitive data, not hide malicious activity</li>
+                        <li>Follow responsible disclosure for security vulnerabilities</li>
+                        <li>Comply with local laws regarding cryptography and computer security</li>
+                        <li>Respect privacy and confidentiality</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="quickref" class="tool-section">
+                <h2>7. Quick Reference Commands</h2>
+
+                <h3>Linux/Mac Hash Generation</h3>
+                <div class="code-block">
+<span class="comment"># MD5</span>
+md5sum file.txt
+
+<span class="comment"># SHA-256</span>
+sha256sum file.txt
+
+<span class="comment"># SHA-512</span>
+sha512sum file.txt
+
+<span class="comment"># Using OpenSSL</span>
+openssl dgst -md5 file.txt
+openssl dgst -sha256 file.txt
+openssl dgst -sha512 file.txt
+                </div>
+
+                <h3>Windows PowerShell</h3>
+                <div class="code-block">
+<span class="comment"># Get file hash (SHA-256 default)</span>
+Get-FileHash file.txt
+
+<span class="comment"># Specify algorithm</span>
+Get-FileHash file.txt -Algorithm MD5
+Get-FileHash file.txt -Algorithm SHA256
+Get-FileHash file.txt -Algorithm SHA512
+                </div>
+
+                <h3>VeraCrypt Command Line</h3>
+                <div class="code-block">
+<span class="comment"># Mount volume</span>
+veracrypt /path/to/volume /mount/point
+
+<span class="comment"># Mount with password from stdin</span>
+echo "password" | veracrypt --text --password stdin /path/to/volume /mount/point
+
+<span class="comment"># Dismount specific volume</span>
+veracrypt -d /mount/point
+
+<span class="comment"># Dismount all volumes</span>
+veracrypt -d
+                </div>
+
+                <h3>Common Wordlists</h3>
+                <ul>
+                    <li><span class="inline-code">rockyou.txt</span> - 14 million passwords from data breach</li>
+                    <li><span class="inline-code">SecLists</span> - Collection of security-related lists</li>
+                    <li><span class="inline-code">CrackStation</span> - 1.5 billion password wordlist</li>
+                    <li><span class="inline-code">Have I Been Pwned</span> - Password breach database</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Remember:</strong> Always use these tools ethically and legally. Unauthorized access is a crime.</p>
+            <p>Created for educational and authorized security testing purposes only.</p>
+        </footer>
+    </div>
+</body>
+</html>

