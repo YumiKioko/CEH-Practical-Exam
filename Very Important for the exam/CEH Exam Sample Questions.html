@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Assessment Exam Questions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #333;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .questions-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .question-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .question-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .question-number {
+            font-weight: bold;
+            font-size: 1.2rem;
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+        
+        .question-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .question-content {
+            margin-bottom: 15px;
+        }
+        
+        .solution {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #333;
+            font-size: 0.9rem;
+        }
+        
+        .command {
+            font-family: 'Courier New', monospace;
+            background-color: #eee;
+            padding: 5px;
+            border-radius: 3px;
+            margin: 5px 0;
+            display: block;
+            overflow-x: auto;
+        }
+        
+        .tool-reference {
+            font-style: italic;
+            color: #555;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .questions-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SECURITY ASSESSMENT EXAM QUESTIONS</h1>
+        <p class="subtitle">Comprehensive enumeration of penetration testing scenarios and solutions</p>
+    </header>
+    
+    <div class="questions-container">
+        <!-- Question 1 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q1</span>
+            </div>
+            <div class="question-title">Operating System Identification via SQLi Vulnerability</div>
+            <div class="question-content">
+                After discovering a blind SQLi vulnerability in a MySQL-backed website, identify the host OS.
+            </div>
+            <div class="solution">
+                <span class="command">nmap -sV &lt;IP&gt;/24</span>
+                <span class="command">nmap -A &lt;IP&gt;/24</span>
+                Identify machine with port 3306 open, then:
+                <span class="command">nmap -O &lt;IP&gt;</span>
+            </div>
+        </div>
+        
+        <!-- Question 2 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q2</span>
+            </div>
+            <div class="question-title">Suspicious Account Detection</div>
+            <div class="question-content">
+                Identify suspicious user account on machine 192.168.1.10 from secure accounts: JohnDoe, SarahConnor, Neo, Oracle, Sherlock.
+            </div>
+            <div class="solution">
+                RDP to machine, then:
+                <span class="command">net user</span>
+                Compare against known secure accounts to identify suspicious entry.
+            </div>
+        </div>
+        
+        <!-- Question 3 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q3</span>
+            </div>
+            <div class="question-title">RDP Service Discovery</div>
+            <div class="question-content">
+                Find machine with RDP port open in network.
+            </div>
+            <div class="solution">
+                <span class="command">nmap -Pn -sV -p 3389 &lt;IP&gt;</span>
+            </div>
+        </div>
+        
+        <!-- Question 4 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q4</span>
+            </div>
+            <div class="question-title">DES Encryption & FTP Access</div>
+            <div class="question-content">
+                Decrypt DES(ECB) encrypted file to obtain FTP credentials, retrieve flag1.txt.
+            </div>
+            <div class="solution">
+                Use Cryptool: Encrypt/Decrypt → Symmetric → DES (ECB)
+                <span class="command">ftp &lt;IP&gt;</span>
+                <span class="command">get flag1.txt</span>
+            </div>
+        </div>
+        
+        <!-- Question 5 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q5</span>
+            </div>
+            <div class="question-title">Steganography Detection</div>
+            <div class="question-content">
+                Extract hidden information from Secret-Accounts.txt using steganography (password: "magic").
+            </div>
+            <div class="solution">
+                <span class="command">snow -C -p "magic" secret.accounts.txt</span>
+            </div>
+        </div>
+        
+        <!-- Question 6 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q6</span>
+            </div>
+            <div class="question-title">WordPress Password Recovery</div>
+            <div class="question-content">
+                Retrieve Sarah's WordPress password from database at http://192.168.1.10:8080/CEH.
+            </div>
+            <div class="solution">
+                <span class="command">wpscan --url http://192.168.1.10:8080/CEH -u Sarah -P passwdlist.txt</span>
+                <div class="tool-reference">Alternative: Metasploit wordpress_login_enum module</div>
+            </div>
+        </div>
+        
+        <!-- Question 7 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q7</span>
+            </div>
+            <div class="question-title">MD5 Hash Cracking</div>
+            <div class="question-content">
+                Crack MD5 hash in Secret-Hash.txt uploaded via DVWA.
+            </div>
+            <div class="solution">
+                Access file at: C:\wamp64\www\DVWA\hackable\uploads\Secret-Hash.txt
+                Use online tools: http://hashes.com/en/decrypt/hash or https://crackstation.net
+            </div>
+        </div>
+        
+        <!-- Question 8 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q8</span>
+            </div>
+            <div class="question-title">Backdoor File Access</div>
+            <div class="question-content">
+                Retrieve secret.txt from Server 2019 machine using backdoor.
+            </div>
+            <div class="solution">
+                Use RDP credentials from Q2, navigate to:
+                C:\users\dell\documents\confidential\secret.txt
+            </div>
+        </div>
+        
+        <!-- Question 9 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q9</span>
+            </div>
+            <div class="question-title">DoS Attack Source Identification</div>
+            <div class="question-content">
+                Identify attacking IP from pcapng file.
+            </div>
+            <div class="solution">
+                Wireshark: Statistics → IPv4 Statistics → Source and Destination Addresses
+                Filter: <span class="command">tcp.flags.syn == 1 and tcp.flags.ack == 0</span>
+            </div>
+        </div>
+        
+        <!-- Question 10 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q10</span>
+            </div>
+            <div class="question-title">DDoS & Credential Analysis</div>
+            <div class="question-content">
+                Identify number of attacking machines or find credentials in pcap.
+            </div>
+            <div class="solution">
+                DDoS: Count unique IPs in Conversations tab
+                Credentials: Filter <span class="command">http.request.method == POST</span>
+            </div>
+        </div>
+        
+        <!-- Question 11 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q11</span>
+            </div>
+            <div class="question-title">FTP Credential Cracking</div>
+            <div class="question-content">
+                Crack FTP credentials to retrieve flag.txt.
+            </div>
+            <div class="solution">
+                Identify machine with port 21 open
+                <span class="command">hydra -L users.txt -P passwords.txt &lt;IP&gt; ftp</span>
+            </div>
+        </div>
+        
+        <!-- Question 12 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q12</span>
+            </div>
+            <div class="question-title">Remote Desktop File Retrieval</div>
+            <div class="question-content">
+                Remotely access John's computer (Server2019) to retrieve document starting with "F/XXXXXXX".
+            </div>
+            <div class="solution">
+                RDP with credentials: John/secure123
+                Browse to desktop and locate target file.
+            </div>
+        </div>
+        
+        <!-- Question 13 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q13</span>
+            </div>
+            <div class="question-title">SQL DSSS Attack</div>
+            <div class="question-content">
+                Use SQL DSSS technique to find contact number of "Kety" on moviescope.com.
+            </div>
+            <div class="solution">
+                <span class="command">sqlmap -u "http://moviescope.com/viewprofile.php?id=1" --dump --batch --threads=10</span>
+                <div class="tool-reference">DSSS: Stealth, Speed and Success technique</div>
+            </div>
+        </div>
+        
+        <!-- Question 14 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q14</span>
+            </div>
+            <div class="question-title">Plain Text Credential Extraction</div>
+            <div class="question-content">
+                Find plaintext credentials for www.industry.com in Dos.pcapng.
+            </div>
+            <div class="solution">
+                Wireshark filter: <span class="command">http.request.method == POST</span>
+                Examine packet contents for username/password.
+            </div>
+        </div>
+        
+        <!-- Question 15 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q15</span>
+            </div>
+            <div class="question-title">Risky HTTP Method Identification</div>
+            <div class="question-content">
+                Identify HTTP method posing highest risk on www.moviescope.com using OWASP ZAP.
+            </div>
+            <div class="solution">
+                OWASP ZAP Automated Scan → Check Alerts for SQLi vulnerabilities
+                Typically POST method for SQL injection attacks.
+            </div>
+        </div>
+        
+        <!-- Question 16 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q16</span>
+            </div>
+            <div class="question-title">Live Host Discovery</div>
+            <div class="question-content">
+                Identify number of alive hosts in subnet.
+            </div>
+            <div class="solution">
+                <span class="command">nmap -sn 192.168.56.0/24</span>
+            </div>
+        </div>
+        
+        <!-- Question 17 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q17</span>
+            </div>
+            <div class="question-title">VeraCrypt Decryption</div>
+            <div class="question-content">
+                Decrypt VeraCrypt file with password "test" to find secret code.
+            </div>
+            <div class="solution">
+                Mount VeraCrypt volume using password "test"
+                Access decrypted content to locate secret.
+            </div>
+        </div>
+        
+        <!-- Question 18 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q18</span>
+            </div>
+            <div class="question-title">RC4 Decryption</div>
+            <div class="question-content">
+                Decrypt "Cry-RC4-Accountno.hex" using key "14" to find account number.
+            </div>
+            <div class="solution">
+                Cryptool: Encrypt/Decrypt → Symmetric → RC4
+                Set key to "14" and decrypt.
+            </div>
+        </div>
+        
+        <!-- Question 19 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q19</span>
+            </div>
+            <div class="question-title">Android File Extraction</div>
+            <div class="question-content">
+                Access Android device to retrieve secret.txt.
+            </div>
+            <div class="solution">
+                <span class="command">adb connect &lt;IP&gt;:5555</span>
+                <span class="command">adb shell</span>
+                <span class="command">find /sdcard -name "secret.txt"</span>
+            </div>
+        </div>
+        
+        <!-- Question 20 -->
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Q20</span>
+            </div>
+            <div class="question-title">Encoded IP Address Decryption</div>
+            <div class="question-content">
+                Decode file to extract IP address of compromised machine (password: shadow123).
+            </div>
+            <div class="solution">
+                Use BCTextEncoder tool with password "shadow123" to decode.
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Security Assessment Exam Questions | Comprehensive Penetration Testing Reference</p>
+        <p>Note: This document is for educational and authorized security assessment purposes only.</p>
+    </footer>
+</body>
+</html>
