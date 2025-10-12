@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Questions List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #444;
+        }
+        
+        h1 {
+            color: #4fc3f7;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #b0bec5;
+            font-size: 1.1rem;
+        }
+        
+        .search-box {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .search-box input {
+            width: 70%;
+            padding: 12px 15px;
+            background-color: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 4px;
+            color: #e0e0e0;
+            font-size: 1rem;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #4fc3f7;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-controls {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .filter-controls select {
+            padding: 8px 12px;
+            background-color: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 4px;
+            color: #e0e0e0;
+        }
+        
+        .view-controls button {
+            padding: 8px 15px;
+            background-color: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 4px;
+            color: #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .view-controls button.active {
+            background-color: #4fc3f7;
+            color: #1e1e1e;
+        }
+        
+        .view-controls button:hover {
+            background-color: #444;
+        }
+        
+        .questions-container {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .question-card {
+            background-color: #2d2d2d;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #4fc3f7;
+        }
+        
+        .question-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .question-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #4fc3f7;
+        }
+        
+        .question-id {
+            background-color: #4fc3f7;
+            color: #1e1e1e;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .question-content {
+            margin-bottom: 15px;
+            color: #e0e0e0;
+        }
+        
+        .question-solution {
+            background-color: #1e1e1e;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .question-solution h4 {
+            color: #81c784;
+            margin-bottom: 10px;
+        }
+        
+        .solution-content {
+            color: #b0bec5;
+        }
+        
+        .solution-content pre {
+            background-color: #1a1a1a;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 10px 0;
+            color: #e0e0e0;
+        }
+        
+        .toggle-solution {
+            background-color: #4fc3f7;
+            color: #1e1e1e;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .toggle-solution:hover {
+            background-color: #29b6f6;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background-color: #444;
+            color: #e0e0e0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .list-view .question-card {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .grid-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #b0bec5;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #b0bec5;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .filter-controls {
+                justify-content: center;
+            }
+            
+            .search-box input {
+                width: 90%;
+            }
+            
+            .grid-view {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Exam Questions List</h1>
+            <p class="subtitle">Security Assessment & Ethical Hacking Questions</p>
+        </header>
+        
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search questions, commands, or keywords...">
+        </div>
+        
+        <div class="controls">
+            <div class="filter-controls">
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="enumeration">Enumeration & Reconnaissance</option>
+                    <option value="password">Password Attacks</option>
+                    <option value="web">Web Application Security</option>
+                    <option value="wireless">Wireless Security</option>
+                    <option value="forensics">Forensics & Analysis</option>
+                    <option value="cryptography">Cryptography</option>
+                    <option value="mobile">Mobile Security</option>
+                    <option value="privesc">Privilege Escalation</option>
+                </select>
+                
+                <select id="difficultyFilter">
+                    <option value="all">All Difficulties</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            
+            <div class="view-controls">
+                <button id="listViewBtn" class="active">List View</button>
+                <button id="gridViewBtn">Grid View</button>
+            </div>
+        </div>
+        
+        <div class="questions-container list-view" id="questionsContainer">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+        
+        <footer>
+            <p>Exam Questions List - Security Assessment & Ethical Hacking</p>
+        </footer>
+    </div>
+
+    <script>
+        // Questions data
+        const questions = [
+            {
+                id: "Q1",
+                title: "Operating System Identification via SQLi",
+                content: "After discovering that a website hosted in a server was vulnerable to blind SQLi attacks during a security assessment, it was determined that the database management system underlying the site was MySQL. Can you identify the operating system on the machine hosting the database?",
+                solution: "Use nmap to scan for the machine with port 3306 open, then perform OS detection:<br><pre>nmap -sV &lt;IP&gt;/24<br>nmap -A &lt;IP&gt;/24<br>nmap -O &lt;IP&gt;</pre>",
+                categories: ["enumeration", "web"],
+                difficulty: "medium"
+            },
+            {
+                id: "Q2",
+                title: "Suspicious User Account Detection",
+                content: "In an organization's network security assessment, a peculiar user account was discovered to have been added to a machine with the IP 192.168.1.10. The following accounts were found to be secure: JohnDoe, SarahConnor, Neo, Oracle and Sherlock. What is the username of the suspicious account?",
+                solution: "Use RDP to login with provided credentials, then use the net user command to list all users:<br><pre>net user</pre>",
+                categories: ["enumeration"],
+                difficulty: "easy"
+            },
+            {
+                id: "Q3",
+                title: "RDP Port Detection",
+                content: "Find the IP address of the machine with RDP port open.",
+                solution: "Use nmap to scan for machines with port 3389 open:<br><pre>nmap -Pn -sV -p 3389 &lt;IP&gt;</pre>",
+                categories: ["enumeration"],
+                difficulty: "easy"
+            },
+            {
+                id: "Q4",
+                title: "FTP Credential Decryption",
+                content: "The eth1 machine has a file called Cry-DES(ECB)-TFP-IP.hex, containing encrypted credentials to connect to an FTP server. The file's encryption algorithm is DES(ECB). Decrypt the file to obtain the FTP credentials, then connect to the FTP server and retrieve the file named 'flag1.txt'.",
+                solution: "Use Cryptool to decrypt the file with DES (ECB) algorithm, then connect to FTP:<br><pre>ftp &lt;IP&gt;<br>get flag1.txt</pre>",
+                categories: ["cryptography"],
+                difficulty: "medium"
+            },
+            {
+                id: "Q5",
+                title: "Steganography Analysis",
+                content: "An employee stole critical bank credentials and concealed them in a file called 'Secret-Accounts.txt' using steganography. The file is on the H1 machine. Your task is to decipher the concealed information in the file and locate the account number. The password is 'magic'.",
+                solution: "Use snow tool to extract hidden information:<br><pre>snow -C -p \"magic\" secret.accounts.txt</pre>",
+                categories: ["forensics"],
+                difficulty: "medium"
+            },
+            {
+                id: "Q6",
+                title: "WordPress Password Recovery",
+                content: "An employee, Sarah, has reported being locked out of her WordPress account at http://192.168.1.10:8080/CEH. Your task is to identify the password associated with the user ID 'Sarah' and resolve the issue.",
+                solution: "Use wpscan or Metasploit to enumerate WordPress passwords:<br><pre>wpscan --url http://192.168.1.10:8080/CEH -u Sarah -P passwdlist.txt</pre>",
+                categories: ["web", "password"],
+                difficulty: "medium"
+            },
+            {
+                id: "Q7",
+                title: "MD5 Hash Cracking",
+                content: "A file called 'Secrethash.txt' has been uploaded via DVWA at http://192.168.1.10/DVWA. Your task is to crack the MD5 hash present in the file and reveal the original message.",
+                solution: "Access DVWA with provided credentials, then use online tools like hashes.com to decrypt the MD5 hash.",
+                categories: ["password", "web"],
+                difficulty: "easy"
+            },
+            {
+                id: "Q8",
+                title: "Backdoor File Access",
+                content: "Retrieve a critical file named secret.txt that has been concealed in the server 2019 machine. The file is located in c:\\users\\dell\\documents\\confidential.",
+                solution: "Use RDP credentials found in Q2 to login, browse to the mentioned path, and open secret.txt.",
+                categories: ["enumeration"],
+                difficulty: "easy"
+            },
+            {
+                id: "Q9",
+                title: "DoS Attack Source Identification",
+                content: "Identify the IP address of a DoS attack, given the pcapng file.",
+                solution: "In Wireshark, use Statistics → IPv4 Statistics → Source and Destination Addresses with filter:<br><pre>tcp.flags.syn == 1 and tcp.flags.ack == 0</pre>",
+                categories: ["forensics"],
+                difficulty: "medium"
+            },
+            {
+                id: "Q10",
+                title: "DDoS Attack Analysis",
+                content: "Identify the number of machines involved in a DDoS attack from a pcap file.",
+                solution: "Use Wireshark's Conversations tab (IPv4) to count unique source IPs sending SYN packets.",
+                categories: ["forensics"],
+                difficulty: "hard"
+            },
+            {
+                id: "Q11",
+                title: "FTP Credential Cracking",
+                content: "An FTP site is hosted on a machine in a network. Crack the FTP credentials to obtain the file 'flag.txt' available on the server.",
+                solution: "First identify machine with port 21 open, then use Hydra with user and password lists:<br><pre>hydra -L users.txt -P passwords.txt ftp://&lt;IP&gt;</pre>",
+                categories: ["password"],
+                difficulty: "medium"
+            },
+            {
+                id: "Q12",
+                title: "Remote Desktop Access",
+                content: "Get a file that is in the desktop computer of John. The computer name is 'Server20219' and the login credentials are John and secure123.",
+                solution: "Scan network for Server 2019 machine, use RDP to login, and view the file on the desktop.",
+                categories: ["enumeration"],
+                difficulty: "easy"
+            },
+            {
+                id: "Q13",
+                title: "SQL Injection for User Data",
+                content: "While testing the website 'www.moviescope.com' for vulnerabilities, you came across an SQLi vulnerability. Use the SQL DSSS attack method to determine the contact number of Kety associated with the website.",
+                solution: "Use sqlmap with DSSS techniques:<br><pre>sqlmap -u \"http://moviescope.com/viewprofile.aspx?id=1\" --threads=10 --batch --dump --optimize</pre>",
+                categories: ["web"],
+                difficulty: "hard"
+            },
+            {
+                id: "Q14",
+                title: "Packet Capture Credential Extraction",
+                content: "Analyze a packet capture file called Dos.pcapng to find user credentials associated with the website www.industry.com recorded in plain text.",
+                solution: "In Wireshark, filter for HTTP POST requests:<br><pre>http.request.method == POST</pre>",
+                categories: ["forensics"],
+                difficulty: "medium"
+            },
+            {
+                id: "Q15",
+                title: "HTTP Method Risk Assessment",
+                content: "On identifying the HTTP method in the website www.moviescope.com that poses the highest risk to the website, you decide to use the OWASP ZAP tool.",
+                solution: "Use OWASP ZAP automatic scan on the URL, then check alerts for SQL injection vulnerabilities to identify the risky HTTP method (typically POST).",
+                categories: ["web"],
+                difficulty: "medium"
+            },
+            {
+                id: "Q16",
+                title: "Live Host Identification",
+                content: "Identify the number of hosts that are alive in a given subnet.",
+                solution: "Use nmap ping sweep:<br><pre>nmap -sn 192.168.56.0/24</pre>",
+                categories: ["enumeration"],
+                difficulty: "easy"
+            },
+            {
+                id: "Q17",
+                title: "VeraCrypt File Decryption",
+                content: "An employee has stolen secrets and encrypted them using VeraCrypt. Your task is to decrypt the file using the password 'test' and identify the secret code contained in it.",
+                solution: "Use VeraCrypt to mount the volume with password 'test' and access the secret file.",
+                categories: ["cryptography"],
+                difficulty: "medium"
+            },
+            {
+                id: "Q18",
+                title: "RC4 Cipher Decryption",
+                content: "Decrypt a cipher named 'Cry-RC4-Accountno.hex' stored in the documents folder of machine1. The file was encrypted using RC4 with key '14'.",
+                solution: "Use Cryptool with RC4 algorithm and key '14' to decrypt the file.",
+                categories: ["cryptography"],
+                difficulty: "medium"
+            },
+            {
+                id: "Q19",
+                title: "Android File Extraction",
+                content: "Access an Android device and extract a file named 'secret.txt' from the sdcard.",
+                solution: "Connect via ADB and navigate to the sdcard:<br><pre>adb connect &lt;IP&gt;:5555<br>adb shell<br>find /sdcard -name \"secret.txt\"<br>cat /sdcard/secret.txt</pre>",
+                categories: ["mobile"],
+                difficulty: "easy"
+            },
+            {
+                id: "Q20",
+                title: "Encoded IP Address Decryption",
+                content: "A vicious attacker has encoded the IP address of the target machine. Your task is to decode the file and extract the IP address of the compromised machine. Password: shadow123",
+                solution: "Use BCTextEncoder tool with password 'shadow123' to decode the file.",
+                categories: ["cryptography"],
+                difficulty: "medium"
+            }
+        ];
+
+        // DOM elements
+        const questionsContainer = document.getElementById('questionsContainer');
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const difficultyFilter = document.getElementById('difficultyFilter');
+        const listViewBtn = document.getElementById('listViewBtn');
+        const gridViewBtn = document.getElementById('gridViewBtn');
+
+        // Initialize the page
+        function init() {
+            renderQuestions(questions);
+            setupEventListeners();
+        }
+
+        // Render questions to the page
+        function renderQuestions(questionsToRender) {
+            questionsContainer.innerHTML = '';
+            
+            if (questionsToRender.length === 0) {
+                questionsContainer.innerHTML = '<div class="no-results">No questions match your search criteria.</div>';
+                return;
+            }
+            
+            questionsToRender.forEach(question => {
+                const questionCard = document.createElement('div');
+                questionCard.className = 'question-card';
+                
+                // Create category tags
+                const categoryTags = question.categories.map(cat => 
+                    `<span class="category-tag">${cat}</span>`
+                ).join('');
+                
+                questionCard.innerHTML = `
+                    <div class="question-header">
+                        <div class="question-title">${question.title}</div>
+                        <div class="question-id">${question.id}</div>
+                    </div>
+                    <div class="question-content">
+                        ${question.content}
+                    </div>
+                    <div class="categories">
+                        ${categoryTags}
+                        <span class="category-tag difficulty-${question.difficulty}">${question.difficulty}</span>
+                    </div>
+                    <button class="toggle-solution">Show Solution</button>
+                    <div class="question-solution">
+                        <h4>Solution:</h4>
+                        <div class="solution-content">${question.solution}</div>
+                    </div>
+                `;
+                
+                questionsContainer.appendChild(questionCard);
+            });
+            
+            // Add event listeners to toggle buttons
+            document.querySelectorAll('.toggle-solution').forEach(button => {
+                button.addEventListener('click', function() {
+                    const solution = this.nextElementSibling;
+                    if (solution.style.display === 'block') {
+                        solution.style.display = 'none';
+                        this.textContent = 'Show Solution';
+                    } else {
+                        solution.style.display = 'block';
+                        this.textContent = 'Hide Solution';
+                    }
+                });
+            });
+        }
+
+        // Filter questions based on search and filters
+        function filterQuestions() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const category = categoryFilter.value;
+            const difficulty = difficultyFilter.value;
+            
+            const filteredQuestions = questions.filter(question => {
+                // Search term filter
+                const matchesSearch = searchTerm === '' || 
+                    question.title.toLowerCase().includes(searchTerm) ||
+                    question.content.toLowerCase().includes(searchTerm) ||
+                    question.solution.toLowerCase().includes(searchTerm) ||
+                    question.id.toLowerCase().includes(searchTerm);
+                
+                // Category filter
+                const matchesCategory = category === 'all' || question.categories.includes(category);
+                
+                // Difficulty filter
+                const matchesDifficulty = difficulty === 'all' || question.difficulty === difficulty;
+                
+                return matchesSearch && matchesCategory && matchesDifficulty;
+            });
+            
+            renderQuestions(filteredQuestions);
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            searchInput.addEventListener('input', filterQuestions);
+            categoryFilter.addEventListener('change', filterQuestions);
+            difficultyFilter.addEventListener('change', filterQuestions);
+            
+            listViewBtn.addEventListener('click', function() {
+                questionsContainer.className = 'questions-container list-view';
+                listViewBtn.classList.add('active');
+                gridViewBtn.classList.remove('active');
+            });
+            
+            gridViewBtn.addEventListener('click', function() {
+                questionsContainer.className = 'questions-container grid-view';
+                gridViewBtn.classList.add('active');
+                listViewBtn.classList.remove('active');
+            });
+        }
+
+        // Initialize the application
+        init();
+    </script>
+</body>
+</html>

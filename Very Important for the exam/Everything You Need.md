@@ -22,7 +22,7 @@ If even this the above command is not working then use this command-  namp -f 10
 6- NetBios enum using enum4linux- enum4linux -u martin -p apple -n 10.10.10.10 (all info)
 				  enum4linux -u martin -p apple -P 10.10.10.10 (policy info)
 ```
-#  Quick Overview (Stegnography) --> Snow , Openstego
+# Stegnography --> Snow , Openstego
 ```
 1- Hide Data Using Whitespace Stegnography- snow -C -m "My swiss account number is 121212121212" -p "magic" readme.txt readme2.txt  (magic is password and your secret is stored in readme2.txt along with the content of readme.txt)
 2- To Display Hidden Data- snow -C -p "magic" readme2.txt (then it will show the content of readme2.txt content)
