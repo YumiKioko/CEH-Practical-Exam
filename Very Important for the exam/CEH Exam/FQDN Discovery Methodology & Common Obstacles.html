@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FQDN Discovery Methodology & Obstacles</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #ffffff;
+            border-bottom: 2px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #f0f0f0;
+            border-left: 4px solid #666;
+            padding-left: 15px;
+            margin: 25px 0 15px 0;
+            font-size: 1.6em;
+        }
+        
+        h3 {
+            color: #e0e0e0;
+            margin: 20px 0 10px 0;
+            font-size: 1.3em;
+        }
+        
+        .method { border-left-color: #4CAF50; }
+        .obstacle { border-left-color: #ff4444; }
+        .solution { border-left-color: #2196F3; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .card {
+            background: #252525;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 20px;
+        }
+        
+        .card h3 {
+            margin-top: 0;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+        
+        pre {
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-size: 0.9em;
+        }
+        
+        code {
+            background: #000;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .success { background: #4CAF50; color: white; }
+        .failed { background: #d32f2f; color: white; }
+        .workaround { background: #FF9800; color: black; }
+        
+        .obstacle-item {
+            background: #2d1a1a;
+            border-left: 4px solid #d32f2f;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .solution-item {
+            background: #1a2d1a;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .command {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .note {
+            background: #1a1a2d;
+            border: 1px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FQDN Discovery Methodology & Common Obstacles</h1>
+        
+        <h2 class="method">Standard FQDN Discovery Methods</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>1. Reverse DNS Lookup (PTR Records)</h3>
+                <p>The primary method used by most tools:</p>
+                <pre><span class="command">nslookup 192.168.56.108</span>
+<span class="command">dig +short -x 192.168.56.108</span>
+<span class="command">host 192.168.56.108</span></pre>
+                <p><span class="status success">Standard Approach</span></p>
+            </div>
+            
+            <div class="card">
+                <h3>2. Nmap Host Discovery</h3>
+                <p>Nmap's built-in reverse DNS resolution:</p>
+                <pre><span class="command">nmap -sL 192.168.56.108</span>
+<span class="command">nmap --dns-servers 8.8.8.8 192.168.56.108</span>
+<span class="command">nmap -R 192.168.56.108</span></pre>
+                <p><span class="status success">Tool Integration</span></p>
+            </div>
+            
+            <div class="card">
+                <h3>3. Service Banner Grabbing</h3>
+                <p>Extract FQDN from service responses:</p>
+                <pre><span class="command">nmap -sC -sV 192.168.56.108</span>
+<span class="command">telnet 192.168.56.108 25</span>
+<span class="command">curl -I http://192.168.56.108</span></pre>
+                <p><span class="status workaround">Fallback Method</span></p>
+            </div>
+        </div>
+
+        <h2 class="obstacle">Common Obstacles in FQDN Discovery</h2>
+        
+        <div class="obstacle-item">
+            <h3>🚫 Missing Reverse DNS Zones</h3>
+            <p><strong>Symptoms:</strong></p>
+            <ul>
+                <li>Reverse lookup returns NXDOMAIN or SERVFAIL</li>
+                <li>Nmap shows only IP address without FQDN</li>
+                <li>Tools fail to resolve hostnames</li>
+            </ul>
+            <pre><span class="command">nslookup 192.168.56.108</span>
+<span class="command">→ ** server can't find 108.56.168.192.in-addr.arpa: NXDOMAIN</span></pre>
+        </div>
+
+        <div class="obstacle-item">
+            <h3>🚫 Firewall Blocks DNS Queries</h3>
+            <p><strong>Symptoms:</strong></p>
+            <ul>
+                <li>DNS queries time out</li>
+                <li>Cannot reach DNS servers on standard ports</li>
+                <li>UDP port 53 blocked</li>
+            </ul>
+            <pre><span class="command">nslookup 192.168.56.108</span>
+<span class="command">→ ;; communications error: timed out</span></pre>
+        </div>
+
+        <div class="obstacle-item">
+            <h3>🚫 Incorrect DNS Server Configuration</h3>
+            <p><strong>Symptoms:</strong></p>
+            <ul>
+                <li>System uses wrong DNS servers</li>
+                <li>External DNS servers don't have internal records</li>
+                <li>Split DNS environment issues</li>
+            </ul>
+            <pre><span class="command">nslookup 192.168.56.108</span>
+<span class="command">→ Using external DNS that lacks internal PTR records</span></pre>
+        </div>
+
+        <div class="obstacle-item">
+            <h3>🚫 Host Blocks ICMP/Discovery Probes</h3>
+            <p><strong>Symptoms:</strong></p>
+            <ul>
+                <li>Nmap reports "Host seems down"</li>
+                <li>Ping requests fail</li>
+                <li>Tools abort discovery phase</li>
+            </ul>
+            <pre><span class="command">nmap 192.168.56.108</span>
+<span class="command">→ Note: Host seems down. If it is really up, try -Pn</span></pre>
+        </div>
+
+        <h2 class="solution">Solutions & Workarounds</h2>
+
+        <div class="solution-item">
+            <h3>✅ For Missing Reverse DNS</h3>
+            <p><strong>Alternative Discovery Methods:</strong></p>
+            <pre><span class="command"># Query services directly</span>
+nmap -p 389 --script ldap-rootdse 192.168.56.108
+nmap -p 443 --script http-title 192.168.56.108
+
+<span class="command"># Use NetBIOS for Windows hosts</span>
+nmblookup -A 192.168.56.108
+nmap -sU -p 137 --script nbstat 192.168.56.108</pre>
+        </div>
+
+        <div class="solution-item">
+            <h3>✅ For DNS Connectivity Issues</h3>
+            <p><strong>Specify Alternative DNS Servers:</strong></p>
+            <pre><span class="command"># Force specific DNS server</span>
+nslookup 192.168.56.108 192.168.56.108
+nmap --dns-servers 192.168.56.108 192.168.56.108
+
+<span class="command"># Use system configuration</span>
+echo "nameserver 192.168.56.108" > /etc/resolv.conf</pre>
+        </div>
+
+        <div class="solution-item">
+            <h3>✅ For Firewall Restrictions</h3>
+            <p><strong>Bypass Discovery Protocols:</strong></p>
+            <pre><span class="command"># Skip host discovery</span>
+nmap -Pn 192.168.56.108
+
+<span class="command"># Use different scan techniques</span>
+nmap -PS22,80,443 192.168.56.108
+nmap -sS -T2 192.168.56.108</pre>
+        </div>
+
+        <div class="solution-item">
+            <h3>✅ For Service-based Discovery</h3>
+            <p><strong>Extract FQDN from Service Banners:</strong></p>
+            <pre><span class="command"># SMTP banner</span>
+telnet 192.168.56.108 25
+<span class="command">→ 220 dc1.lab.local ESMTP</span>
+
+<span class="command"># HTTP headers</span>
+curl -I http://192.168.56.108
+<span class="command">→ Server: Microsoft-IIS/10.0</span>
+<span class="command">→ X-Powered-By: ASP.NET (dc1.lab.local)</span>
+
+<span class="command"># LDAP directory information</span>
+ldapsearch -x -h 192.168.56.108 -s base</pre>
+        </div>
+
+        <h2 class="method">Practical Example: Our Scenario</h2>
+
+        <div class="note">
+            <h3>📋 Problem Summary</h3>
+            <p><strong>Initial State:</strong> Nmap showed only IP address without FQDN</p>
+            <pre><span class="command">nmap 192.168.56.108</span>
+<span class="command">→ Nmap scan report for 192.168.56.108</span></pre>
+            
+            <p><strong>Root Cause:</strong> Missing PTR record in reverse DNS zone</p>
+            
+            <p><strong>Solution Applied:</strong> Created reverse DNS zone and PTR record</p>
+            
+            <p><strong>Final Result:</strong> Successful FQDN resolution</p>
+            <pre><span class="command">nmap --dns-servers 192.168.56.108 -Pn 192.168.56.108</span>
+<span class="command">→ Nmap scan report for dc1.lab.local (192.168.56.108)</span></pre>
+        </div>
+
+        <h2 class="method">Quick Reference Commands</h2>
+
+        <pre><span class="command"># Basic FQDN discovery</span>
+nslookup TARGET_IP
+host TARGET_IP
+dig +short -x TARGET_IP
+
+<span class="command"># Nmap with proper DNS</span>
+nmap --dns-servers DNS_SERVER -Pn TARGET_IP
+
+<span class="command"># Service-based discovery</span>
+nmap -p 389 --script ldap-rootdse TARGET_IP
+nmap -sC -sV TARGET_IP
+
+<span class="command"># When all else fails</span>
+nmap -Pn -sS -T2 TARGET_IP</pre>
+
+        <div class="note">
+            <h3>💡 Key Takeaway</h3>
+            <p>FQDN discovery relies on properly configured reverse DNS (PTR records). When this fails, use alternative methods like service enumeration, LDAP queries, or banner grabbing to identify hostnames.</p>
+            <p>Always specify the correct DNS server and use <code>-Pn</code> when dealing with firewalled hosts.</p>
+        </div>
+    </div>
+</body>
+</html>
